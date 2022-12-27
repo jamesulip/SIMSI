@@ -1,23 +1,15 @@
-<script>
+<script lang="ts" setup>
 import { ref } from "vue";
-
-export default {
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
-};
+import { Link } from "@inertiajs/inertia-vue3";
+const leftDrawerOpen = ref(true);
+const show = ref(false);
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
 </script>
 
 <template>
   <q-layout view="hHh lpR fFf">
-
     <q-header reveal bordered class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
@@ -40,16 +32,47 @@ export default {
               <q-avatar size="72px">
                 <q-img :src="$page.props.user.profile_photo_url" />
               </q-avatar>
-              <div class="text-subtitle1 q-mt-md q-mb-xs">{{$page.props.user.name}}</div>
-              <q-btn color="primary" label="Logout" push size="sm" v-close-popup />
+              <div class="text-subtitle1 q-mt-md q-mb-xs">
+                {{ $page.props.user.name }}
+              </div>
+              <q-btn color="primary" label="Logout" push size="sm" />
             </div>
           </div>
         </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
-    <q-drawer bordered v-model="leftDrawerOpen" side="left" overlay behavior="desktop">
-      <!-- drawer content -->
+    <q-drawer bordered v-model="leftDrawerOpen" side="left" behavior="desktop">
+      <!-- create list with expantion -->
+      <q-list separator>
+        <q-item clickable>
+          <q-item-section>Dashboard</q-item-section>
+        </q-item>
+        <q-expansion-item
+          :default-opened="true"
+          icon="mdi-account-search-outline"
+          label="Posting"
+          expand-icon-class="text-primary"
+        >
+          <q-item clickable @click="$inertia.get(`/admin/jobs`)">
+            <q-item-section avatar>
+              <q-avatar>
+                <q-icon name="list" />
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>Jobs</q-item-section>
+          </q-item>
+
+          <q-item @click="$inertia.get(`/admin/jobs/create`)" clickable>
+            <q-item-section avatar>
+              <q-avatar>
+                <q-icon name="mdi-plus" />
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>Post Job</q-item-section>
+          </q-item>
+        </q-expansion-item>
+      </q-list>
     </q-drawer>
 
     <q-page-container>

@@ -3,6 +3,7 @@ import './bootstrap';
 import 'uno.css'
 import '../css/app.css';
 import '@quasar/extras/material-icons/material-icons.css'
+import '@quasar/extras/mdi-v6/mdi-v6.css'
 import 'quasar/src/css/index.sass'
 import '@unocss/reset/tailwind.css'
 // JS
@@ -14,7 +15,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { Quasar } from 'quasar'
 import { createPinia } from 'pinia'
 
-
+import { Notify } from 'quasar'
 // pinia configuration
 const pinia = createPinia()
 
@@ -29,6 +30,8 @@ createInertiaApp({
             .use(ZiggyVue, Ziggy)
             .use(Quasar, {
                 plugins: {
+                    Notify,
+                    extras: ['material-icons','mdi-v6'],
 
                 }, // import Quasar plugins and add here
               })

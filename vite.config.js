@@ -5,6 +5,7 @@ import presetWind from '@unocss/preset-wind'
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
+import {Notify} from 'quasar'
 export default defineConfig({
     plugins: [
         Unocss({
@@ -25,6 +26,7 @@ export default defineConfig({
             },
         }),
         quasar({
+            plugins: ['Notify'],
             sassVariables: 'resources/css/quasar-variables.sass'
           })
     ],

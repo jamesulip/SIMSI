@@ -32,4 +32,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::resource('/admin/jobs', \App\Http\Controllers\JobsController::class);
+
+    Route::get('/announcements', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 });
