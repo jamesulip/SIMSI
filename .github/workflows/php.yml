@@ -37,7 +37,7 @@ jobs:
       run: npm run build # The build command of your project
       
     - name: Build
-      run: git add *
+      run: git add public/build/* -f 
       
     - name: GitHub Push
       # You may pin to the exact commit or the version.
