@@ -57,8 +57,11 @@ Route::middleware([
         return Inertia::render('Dashboard');
     });
 
+// add middleware to resource per function
+
+    Route::resource('/admin/applicant', \App\Http\Controllers\ApplicantController::class);
     Route::resource('/admin/jobs', \App\Http\Controllers\JobsController::class);
-    Route::resource('/admin/user-management', \App\Http\Controllers\UserManagementController::class);
+    Route::resource('/admin/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
 
     Route::get('/announcements', function () {
         return Inertia::render('Dashboard');

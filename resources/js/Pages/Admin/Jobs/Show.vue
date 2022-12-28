@@ -138,6 +138,11 @@ const search = ref("");
                     v-for="(item, index) in applicant_status"
                     :key="index"
                     clickable
+                    @click="
+                      $inertia.put(`/admin/applicant/${row.id}`, {
+                        applicant_status_id: item.id,
+                      })
+                    "
                   >
                     <q-item-section>{{ item.name }}</q-item-section>
                   </q-item>

@@ -24,7 +24,8 @@ class Applicant extends Model
         'email',
         'phone',
         'address',
-        'job_id'
+        'job_id',
+        'applicant_status_id'
     ];
     // hasone ApplicantStatus
     public function applicantStatus()

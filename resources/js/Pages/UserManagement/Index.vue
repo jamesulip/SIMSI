@@ -52,6 +52,17 @@ const columns = ref([
             </q-avatar>
           </q-td>
         </template>
+        <template #body-cell-roles="{ row }">
+          <q-td>
+            <q-chip
+              v-for="role in row.roles"
+              :key="role.id"
+              :label="role.name"
+              color="primary"
+              text-color="white"
+            />
+          </q-td>
+        </template>
       </q-table>
     </q-page>
   </AppLayout>

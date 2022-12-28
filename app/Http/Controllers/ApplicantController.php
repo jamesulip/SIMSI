@@ -73,7 +73,11 @@ class ApplicantController extends Controller
      */
     public function update(Request $request, Applicant $applicant)
     {
-        //
+
+        $applicant->fill($request->all());
+        $applicant->save();
+
+
     }
 
     /**
