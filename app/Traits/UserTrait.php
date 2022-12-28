@@ -7,7 +7,7 @@ trait UserTrait
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->created_by = auth()->user()->id;
+            $model->created_by = auth()->user()->id ?? null;
         });
         static::updating(function ($model) {
             if (\Schema::hasColumn($model->getTable(), 'updated_by')) {

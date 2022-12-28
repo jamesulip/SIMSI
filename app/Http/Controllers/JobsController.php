@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class JobsController extends Controller
 {
     //
-    public function index()
+    public function index(Request $req)
     {
         // return inertia view
-        $jobs = \App\Models\Jobs::all();
+        $jobs = \App\Models\Jobs::with('applicant')
+        ->when($req->search, function($query) use ($req){
+            $query->where('title', 'like', '%'.$req->search.'%')
+            ->orWhere('description', 'like', '%'.$req->search.'%');
+        })
+        ->get();
         return inertia('Admin/Jobs/Index', [
             'jobs' => $jobs,
         ]);
@@ -26,13 +32,7 @@ class JobsController extends Controller
         ]
     );
     }
-    public function show($id)
-    {
-        // return inertia view
-        return inertia('Admin/Jobs/Show', [
-            'job' => \App\Models\Jobs::find($id),
-        ]);
-    }
+
     public function edit($id)
     {
         return inertia('Admin/Jobs/Edit', [
@@ -50,7 +50,7 @@ class JobsController extends Controller
         foreach($request->images as $image){
             $job->addMedia($image)->toMediaCollection('images');
         }
-
+        $job->load('media');
         return Redirect::route('jobs.show', ['job' => $job]);
     }
     public function update(Request $request, $id)
@@ -67,4 +67,37 @@ class JobsController extends Controller
         return Redirect::route('jobs.index');
     }
 
+    public function show($id)
+    {
+        // return inertia view
+        return inertia('Admin/Jobs/Show', [
+            'job' => \App\Models\Jobs::with('applicant')->find($id),
+            'applicant_status'=>\App\Models\ApplicantStatus::all(),
+        ]);
+    }
+
+    public function showPublicPostDetails(Jobs $job)
+    {
+        // return inertia view
+        return inertia('Guest/Show', [
+            'job' => $job,
+        ]);
+    }
+    public function showPublicPost(Request $query){
+
+        $jobs = \App\Models\Jobs::when($query->search, function ($q, $search) {
+            $q->where('title', 'like', '%'.$search.'%');
+        })->
+        get();
+        return inertia('Guest/Jobs', [
+            'jobs' => $jobs,
+        ]);
+    }
+
+    public function applyJob($id){
+        $job = \App\Models\Jobs::find($id);
+        return inertia('Guest/Apply', [
+            'job' => $job,
+        ]);
+    }
 }

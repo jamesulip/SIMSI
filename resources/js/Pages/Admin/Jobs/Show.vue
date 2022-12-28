@@ -1,11 +1,54 @@
 <script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { date } from "quasar";
+import { ref } from "vue";
 import { useQuasar } from "quasar";
-const $q = useQuasar();
-const { job } = defineProps<{
+import { Link } from "@inertiajs/inertia-vue3";
+const { job, applicant_status } = defineProps<{
   job;
+  applicant_status;
 }>();
+const $q = useQuasar();
+const columns = ref([
+  {
+    name: "first_name",
+    label: "Name",
+    field: "first_name",
+    sortable: true,
+    align: "left",
+  },
+  {
+    name: "last_name",
+    label: "Last Name",
+    field: "last_name",
+    sortable: true,
+    align: "left",
+  },
+  {
+    name: "email",
+    label: "Email",
+    field: "email",
+    sortable: true,
+    align: "left",
+  },
+  {
+    name: "phone",
+    label: "Phone",
+    field: "phone",
+    sortable: true,
+    align: "left",
+  },
+  {
+    name: "status",
+    label: "Status",
+    field: "status",
+    sortable: true,
+    align: "left",
+  },
+]);
+const slide = ref(1);
+const fullscreen = ref(false);
+const search = ref("");
 </script>
 <template>
   <AppLayout title="Jobs">
@@ -13,70 +56,97 @@ const { job } = defineProps<{
       <q-card flat bordered>
         <q-card-actions class="q-pa-md">
           <div class="text-h6">{{ job.title }}</div>
+          <!--  -->
           <q-space />
-          <!-- create apply button -->
-          <q-btn
-            icon-right="send"
-            size="lg"
-            color="primary"
-            label="Apply Now"
-            width="1000"
-            outline
-            rounded
-          />
+          <Link
+            :href="`/admin/jobs/${job.id}/edit`"
+            unelevated
+            dense
+            text-color="black"
+            class="border pa-2"
+            >Edit</Link
+          >
         </q-card-actions>
       </q-card>
-      <q-card flat bordered>
-        <q-card-section>
-          <div class="text-h6">Description</div>
-        </q-card-section>
-        <q-separator />
-        <q-card-section horizontal>
+      <!-- create dashboard card -->
+      <div class="flex gap-3">
+        <q-card flat bordered>
           <q-card-section>
-            <div class="text-h6" v-html="job.description" />
+            <div class="text-h6">Applicants</div>
+            <div class="text-h3">{{ job.applicant.length }}</div>
           </q-card-section>
-          <q-separator vertical />
-          <div class="q-ma-md q-gutter-md">
-            <div v-if="job.location">
-              <div class="text-h6">Location</div>
-              <div>{{ job.location }}</div>
+        </q-card>
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="text-h6">Approved</div>
+            <div class="text-h3">
+              {{
+                job.applicant.filter((b) => b.applicant_status.name === "Approved").length
+              }}
             </div>
-            <div v-if="job.salary">
-              <div class="text-h6">Salary</div>
-              <div>{{ job.salary }}</div>
+          </q-card-section>
+        </q-card>
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="text-h6">New</div>
+            <div class="text-h3">
+              {{ job.applicant.filter((b) => b.applicant_status.name === "New").length }}
             </div>
-            <div v-if="job.skills">
-              <div class="text-h6">Skills</div>
-              <div>
-                <q-chip
-                  v-for="skill in job.skills"
-                  :key="skill.id"
-                  :label="skill"
-                  color="primary"
-                  text-color="white"
-                />
-              </div>
-            </div>
-            <div v-if="job.show_salary">
-              <div class="text-h6">Show Salary</div>
-              <div>{{ job.show_salary }}</div>
-            </div>
-            <div v-if="job.date_posted">
-              <div class="text-h6">Created Posted</div>
-              <!-- format date -->
-              <div>{{ date.formatDate(job.date_posted, "MMMM D, YYYY") }}</div>
-            </div>
-            <div v-if="job.date_expires">
-              <div class="text-h6">Date Expires</div>
-              <div>{{ date.formatDate(job.date_expires, "MMMM D, YYYY") }}</div>
-            </div>
-            <div v-if="job.job_type">
-              <div class="text-h6">Job Type</div>
-              <q-chip color="primary" text-color="white">{{ job.job_type.name }}</q-chip>
-            </div>
-          </div>
+          </q-card-section>
+        </q-card>
+      </div>
+      <!-- search -->
+      <q-card flat bordered>
+        <q-card-actions class="q-pa-md">
+          <div class="text-h6">Search</div>
+        </q-card-actions>
+        <q-card-section>
+          <q-input
+            v-model="search"
+            outlined
+            dense
+            placeholder="Search by name, email, phone"
+            class="q-mb-md"
+          />
         </q-card-section>
       </q-card>
+      <q-table
+        :filter="search"
+        :rows="job.applicant"
+        :columns="columns"
+        :pagination="{
+          rowsPerPage: 50,
+        }"
+      >
+        <template #body-cell-status="{ row }">
+          <q-td>
+            <q-btn
+              unelevated
+              dense
+              text-color="black"
+              class="border pa-2"
+              :color="row.applicant_status.color"
+              :label="row.applicant_status.name"
+              size="sm"
+            >
+              <q-menu>
+                <q-list>
+                  <q-item
+                    :disable="
+                      row.applicant_status.name === item.name || item.name === 'New'
+                    "
+                    v-for="(item, index) in applicant_status"
+                    :key="index"
+                    clickable
+                  >
+                    <q-item-section>{{ item.name }}</q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-btn>
+          </q-td>
+        </template>
+      </q-table>
     </q-page>
   </AppLayout>
 </template>

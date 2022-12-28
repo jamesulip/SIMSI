@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\ApplicantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +17,30 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
 
+Route::get('test', function () {
+    return  $user = \App\Models\User::first();
+   //    add the role
+      $user->assignRole('admin');
+   });
+Route::group(['middleware' => ['guest']], function () {
+
+    Route::get('/', function () {
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+            'recentJobs' => \App\Models\Jobs::latest()->take(3)->get(),
+        ]);
+    });
+    Route::get('/jobs',[JobsController::class,'showPublicPost']);
+    Route::get('/job/{job:uuid}',[JobsController::class,'showPublicPostDetails']);
+    Route::get('/job/{job:uuid}/apply',[JobsController::class,'applyJob']);
+    Route::post('/job/{job:id}/apply',[ApplicantController::class,'store']);
+
+});
+Route::get('/job/{job:uuid}',[JobsController::class,'showPublicPostDetails']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -34,6 +51,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('/admin/jobs', \App\Http\Controllers\JobsController::class);
+    Route::resource('/admin/user-management', \App\Http\Controllers\UserManagementController::class);
 
     Route::get('/announcements', function () {
         return Inertia::render('Dashboard');

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Jobs;
+use App\Models\Applicant;
 use App\Traits\UserTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Jobs extends Model implements HasMedia
 {
@@ -14,8 +17,19 @@ class Jobs extends Model implements HasMedia
     use HasFactory;
     use UserTrait;
 
+    protected $table = 'jobs';
+    protected $primaryKey = 'id';
     // with
-    protected $with = ['JobType'];
+
+    // auto uuid on create
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = (string) \Illuminate\Support\Str::uuid();
+        });
+    }
+    protected $with = ['JobType','media'];
 
     protected $fillable = [
         'title',
@@ -31,7 +45,7 @@ class Jobs extends Model implements HasMedia
         'date_expires',
         'created_by',
         'updated_by',
-
+        'uuid'
     ];
 
     protected $casts = [
@@ -42,14 +56,29 @@ class Jobs extends Model implements HasMedia
         'description' => 'required',
     ];
 
-    /**
-     * Get the user associated with the Jobs
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images')
+          ->useDisk('public');
+    }
+
     public function JobType()
     {
         return $this->belongsTo(JobType::class, 'job_type_id');
     }
+    public function images()
+    {
+    //  return has one Spatie\MediaLibrary\MediaCollections\Models\Media::class
+        return $this->hasMany(Media::class, 'model_id')->where('model_type',Jobs::class);
 
+    }
+    // has many applications
+    public function applicant()
+    {
+        return $this->hasMany(Applicant::class, 'jobs_id');
+    }
+    public function applications()
+    {
+        return $this->hasMany(Applicant::class, 'jobs_id');
+    }
 }

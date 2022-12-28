@@ -12,6 +12,14 @@ export default defineConfig({
             presets: [
                 presetWind(),
             ],
+            rules:[
+                // fix conflict with quasar flex hidden
+                [/^hidden$/, 'hidden'],
+                [/^flex$/, 'flex'],
+                [/^flex-row$/, 'flex-row'],
+                [/^flex-col$/, 'flex-col'],
+            ]
+
           }),
         laravel({
             input: 'resources/js/app.js',
@@ -27,7 +35,7 @@ export default defineConfig({
         }),
         quasar({
             plugins: ['Notify'],
-            sassVariables: 'resources/css/quasar-variables.sass'
+            sassVariables: 'resources/css/quasar-variables.sass',
           })
     ],
 });

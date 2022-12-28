@@ -1,163 +1,86 @@
 <template>
-  <div class="bg-gray-50">
-    <div class="relative overflow-hidden">
-      <div class="absolute inset-y-0 h-full w-full" aria-hidden="true">
-        <div class="relative h-full">
-          <svg
-            class="absolute right-full translate-y-1/3 translate-x-1/4 transform sm:translate-x-1/2 md:translate-y-1/2 lg:translate-x-full"
-            width="404"
-            height="784"
-            fill="none"
-            viewBox="0 0 404 784"
-          >
-            <defs>
-              <pattern
-                id="e229dbec-10e9-49ee-8ec3-0286ca089edf"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
+  <Guest>
+    <div class="bg-[#f1f5e6]" style="min-height: inherit">
+      <div class="h-[40vh] bg-blue-800">
+        <div class="mx-auto relative max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
+          <div class="bg-blue-800 p-5 rounded-xl shadow-md border-red bottom-1">
+            <div class="flex items-center">
+              <img class="h-12 mx-auto w-auto sm:h-28" src="/logo.png" alt="Workflow" />
+              <h1
+                class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl text-[#f1f5e6]"
               >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  class="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width="404"
-              height="784"
-              fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)"
-            />
-          </svg>
-          <svg
-            class="absolute left-full -translate-y-3/4 -translate-x-1/4 transform sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4"
-            width="404"
-            height="784"
-            fill="none"
-            viewBox="0 0 404 784"
-          >
-            <defs>
-              <pattern
-                id="d2a68204-c383-44b1-b99f-42ccff4e5365"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  class="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width="404"
-              height="784"
-              fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)"
-            />
-          </svg>
-        </div>
-      </div>
-
-      <div class="relative pt-6 pb-16 sm:pb-24">
-        <div class="mx-auto mt-16 max-w-7xl px-4 sm:mt-24 sm:px-6">
-          <div class="text-center">
-            <h1
-              class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl"
-            >
-              <span class="block text-green">Shaso International </span>
-              <span class="block text-green">Manpower Services Inc</span>
-            </h1>
-            <p
-              class="mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl"
-            >
-              "Empowering Filipino workers for global success: upholding respect,
-              integrity, and fairness in all we do"
+                Shaso International Manpower Services
+              </h1>
+            </div>
+            <p class="mt-6 text-lg leading-8 text-[#f1f5e6] sm:text-center">
+              " Your reliable source for skilled and versatile Filipino workers,
+              delivering top-quality customer service and maintaining the highest
+              standards of integrity."
             </p>
+            <div class="mt-8 flex gap-x-4 sm:justify-center">
+              <Link
+                href="/jobs"
+                class="inline-block rounded-lg bg-green-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-green-600 hover:bg-green-700 hover:ring-green-700"
+              >
+                Apply Now
+                <span class="text-green-200" aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="relative">
-        <div class="absolute inset-0 flex flex-col" aria-hidden="true">
-          <div class="flex-1" />
-          <div class="w-full flex-1 bg-gray-800" />
-        </div>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6">
-          <img
-            class="relative rounded-lg shadow-lg"
-            src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg"
-            alt="App screenshot"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="bg-gray-800">
-      <div class="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <h2 class="text-center text-base font-semibold text-gray-400">
-          Trusted by over 26,000 forward-thinking companies
-        </h2>
-        <div class="mt-8 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-          <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <img
-              class="h-12"
-              src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg"
-              alt="Tuple"
-            />
-          </div>
-          <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <img
-              class="h-12"
-              src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg"
-              alt="Mirage"
-            />
-          </div>
-          <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-            <img
-              class="h-12"
-              src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
-              alt="StaticKit"
-            />
-          </div>
-          <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-            <img
-              class="h-12"
-              src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-              alt="Transistor"
-            />
-          </div>
-          <div class="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
-            <img
-              class="h-12"
-              src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
-              alt="Workcation"
-            />
+          <div
+            class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          >
+            <svg
+              class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
+              viewBox="0 0 1155 678"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)"
+                fill-opacity=".3"
+                d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
+              />
+              <defs>
+                <linearGradient
+                  id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc"
+                  x1="1155.49"
+                  x2="-78.208"
+                  y1=".177"
+                  y2="474.645"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#438d21" />
+                  <stop offset="1" stop-color="#054881" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </Guest>
 </template>
+<script lang="ts" setup>
+import { Link } from "@inertiajs/inertia-vue3";
+import Guest from "../Layouts/Guest.vue";
+import { computed } from "vue";
 
-<script setup>
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
-
-const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
-];
+const { recentJobs } = defineProps<{ recentJobs: any }>();
+const computedRecentJobs = computed(() => {
+  return recentJobs.map((job: any) => {
+    return {
+      title: job.title,
+      href: `/job/${job.id}`,
+      category: {
+        name: "Job Hiring",
+        href: `/job/${job.id}`,
+      },
+      description: job.description,
+      date: job.date_posted,
+      datetime: job.date_expires,
+      imageUrl: job.media[0]?.original_url,
+    };
+  });
+});
 </script>

@@ -43,9 +43,13 @@ function toggleLeftDrawer() {
     </q-header>
 
     <q-drawer bordered v-model="leftDrawerOpen" side="left" behavior="desktop">
-      <!-- create list with expantion -->
       <q-list separator>
-        <q-item clickable>
+        <q-item clickable href="/dashboard">
+          <q-item-section avatar>
+            <q-avatar>
+              <q-icon name="mdi-view-dashboard-outline" />
+            </q-avatar>
+          </q-item-section>
           <q-item-section>Dashboard</q-item-section>
         </q-item>
         <q-expansion-item
@@ -72,6 +76,14 @@ function toggleLeftDrawer() {
             <q-item-section>Post Job</q-item-section>
           </q-item>
         </q-expansion-item>
+        <q-item clickable href="/admin/user-management">
+          <q-item-section avatar>
+            <q-avatar>
+              <q-icon name="mdi-account-cog-outline" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>User Management</q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
