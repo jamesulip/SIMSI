@@ -1,60 +1,139 @@
 <template>
   <Guest>
-    <div class="bg-[#f1f5e6]" style="min-height: inherit">
-      <div class="h-[40vh] bg-blue-800">
-        <div class="mx-auto relative max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
-          <div class="bg-blue-800 p-5 rounded-xl shadow-md border-red bottom-1">
-            <div class="flex items-center">
-              <img class="h-12 mx-auto w-auto sm:h-28" src="/logo.png" alt="Workflow" />
-              <h1
-                class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl text-[#f1f5e6]"
+    <div class="lg:relative">
+      <div class="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-left">
+        <div class="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
+          <h1
+            class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl"
+          >
+            <span class="block xl:inline"> Shaso International </span>
+            <span class="block text-green-600 xl:inline">Manpower Services</span>
+          </h1>
+          <p
+            class="mx-auto mt-3 max-w-md text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl"
+          >
+            " Your reliable source for skilled and versatile Filipino workers, delivering
+            top-quality customer service and maintaining the highest standards of
+            integrity."
+          </p>
+          <div class="mt-10 sm:flex sm:justify-center lg:justify-center">
+            <div class="rounded-md shadow">
+              <a
+                href="#"
+                class="flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 md:py-4 md:px-10 md:text-lg"
+                >Apply Now</a
               >
-                Shaso International Manpower Services
-              </h1>
-            </div>
-            <p class="mt-6 text-lg leading-8 text-[#f1f5e6] sm:text-center">
-              " Your reliable source for skilled and versatile Filipino workers,
-              delivering top-quality customer service and maintaining the highest
-              standards of integrity."
-            </p>
-            <div class="mt-8 flex gap-x-4 sm:justify-center">
-              <Link
-                href="/jobs"
-                class="inline-block rounded-lg bg-green-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-green-600 hover:bg-green-700 hover:ring-green-700"
-              >
-                Apply Now
-                <span class="text-green-200" aria-hidden="true">&rarr;</span>
-              </Link>
             </div>
           </div>
-          <div
-            class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-          >
-            <svg
-              class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
-              viewBox="0 0 1155 678"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        </div>
+      </div>
+      <div
+        class="relative h-72 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2"
+      >
+        <svg
+          class="absolute -z-10 top-1/3 right-1/2 -mr-3 lg:left-0 lg:m-0"
+          width="404"
+          height="392"
+          fill="none"
+          viewBox="0 0 404 392"
+        >
+          <defs>
+            <pattern
+              id="837c3e70-6c3a-44e6-8854-cc48c737b659"
+              x="0"
+              y="0"
+              width="20"
+              height="20"
+              patternUnits="userSpaceOnUse"
             >
-              <path
-                fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)"
-                fill-opacity=".3"
-                d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
-              />
-              <defs>
-                <linearGradient
-                  id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc"
-                  x1="1155.49"
-                  x2="-78.208"
-                  y1=".177"
-                  y2="474.645"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#438d21" />
-                  <stop offset="1" stop-color="#054881" />
-                </linearGradient>
-              </defs>
-            </svg>
+              <rect
+                x="0"
+                y="0"
+                width="4"
+                height="4"
+                class="text-green-200"
+                fill="currentColor"
+              ></rect>
+            </pattern>
+          </defs>
+          <rect
+            width="404"
+            height="392"
+            fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"
+          ></rect>
+        </svg>
+        <div
+          class="absolute inset-0 h-full w-full object-cover flex items-center justify-center p-4"
+        >
+          <q-carousel
+            class="w-full"
+            v-model="slide"
+            navigation
+            autoplay
+            infinite
+            animated
+          >
+            <q-carousel-slide name="1" img-src="images/ENTRANCE.jpg" />
+            <q-carousel-slide name="2" img-src="images/IMG_0406.JPG" />
+            <q-carousel-slide name="3" img-src="images/OUR_OFFICE.jpg" />
+          </q-carousel>
+        </div>
+      </div>
+    </div>
+    <div class="relative bg-gray-50 px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">
+      <div class="absolute inset-0">
+        <div class="h-1/3 bg-white sm:h-2/3" />
+      </div>
+      <div class="relative mx-auto max-w-7xl">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Recent Jobs Posted
+          </h2>
+        </div>
+        <div class="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
+          <div
+            v-for="post in computedRecentJobs"
+            :key="post.title"
+            class="flex flex-col overflow-hidden rounded-lg shadow-lg"
+          >
+            <div class="flex-shrink-0" v-if="post.imageUrl">
+              <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
+            </div>
+            <div class="flex flex-1 flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <p class="text-sm font-medium text-green-600">
+                  <a :href="post.category.href" class="hover:underline">{{
+                    post.category.name
+                  }}</a>
+                </p>
+                <a :href="post.href" class="mt-2 block">
+                  <p class="text-xl font-semibold text-gray-900">{{ post.title }}</p>
+                  <p class="mt-3 text-base text-gray-500">{{ post.description }}</p>
+                </a>
+              </div>
+              <div class="mt-6 flex items-center">
+                <div class="ml-3">
+                  <div class="flex space-x-1 text-sm text-gray-500">
+                    Date Posted:
+                    <time class="font-semibold">{{ post.date }}</time>
+                  </div>
+                  <div class="flex space-x-1 text-sm text-gray-500">
+                    Date Expires:
+                    <time class="font-semibold">{{ post.datetime }}</time>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- show all jobs link -->
+          <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+            <div class="flex-1 flex flex-col justify-between bg-white p-6">
+              <div class="flex-1">
+                <p class="text-sm font-medium text-green-600">
+                  <a href="/jobs">View All Jobs</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -64,8 +143,8 @@
 <script lang="ts" setup>
 import { Link } from "@inertiajs/inertia-vue3";
 import Guest from "../Layouts/Guest.vue";
-import { computed } from "vue";
-
+import { computed, ref } from "vue";
+const slide = ref(1);
 const { recentJobs } = defineProps<{ recentJobs: any }>();
 const computedRecentJobs = computed(() => {
   return recentJobs.map((job: any) => {
@@ -76,7 +155,7 @@ const computedRecentJobs = computed(() => {
         name: "Job Hiring",
         href: `/job/${job.id}`,
       },
-      description: job.description,
+      description: job.description.replace(/(<([^>]+)>)/gi, "").substring(0, 250) + "...",
       date: job.date_posted,
       datetime: job.date_expires,
       imageUrl: job.media[0]?.original_url,

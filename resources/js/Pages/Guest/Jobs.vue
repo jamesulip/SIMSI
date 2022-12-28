@@ -12,7 +12,7 @@ const computedRecentJobs = computed(() => {
         name: "Job Hiring",
         href: `/job/${job.uuid}`,
       },
-      description: job.description,
+      description: job.description.replace(/(<([^>]+)>)/gi, "").substring(0, 250) + "...",
       date: job.date_posted,
       datetime: job.date_expires,
       imageUrl: job.media[0]?.original_url,
@@ -60,7 +60,10 @@ const computedRecentJobs = computed(() => {
                     </p>
                     <a :href="post.href" class="mt-2 block">
                       <p class="text-xl font-semibold text-gray-900">{{ post.title }}</p>
-                      <p class="mt-3 text-base text-gray-500">{{ post.description }}</p>
+                      <p
+                        class="mt-3 text-base text-gray-500"
+                        v-html="post.description"
+                      ></p>
                     </a>
                   </div>
                   <div class="mt-6 flex items-center">

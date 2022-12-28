@@ -47,9 +47,12 @@ class JobsController extends Controller
         $job->fill($request->all());
         $job->save();
 
-        foreach($request->images as $image){
-            $job->addMedia($image)->toMediaCollection('images');
+        if($request->hasFile('images')){
+            foreach($request->images as $image){
+                $job->addMedia($image)->toMediaCollection('images');
+            }
         }
+
         $job->load('media');
         return Redirect::route('jobs.show', ['job' => $job]);
     }
@@ -88,6 +91,7 @@ class JobsController extends Controller
         $jobs = \App\Models\Jobs::when($query->search, function ($q, $search) {
             $q->where('title', 'like', '%'.$search.'%');
         })->
+        orderBy('created_at', 'desc')->
         get();
         return inertia('Guest/Jobs', [
             'jobs' => $jobs,

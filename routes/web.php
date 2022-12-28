@@ -23,7 +23,6 @@ Route::get('test', function () {
    //    add the role
       $user->assignRole('admin');
    });
-Route::group(['middleware' => ['guest']], function () {
 
     Route::get('/', function () {
         return Inertia::render('Welcome', [
@@ -39,7 +38,15 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/job/{job:uuid}/apply',[JobsController::class,'applyJob']);
     Route::post('/job/{job:id}/apply',[ApplicantController::class,'store']);
 
-});
+
+    // about us
+    Route::get('/about-us', function () {
+        return Inertia::render('Guest/AboutUs');
+    });
+    Route::get('/about-us', function () {
+        return Inertia::render('Guest/Mission');
+    });
+
 Route::get('/job/{job:uuid}',[JobsController::class,'showPublicPostDetails']);
 Route::middleware([
     'auth:sanctum',
