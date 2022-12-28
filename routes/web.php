@@ -48,12 +48,12 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
-    })->name('dashboard');
+    });
 
     Route::resource('/admin/jobs', \App\Http\Controllers\JobsController::class);
     Route::resource('/admin/user-management', \App\Http\Controllers\UserManagementController::class);
 
     Route::get('/announcements', function () {
         return Inertia::render('Dashboard');
-    })->name('dashboard');
+    });
 });
