@@ -43,7 +43,7 @@ Route::get('test', function () {
     Route::get('/about-us', function () {
         return Inertia::render('Guest/AboutUs');
     });
-    Route::get('/about-us', function () {
+    Route::get('/mission', function () {
         return Inertia::render('Guest/Mission');
     });
 
