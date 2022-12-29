@@ -31,7 +31,7 @@ function onSubmit() {
 <template>
   <Guest>
     <div class="relative">
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto py-6 sm:px-6 lg:px-8">
         <!-- application for label -->
         <q-card flat bordered class="q-mb-sm">
           <q-card-section class="q-pa-md">
@@ -41,7 +41,7 @@ function onSubmit() {
         </q-card>
 
         <q-form ref="form" @submit.prevent="onSubmit">
-          <q-card>
+          <q-card flat>
             <q-card-section>
               <h3 class="text-lg font-medium leading-6 text-gray-900">
                 Applicant Information
@@ -93,6 +93,11 @@ function onSubmit() {
                 v-model="application.address"
                 label="Address"
                 hint="Enter your address."
+                :rules="[
+                  (v) => !!v || 'Address is required.',
+                  (v) => v.length >= 5 || 'Address must be more than 10 characters.',
+                  (v) => v.length <= 255 || 'Address must be less than 255 characters.',
+                ]"
               />
             </q-card-section>
             <q-card-section class="flex justify-between">
@@ -100,7 +105,7 @@ function onSubmit() {
                 href="/jobs"
                 icon-right="cancel"
                 size="lg"
-                color="primary"
+                color="negative"
                 label="Cancel"
                 width="1000"
                 outline
@@ -110,7 +115,7 @@ function onSubmit() {
                 type="submit"
                 icon-right="send"
                 size="lg"
-                color="primary"
+                color="green"
                 label="Submit"
                 width="1000"
                 outline

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jobs;
+use Inertia\Inertia;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class ApplicantController extends Controller
 {
@@ -38,8 +40,24 @@ class ApplicantController extends Controller
      */
     public function store(Request $request,Jobs $job)
     {
-        //
+        // validate request
+       $rules = [
+        'first_name' => 'required',
+        'last_name' => 'required',
+        // require email if phone is not set
+        'email' => 'required_without:phone',
+        // require phone if email is not set
+        'phone' => 'required_without:email',
+        'address' => 'required'
+       ];
+         $request->validate($rules);
+
         $job->applications()->create($request->all());
+        // redirect to sucess page
+        $signedUrl = URL::temporarySignedRoute(
+            'job.apply.success', now()->addMinutes(30), ['job' => $job]
+        );
+        return Inertia::location($signedUrl);
     }
 
     /**

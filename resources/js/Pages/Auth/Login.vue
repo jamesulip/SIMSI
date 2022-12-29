@@ -32,7 +32,8 @@ const submit = () => {
 </script>
 
 <template>
-  <q-form @submit="submit()"
+  <q-form
+    @submit="submit()"
     class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
   >
     <q-card class="mx-auto w-96">
@@ -48,7 +49,7 @@ const submit = () => {
             :error="Boolean(form.errors.email)"
             :error-message="form.errors.email"
             type="text"
-            label="Email Address"
+            label="Enter Name"
             v-model="form.email"
             outlined
             dense
@@ -72,7 +73,9 @@ const submit = () => {
           Forgot your password?
         </a>
         <q-space />
-        <q-btn type="submit" unelevated color="primary" :loading="form.processing">Login</q-btn>
+        <q-btn type="submit" unelevated color="primary" :loading="form.processing"
+          >Login</q-btn
+        >
       </q-card-actions>
     </q-card>
   </q-form>

@@ -1,9 +1,9 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 </script>
 
 <template>
-    <q-card flat bordered class="overflow-hidden">
+  <!-- <q-card flat bordered class="overflow-hidden">
     <q-card-section class="!p-0">
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
             <div>
@@ -137,6 +137,5 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 </div>
             </div>
         </div></q-card-section>
-    </q-card>
-
+    </q-card> -->
 </template>

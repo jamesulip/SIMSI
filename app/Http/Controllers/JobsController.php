@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Redirect;
 class JobsController extends Controller
 {
     //
+    public function __construct()
+    {
+        // add middleware to index
+        $this->middleware('auth:sanctum');
+        $this->middleware('role:admin')->only([ 'create', 'edit', 'store', 'update', 'destroy']);
+
+    }
     public function index(Request $req)
     {
         // return inertia view
@@ -101,6 +108,12 @@ class JobsController extends Controller
     public function applyJob($id){
         $job = \App\Models\Jobs::find($id);
         return inertia('Guest/Apply', [
+            'job' => $job,
+        ]);
+    }
+    public function applyJobSuccess($id){
+        $job = \App\Models\Jobs::find($id);
+        return inertia('Guest/ApplySuccess', [
             'job' => $job,
         ]);
     }

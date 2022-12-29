@@ -27,6 +27,7 @@ class Applicant extends Model
         'job_id',
         'applicant_status_id'
     ];
+
     // hasone ApplicantStatus
     public function applicantStatus()
     {

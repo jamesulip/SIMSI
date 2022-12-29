@@ -65,11 +65,7 @@ const search = ref(route().params.search);
               </div>
               <div class="flex flex-1 flex-col justify-between bg-white p-6">
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-green-600">
-                    <a :href="post.category.href" class="hover:underline">{{
-                      post.category.name
-                    }}</a>
-                  </p>
+
                   <a :href="post.href" class="mt-2 block">
                     <p class="text-xl font-semibold text-gray-900">{{ post.title }}</p>
                     <p class="mt-3 text-base text-gray-500" v-html="post.description"></p>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Jobs;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -18,11 +19,7 @@ use App\Http\Controllers\ApplicantController;
 */
 
 
-Route::get('test', function () {
-    return  $user = \App\Models\User::first();
-   //    add the role
-      $user->assignRole('admin');
-   });
+
 
     Route::get('/', function () {
         return Inertia::render('Welcome', [
@@ -30,14 +27,14 @@ Route::get('test', function () {
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'recentJobs' => \App\Models\Jobs::latest()->take(3)->get(),
+            'recentJobs' => Jobs::latest()->take(3)->get(),
         ]);
     });
     Route::get('/jobs',[JobsController::class,'showPublicPost']);
     Route::get('/job/{job:uuid}',[JobsController::class,'showPublicPostDetails']);
     Route::get('/job/{job:uuid}/apply',[JobsController::class,'applyJob']);
     Route::post('/job/{job:id}/apply',[ApplicantController::class,'store']);
-
+    Route::get('/job/{job:id}/apply/success',[JobsController::class,'applyJobSuccess'])->name('job.apply.success')->middleware('signed');
 
     // about us
     Route::get('/about-us', function () {
@@ -45,6 +42,9 @@ Route::get('test', function () {
     });
     Route::get('/mission', function () {
         return Inertia::render('Guest/Mission');
+    });
+    Route::get('/contact-us', function () {
+        return Inertia::render('Guest/ContactUs');
     });
 
 Route::get('/job/{job:uuid}',[JobsController::class,'showPublicPostDetails']);

@@ -69,11 +69,12 @@ const fullscreen = ref(false);
             <div class="text-h6">Description</div>
           </q-card-section>
           <q-separator />
-          <q-card-section horizontal>
-            <q-card-section class="w-2/3">
+          <!-- make responsive -->
+          <q-card-section class="flex sm:block">
+            <q-card-section class="flex-1">
               <div class="text-h6" v-html="job.description" />
             </q-card-section>
-            <q-separator vertical />
+            <q-separator vertical class="hidden sm:visible" />
             <div class="q-ma-md q-gutter-md">
               <div v-if="job.location">
                 <div class="text-h6">Location</div>

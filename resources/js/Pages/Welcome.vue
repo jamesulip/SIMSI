@@ -19,10 +19,10 @@
           <div class="mt-10 sm:flex sm:justify-center lg:justify-center">
             <div class="rounded-md shadow">
               <a
-                href="#"
+                href="/jobs"
                 class="flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 md:py-4 md:px-10 md:text-lg"
-                >Apply Now</a
-              >
+                >Job Openings
+              </a>
             </div>
           </div>
         </div>
@@ -94,18 +94,13 @@
           <div
             v-for="post in computedRecentJobs"
             :key="post.title"
-            class="flex flex-col overflow-hidden rounded-lg shadow-lg"
+            class="flex flex-col overflow-hidden rounded-lg shadow-lg border"
           >
             <div class="flex-shrink-0" v-if="post.imageUrl">
               <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
             </div>
             <div class="flex flex-1 flex-col justify-between bg-white p-6">
               <div class="flex-1">
-                <p class="text-sm font-medium text-green-600">
-                  <a :href="post.category.href" class="hover:underline">{{
-                    post.category.name
-                  }}</a>
-                </p>
                 <a :href="post.href" class="mt-2 block">
                   <p class="text-xl font-semibold text-gray-900">{{ post.title }}</p>
                   <p class="mt-3 text-base text-gray-500">{{ post.description }}</p>
@@ -122,16 +117,6 @@
                     <time class="font-semibold">{{ post.datetime }}</time>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- show all jobs link -->
-          <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-            <div class="flex-1 flex flex-col justify-between bg-white p-6">
-              <div class="flex-1">
-                <p class="text-sm font-medium text-green-600">
-                  <a href="/jobs">View All Jobs</a>
-                </p>
               </div>
             </div>
           </div>
