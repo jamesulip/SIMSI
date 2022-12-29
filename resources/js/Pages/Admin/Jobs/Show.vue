@@ -122,14 +122,13 @@ function searchFn() {
           <q-card-actions class="q-pa-md">
             <div class="text-h6">Search</div>
           </q-card-actions>
-          <q-card-section class="flex gap-3 items-start">
+          <q-card-section class="grid grid-cols-3 gap-3 items-start flex-row">
             <q-input
               v-model="search.search"
               outlined
               name="search"
               dense
               placeholder="Search by name, email, phone"
-              class="q-mb-md"
             />
             <q-select
               dense
@@ -141,9 +140,27 @@ function searchFn() {
               option-value="id"
               emit-value
               map-options
+              clearable
             />
           </q-card-section>
+          <q-separator />
           <q-card-actions>
+            <q-btn
+              dense
+              unelevated
+              color="negative"
+              type="reset"
+              label="Clear"
+              @click="
+                () => {
+                  search = {
+                    applicant_status_id: null,
+                    search: '',
+                  };
+                  searchFn();
+                }
+              "
+            />
             <q-btn dense unelevated color="primary" type="submit" label="Search" />
           </q-card-actions>
         </q-card>
