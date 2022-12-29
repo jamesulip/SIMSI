@@ -15,6 +15,11 @@ class ApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('permission:update_applicant_status', ['only' => ['update']]);
+        $this->middleware('permission:view_applicant', ['only' => ['index']]);
+    }
     public function index()
     {
         //
@@ -40,24 +45,39 @@ class ApplicantController extends Controller
      */
     public function store(Request $request,Jobs $job)
     {
-        // validate request
-       $rules = [
-        'first_name' => 'required',
-        'last_name' => 'required',
-        // require email if phone is not set
-        'email' => 'required_without:phone',
-        // require phone if email is not set
-        'phone' => 'required_without:email',
-        'address' => 'required'
-       ];
-         $request->validate($rules);
 
-        $job->applications()->create($request->all());
-        // redirect to sucess page
-        $signedUrl = URL::temporarySignedRoute(
-            'job.apply.success', now()->addMinutes(30), ['job' => $job]
-        );
-        return Inertia::location($signedUrl);
+        // validate request
+       $url =  \DB::transaction(function ()use($request,$job) {
+            $rules = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            // require email if phone is not set
+            'email' => 'required_without:phone',
+            // require phone if email is not set
+            'phone' => 'required_without:email',
+            'address' => 'required',
+            'resume' => 'required|mimes:pdf,doc,docx|max:5000',
+           ];
+             $request->validate($rules,[
+                'email.required_without' => 'The email field is required when phone is not present.',
+                'phone.required_without' => 'The phone field is required when email is not present.',
+                'resume.mimes' => 'The resume must be a file of type: pdf, doc, docx.',
+                'resume.max' => 'The resume may not be greater than 5mb.'
+            ]);
+
+            $applicant  = $job->applications()->create($request->all());
+            // redirect to sucess page
+            if($request->hasFile('resume')){
+                $applicant->addMediaFromRequest('resume')->toMediaCollection('resume');
+            }
+            $signedUrl = URL::temporarySignedRoute(
+                'job.apply.success', now()->addMinutes(30), ['job' => $job]
+            );
+
+            return $signedUrl;
+       });
+
+        return redirect($url);
     }
 
     /**

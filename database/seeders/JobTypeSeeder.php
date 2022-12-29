@@ -48,7 +48,14 @@ class JobTypeSeeder extends Seeder
             ],
         ];
         foreach ($jobTypes as $jobType) {
-            \App\Models\JobType::create($jobType);
+            \App\Models\JobType::updateOrCreate(
+                ['name' => $jobType['name']],
+                [
+                    'description' => $jobType['description'],
+                    'active' => $jobType['active'],
+                    'created_by' => $jobType['created_by'],
+                ]
+            );
         }
 
     }

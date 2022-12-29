@@ -93,7 +93,7 @@ onMounted(() => {
                 unelevated
                 icon="mdi-plus"
                 label="Post Job"
-                color="primary"
+                color="green"
               />
             </q-toolbar>
           </q-card-actions>
@@ -108,7 +108,7 @@ onMounted(() => {
               class="q-mb-md"
             />
 
-            <q-btn unelevated icon="mdi-magnify" label="Search" color="primary" />
+            <q-btn unelevated icon="mdi-magnify" label="Search" color="green" />
           </q-card-section>
         </q-card>
       </q-form>
@@ -123,7 +123,7 @@ onMounted(() => {
       >
         <template #body-cell-job_type="{ row }">
           <q-td>
-            <q-chip v-if="row.job_type" color="primary" text-color="white">
+            <q-chip v-if="row.job_type" color="green" text-color="white">
               {{ row.job_type.name }}
             </q-chip>
           </q-td>
@@ -154,7 +154,7 @@ onMounted(() => {
                   <q-chip
                     v-for="skill in row.skills"
                     :key="skill.id"
-                    color="primary"
+                    color="green"
                     text-color="white"
                   >
                     {{ skill }}
@@ -164,7 +164,7 @@ onMounted(() => {
 
               <div class="flex items-center">
                 <label for="" class="text-subtitle2"> Job Type: </label>
-                <q-chip v-if="row.job_type" color="primary" text-color="white">
+                <q-chip v-if="row.job_type" color="green" text-color="white">
                   {{ row.job_type.name }}
                 </q-chip>
               </div>
@@ -188,7 +188,7 @@ onMounted(() => {
         </template>
         <template #body-cell-actions="{ row }">
           <q-td>
-            <q-btn flat icon="mdi-dots-vertical" color="primary">
+            <q-btn flat icon="mdi-dots-vertical" color="green">
               <q-menu>
                 <q-list>
                   <q-item clickable target="_blank" :href="`/job/${row.uuid}`">

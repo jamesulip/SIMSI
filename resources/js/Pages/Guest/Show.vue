@@ -34,7 +34,7 @@ const fullscreen = ref(false);
           </q-card-actions>
         </q-card>
 
-        <q-carousel
+        <q-carousel v-if="job?.media.length"
           animated
           autoplay
           v-model:fullscreen="fullscreen"
@@ -44,6 +44,7 @@ const fullscreen = ref(false);
           infinite
         >
           <q-carousel-slide
+
             v-for="(img, ind) in job.media"
             :key="ind"
             :name="ind + 1"

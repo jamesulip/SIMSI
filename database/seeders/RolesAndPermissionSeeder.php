@@ -50,8 +50,28 @@ class RolesAndPermissionSeeder extends Seeder
             $nRole = Role::updateOrCreate(['name' => $role['role']]);
             foreach ($role['permission'] as $key => $permission) {
                Permission::updateOrCreate(['name' => $permission]);
-                $nRole->givePermissionTo($permission);
+
             }
+            $nRole->syncPermissions($role['permission']);
         }
+
+        // create user for shasoadmin and shasouser
+        $admin = \App\Models\User::updateOrCreate(
+            ['email' => 'shasoadmin@shasomanpower.com'],
+            [
+                'name' => 'shasoadmin',
+                'password' => bcrypt('L3jU4c6lsySV'),
+            ]
+        );
+        $admin->assignRole('admin');
+        $user = \App\Models\User::updateOrCreate(
+            ['email' => 'shasouser@shasomanpower.com'],
+            [
+                'name' => 'shasouser',
+                'password' => bcrypt('VSysl6c4Uj3L'),
+            ]
+        );
+        $user->assignRole('user');
+
     }
 }

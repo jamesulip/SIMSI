@@ -4,6 +4,8 @@ import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { date } from "quasar";
 import TiptapEditdor from "@/Components/TiptapEditdor.vue";
+import { useFetch } from "@vueuse/core";
+
 const job = ref({
   title: "",
   description: "",
@@ -45,6 +47,18 @@ function submit() {
       },
     }
   );
+}
+const { data, isFetching } = useFetch(
+  "https://restcountries.com/v3.1/all?fields=name"
+).json();
+const options = ref(data.value);
+function filterFn(val, update, abort) {
+  update(() => {
+    const needle = val.toLowerCase();
+    options.value = data.value.filter(
+      (v) => v.name.common.toLowerCase().indexOf(needle) > -1
+    );
+  });
 }
 </script>
 <template>
@@ -152,13 +166,18 @@ function submit() {
             />
           </q-card-section>
           <q-card-section class="q-gutter-md">
-            <q-input
+            <q-select
+              use-input
+              :options="options"
+              @filter="filterFn"
               v-model="job.location"
-              label="Location"
               outlined
-              hint="You can leave this field empty if you don't want to show location"
-              lazy-rules
-              :rules="[(val) => !!val || 'Please type something']"
+              label="Location"
+              :loading="isFetching"
+              :option-label="(v) => v?.name?.common"
+              map-options
+              emit-value
+              :option-value="(b) => b?.name?.common"
             />
           </q-card-section>
           <q-card-section class="flex gap-3">
@@ -193,7 +212,7 @@ function submit() {
               v-model="job.job_type_id"
               emit-value
               map-options
-              label="Employment  Type"
+              label="Employment Type"
               outlined
               :options="job_types"
               lazy-rules

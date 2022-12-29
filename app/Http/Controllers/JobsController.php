@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jobs;
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -12,9 +13,8 @@ class JobsController extends Controller
     public function __construct()
     {
         // add middleware to index
-        $this->middleware('auth:sanctum');
-        $this->middleware('role:admin')->only([ 'create', 'edit', 'store', 'update', 'destroy']);
 
+        $this->middleware(['role:admin'])->only([ 'create', 'edit', 'store', 'update', 'destroy']);
     }
     public function index(Request $req)
     {
@@ -68,7 +68,13 @@ class JobsController extends Controller
         $request->validate(\App\Models\Jobs::$rules);
         $job = \App\Models\Jobs::find($id);
         $job->update($request->all());
-        return Redirect::route('jobs.show', ['job' => $job]);
+        // upload file
+        if($request->hasFile('images')){
+            foreach($request->images as $image){
+                $job->addMedia($image)->toMediaCollection('images');
+            }
+        }
+        // return Redirect::route('jobs.show', ['job' => $job]);
     }
     public function destroy($id)
     {
@@ -77,12 +83,23 @@ class JobsController extends Controller
         return Redirect::route('jobs.index');
     }
 
-    public function show($id)
+    public function show($id, Request $req)
     {
         // return inertia view
+        $applicants = Applicant::with('resume')->where('jobs_id', $id)
+        ->when($req->search, function($query) use ($req){
+            $query->where('first_name', 'like', '%'.$req->search.'%')
+            ->orWhere('last_name', 'like', '%'.$req->search.'%')
+            ->orWhere('email', 'like', '%'.$req->search.'%');
+        })
+        ->when($req->applicant_status_id, function($query) use ($req){
+            $query->where('applicant_status_id', $req->applicant_status_id);
+        })
+        ->get();
         return inertia('Admin/Jobs/Show', [
-            'job' => \App\Models\Jobs::with('applicant')->find($id),
+            'job' => \App\Models\Jobs::find($id),
             'applicant_status'=>\App\Models\ApplicantStatus::all(),
+            'applicants' => $applicants,
         ]);
     }
 
@@ -95,8 +112,12 @@ class JobsController extends Controller
     }
     public function showPublicPost(Request $query){
 
-        $jobs = \App\Models\Jobs::when($query->search, function ($q, $search) {
+        $jobs = \App\Models\Jobs::
+        when($query->search, function ($q, $search) {
             $q->where('title', 'like', '%'.$search.'%');
+        })->
+        when($query->location, function ($q, $location) {
+            $q->where('location', 'like', '%'.$location.'%');
         })->
         orderBy('created_at', 'desc')->
         get();

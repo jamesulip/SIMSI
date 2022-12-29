@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import GuestVue from "@/Layouts/Guest.vue";
+import { Inertia } from "@inertiajs/inertia";
+import { useFetch } from "@vueuse/core";
 import { computed, ref } from "vue";
 
 const { jobs: recentJobs } = defineProps<{ jobs: any }>();
@@ -19,7 +21,26 @@ const computedRecentJobs = computed(() => {
     };
   });
 });
-const search = ref(route().params.search);
+const { data, isFetching } = useFetch(
+  "https://restcountries.com/v3.1/all?fields=name"
+).json();
+const options = ref(data.value);
+function filterFn(val, update, abort) {
+  update(() => {
+    const needle = val.toLowerCase();
+    options.value = data.value.filter(
+      (v) => v.name.common.toLowerCase().indexOf(needle) > -1
+    );
+  });
+}
+
+const search = ref({
+  search: route().params.search ?? "",
+  location: route().params.location ?? "",
+});
+function searchJob() {
+  Inertia.get("/jobs", search.value);
+}
 </script>
 <template>
   <GuestVue>
@@ -28,72 +49,77 @@ const search = ref(route().params.search);
         <div class="border-gray-200 rounded-lg">
           <!-- search button -->
           <!-- quasar search -->
-
-          <q-form ref="f" action="/jobs" method="get" class="q-gutter-md">
-            <q-input
-              v-model="search"
-              outlined
-              label="Search"
-              name="search"
-              class="q-px-md q-py-sm"
-              @keyup.enter="() => $refs.f.submit()"
-              @clear="() => $refs.f.submit()"
-              clearable
-            >
-              <template v-slot:append>
-                <q-btn
-                  icon="search"
-                  round
-                  flat
-                  color="primary"
-                  @keyup.enter="() => $refs.f.submit()"
-                ></q-btn>
-              </template>
-            </q-input>
-          </q-form>
-
-          <div
-            class="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3 w-full"
-          >
-            <div
-              v-for="post in computedRecentJobs"
-              :key="post.title"
-              class="flex flex-col border overflow-hidden rounded-lg shadow-lg border-gray-200"
-            >
-              <div class="flex-shrink-0" v-if="post.imageUrl">
-                <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
-              </div>
-              <div class="flex flex-1 flex-col justify-between bg-white p-6">
-                <div class="flex-1">
-
-                  <a :href="post.href" class="mt-2 block">
-                    <p class="text-xl font-semibold text-gray-900">{{ post.title }}</p>
-                    <p class="mt-3 text-base text-gray-500" v-html="post.description"></p>
-                  </a>
+          <div class="sm:grid grid-cols-4 gap-2 mx-auto max-w-3xl">
+            <div class="flex-0 mb-3">
+              <q-form @submit="searchJob()" class="q-gutter-md">
+                <q-input
+                  v-model="search.search"
+                  outlined
+                  dense
+                  label="Job Title"
+                  name="search"
+                  clearable
+                >
+                </q-input>
+                <q-select
+                  use-input
+                  :options="options"
+                  @filter="filterFn"
+                  v-model="search.location"
+                  outlined
+                  label="Location"
+                  :loading="isFetching"
+                  :option-label="(v) => v?.name?.common"
+                  map-options
+                  emit-value
+                  :option-value="(b) => b?.name?.common"
+                />
+                <q-btn icon="search" type="submit" color="primary" label="Search"></q-btn>
+              </q-form>
+            </div>
+            <div class="col-span-3 gap-3 grid">
+              <div
+                v-for="post in computedRecentJobs"
+                :key="post.title"
+                class="flex flex-col border overflow-hidden rounded-lg shadow-lg border-gray-200"
+              >
+                <div class="flex-shrink-0" v-if="post.imageUrl">
+                  <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
                 </div>
-                <div class="mt-6 flex items-center">
-                  <div class="ml-3">
-                    <div class="flex space-x-1 text-sm text-gray-500">
-                      Date Posted:
-                      <time class="font-semibold">{{ post.date }}</time>
-                    </div>
-                    <div class="flex space-x-1 text-sm text-gray-500">
-                      Date Expires:
-                      <time class="font-semibold">{{ post.datetime }}</time>
+                <div class="flex flex-1 flex-col justify-between bg-white p-3">
+                  <div class="flex-1">
+                    <a :href="post.href" class="mt-2 block">
+                      <p class="text-xl font-semibold text-gray-900">{{ post.title }}</p>
+                      <p
+                        class="mt-3 text-base text-gray-500"
+                        v-html="post.description"
+                      ></p>
+                    </a>
+                  </div>
+                  <div class="mt-6 flex items-center">
+                    <div class="ml-3">
+                      <div class="flex space-x-1 text-sm text-gray-500">
+                        Date Posted:
+                        <time class="font-semibold">{{ post.date }}</time>
+                      </div>
+                      <div class="flex space-x-1 text-sm text-gray-500">
+                        Date Expires:
+                        <time class="font-semibold">{{ post.datetime }}</time>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- no result -->
-            <div
-              v-if="computedRecentJobs.length == 0"
-              class="flex flex-col border overflow-hidden rounded-lg shadow-lg border-gray-200"
-            >
-              <div class="flex flex-1 flex-col justify-between bg-white p-6">
-                <div class="flex-1">
-                  <p class="text-xl font-semibold text-gray-900">No Result</p>
+              <!-- no result -->
+              <div
+                v-if="computedRecentJobs.length == 0"
+                class="flex flex-col border overflow-hidden rounded-lg shadow-lg border-gray-200"
+              >
+                <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                  <div class="flex-1">
+                    <p class="text-xl font-semibold text-gray-900">No Result</p>
+                  </div>
                 </div>
               </div>
             </div>
