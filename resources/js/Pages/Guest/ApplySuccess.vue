@@ -42,7 +42,7 @@
           <div class="flex w-full justify-center">
             <!-- make it center -->
             <div class="text-h5">
-              Application for <b>{{ $page.props.job.title }}</b> was successful
+              Application for <b>{{ $page.props.job.title }}</b> was successful submitted
             </div>
           </div>
           <blockquote class="mt-10">

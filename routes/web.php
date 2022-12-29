@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Jobs;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\FilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,11 @@ use App\Http\Controllers\ApplicantController;
 */
 
 
-
+Route::get('test', function () {
+    return  $user = \App\Models\User::first();
+   //    add the role
+      $user->assignRole('admin');
+   });
 
     Route::get('/', function () {
         return Inertia::render('Welcome', [
@@ -27,7 +31,7 @@ use App\Http\Controllers\ApplicantController;
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'recentJobs' => Jobs::latest()->take(3)->get(),
+            'recentJobs' => \App\Models\Jobs::latest()->take(3)->get(),
         ]);
     });
     Route::get('/jobs',[JobsController::class,'showPublicPost']);
@@ -58,8 +62,11 @@ Route::middleware([
     });
 
 // add middleware to resource per function
-
+    // media resource
+    Route::resource('/admin/media', FilesController::class);
+    Route::delete("/admin/jobs/{job}/media/{media}",[FilesController::class,'destroyMedia']);
     Route::resource('/admin/applicant', \App\Http\Controllers\ApplicantController::class);
+    Route::post('/admin/jobs/{id}/update', [\App\Http\Controllers\JobsController::class,'update']);
     Route::resource('/admin/jobs', \App\Http\Controllers\JobsController::class);
     Route::resource('/admin/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
 

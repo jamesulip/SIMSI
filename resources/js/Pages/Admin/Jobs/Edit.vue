@@ -3,6 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { date, useQuasar } from "quasar";
+import { useFetch } from "@vueuse/core";
 const $q = useQuasar();
 const { job, job_types } = defineProps<{
   job_types;
@@ -13,8 +14,8 @@ function newSkills(evt, done) {
   done(evt, "add-unique");
 }
 function update() {
-  Inertia.put(
-    `/admin/jobs/${job.id}`,
+  Inertia.post(
+    `/admin/jobs/${job.id}/update`,
     {
       ...job,
       date_posted: date.formatDate(job.date_posted, "YYYY-MM-DD"),
@@ -43,6 +44,19 @@ function update() {
       },
     }
   );
+}
+
+const { data, isFetching } = useFetch(
+  "https://restcountries.com/v3.1/all?fields=name"
+).json();
+const options = ref(data.value);
+function filterFn(val, update, abort) {
+  update(() => {
+    const needle = val.toLowerCase();
+    options.value = data.value.filter(
+      (v) => v.name.common.toLowerCase().indexOf(needle) > -1
+    );
+  });
 }
 </script>
 <template>
@@ -150,13 +164,18 @@ function update() {
             />
           </q-card-section>
           <q-card-section class="q-gutter-md">
-            <q-input
+            <q-select
+              use-input
+              :options="options"
+              @filter="filterFn"
               v-model="job.location"
-              label="Location"
               outlined
-              hint="You can leave this field empty if you don't want to show location"
-              lazy-rules
-              :rules="[(val) => !!val || 'Please type something']"
+              label="Location"
+              :loading="isFetching"
+              :option-label="(v) => v?.name?.common"
+              map-options
+              emit-value
+              :option-value="(b) => b?.name?.common"
             />
           </q-card-section>
           <q-card-section class="flex gap-3">
@@ -238,6 +257,30 @@ function update() {
                 </q-icon>
               </template>
             </q-input>
+          </q-card-section>
+          <q-card-section>
+            <!-- list of media images -->
+            <q-file outlined v-model="job.images" multiple>
+              <template v-slot:prepend>
+                <q-icon name="attach_file" />
+              </template>
+            </q-file>
+            <br />
+            <div class="q-col-gutter-md row items-start">
+              <div class="col-3" v-for="image in job.media" :key="image.id">
+                <q-img :src="image.original_url" no-native-menu>
+                  <q-btn
+                    class="absolute all-pointer-events"
+                    icon="close"
+                    flat
+                    color="red"
+                    style="top: 8px; left: 8px"
+                    @click="$inertia.delete(`/admin/jobs/${job.id}/media/${image.id}`)"
+                  >
+                  </q-btn>
+                </q-img>
+              </div>
+            </div>
           </q-card-section>
           <q-card-actions align="right">
             <q-btn @click="$inertia.get(`/admin/jobs`)" color="negative"> Cancel </q-btn>

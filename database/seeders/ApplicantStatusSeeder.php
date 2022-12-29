@@ -16,26 +16,26 @@ class ApplicantStatusSeeder extends Seeder
     {
         //
         $APPLICANT_STATUS = [
-           [
+            [
                 'name' => 'New',
                 'color' => 'blue'
-              ],
-              [
+            ],
+            [
+                'name' => 'Qualified',
+                'color' => 'light-blue'
+            ],
+            [
                 'name' => 'In Progress',
                 'color' => 'yellow'
-              ],
-              [
-                'name' => 'Approved',
+            ],
+            [
+                'name' => 'Hired',
                 'color' => 'green'
-              ],
-              [
+            ],
+            [
                 'name' => 'Rejected',
                 'color' => 'red'
-              ],
-              [
-                'name' => 'Cancelled',
-                'color' => 'gray'
-              ],
+            ],
 
         ];
         // update or create

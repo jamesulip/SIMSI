@@ -62,9 +62,7 @@
             fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"
           ></rect>
         </svg>
-        <div
-          class="absolute inset-0 h-full w-full object-cover flex items-center justify-center p-4"
-        >
+        <div>
           <q-carousel
             class="w-full"
             v-model="slide"
@@ -73,7 +71,10 @@
             infinite
             animated
           >
-            <q-carousel-slide name="1" img-src="images/ENTRANCE.jpg" />
+            <q-carousel-slide name="1">
+              <q-img src="images/IMG_0406.JPG" />
+            </q-carousel-slide>
+
             <q-carousel-slide name="2" img-src="images/IMG_0406.JPG" />
             <q-carousel-slide name="3" img-src="images/OUR_OFFICE.jpg" />
           </q-carousel>
@@ -90,7 +91,7 @@
             Recent Jobs Posted
           </h2>
         </div>
-        <div class="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
+        <div class="mx-auto mt-12 grid max-w-full gap-5 lg:max-w-none lg:grid-cols-3">
           <div
             v-for="post in computedRecentJobs"
             :key="post.title"

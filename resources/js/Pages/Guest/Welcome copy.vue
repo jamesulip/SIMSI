@@ -44,7 +44,7 @@
           <div class="flex-1 flex flex-col justify-between bg-white p-6">
             <div class="flex-1">
               <p class="text-sm font-medium text-green-600">
-                <a href="/jobs">View All Jobs</a>
+                <Link href="/jobs">View All Jobs</Link>
               </p>
             </div>
           </div>
