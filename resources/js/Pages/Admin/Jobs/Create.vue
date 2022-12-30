@@ -17,6 +17,7 @@ const job = ref({
 });
 const { job_types } = defineProps<{
   job_types;
+  employers;
 }>();
 function newSkills(evt, done) {
   done(evt, "add-unique");
@@ -166,6 +167,16 @@ function filterFn(val, update, abort) {
             />
           </q-card-section>
           <q-card-section class="q-gutter-md">
+            <q-select
+              v-model="job.employer_id"
+              outlined
+              label="Employer"
+              :options="employers"
+              map-options
+              emit-value
+              :option-value="(b) => b.id"
+              :option-label="(v) => v.name"
+            />
             <q-select
               use-input
               :options="options"
