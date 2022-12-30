@@ -29,7 +29,7 @@ class Jobs extends Model implements HasMedia
             $model->uuid = (string) \Illuminate\Support\Str::uuid();
         });
     }
-    protected $with = ['JobType','media'];
+    protected $with = ['JobType','media','employer'];
 
     protected $fillable = [
         'title',
@@ -45,7 +45,8 @@ class Jobs extends Model implements HasMedia
         'date_expires',
         'created_by',
         'updated_by',
-        'uuid'
+        'uuid',
+        'employer_id'
     ];
 
     protected $casts = [
@@ -80,5 +81,9 @@ class Jobs extends Model implements HasMedia
     public function applications()
     {
         return $this->hasMany(Applicant::class, 'jobs_id');
+    }
+    public function employer()
+    {
+        return $this->belongsTo(\App\Models\Employer::class, 'employer_id');
     }
 }

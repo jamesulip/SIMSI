@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FilesController;
+use App\Models\Employer;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,13 +65,19 @@ Route::middleware([
 
 // add middleware to resource per function
     // media resource
-    Route::resource('/admin/media', FilesController::class);
-    Route::delete("/admin/jobs/{job}/media/{media}",[FilesController::class,'destroyMedia']);
-    Route::resource('/admin/applicant', \App\Http\Controllers\ApplicantController::class);
-    Route::post('/admin/jobs/{id}/update', [\App\Http\Controllers\JobsController::class,'update']);
-    Route::resource('/admin/jobs', \App\Http\Controllers\JobsController::class);
-    Route::resource('/admin/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
 
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::resource('/user-management', \App\Http\Controllers\UserManagementController::class);
+        Route::resource('/media', FilesController::class);
+        Route::delete("/jobs/{job}/media/{media}",[FilesController::class,'destroyMedia']);
+        Route::resource('/applicant', \App\Http\Controllers\ApplicantController::class);
+        Route::post('/jobs/{id}/update', [\App\Http\Controllers\JobsController::class,'update']);
+        Route::resource('/jobs', \App\Http\Controllers\JobsController::class);
+        Route::resource('/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
+
+        Route::resource('employers', EmployerController::class);
+    });
     Route::get('/announcements', function () {
         return Inertia::render('Dashboard');
     });

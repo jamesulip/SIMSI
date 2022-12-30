@@ -8,6 +8,7 @@ const $q = useQuasar();
 const { job, job_types } = defineProps<{
   job_types;
   job;
+  employers;
 }>();
 const saving = ref(false);
 function newSkills(evt, done) {
@@ -164,6 +165,16 @@ function filterFn(val, update, abort) {
             />
           </q-card-section>
           <q-card-section class="q-gutter-md">
+            <q-select
+              v-model="job.employer_id"
+              outlined
+              label="Employer"
+              :options="employers"
+              map-options
+              emit-value
+              :option-value="(b) => b.id"
+              :option-label="(v) => v.name"
+            />
             <q-select
               use-input
               :options="options"

@@ -36,6 +36,7 @@ class JobsController extends Controller
         return inertia('Admin/Jobs/Create',
         [
             'job_types'=>\App\Models\JobType::all(),
+            'employers'=>\App\Models\Employer::all(),
         ]
     );
     }
@@ -45,6 +46,7 @@ class JobsController extends Controller
         return inertia('Admin/Jobs/Edit', [
             'job' => \App\Models\Jobs::find($id),
             'job_types'=>\App\Models\JobType::all(),
+            'employers'=>\App\Models\Employer::all(),
         ]);
     }
     public function store(Request $request)

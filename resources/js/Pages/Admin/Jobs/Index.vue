@@ -25,7 +25,12 @@ const jobHeaders = ref([
     sortable: true,
     align: "left",
   },
-
+  {
+    label: "Employer",
+    field: (v) => v?.employer?.name ?? "Not Specified",
+    sortable: true,
+    align: "left",
+  },
   {
     name: "created_at",
     label: "Date Created",
