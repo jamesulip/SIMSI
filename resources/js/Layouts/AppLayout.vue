@@ -16,7 +16,7 @@ function toggleLeftDrawer() {
 
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            <img src="/Logo.png" />
           </q-avatar>
         </q-toolbar-title>
         <q-btn-dropdown flat label="Account Settings">
@@ -69,7 +69,15 @@ function toggleLeftDrawer() {
             <q-item-section>Post Job</q-item-section>
           </q-item>
         </q-expansion-item>
-        <q-item clickable href="/admin/user-management">
+        <q-item clickable @click="$inertia.get('/admin/employers')">
+          <q-item-section avatar>
+            <q-avatar>
+              <q-icon name="mdi-account-cog-outline" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>Employers</q-item-section>
+        </q-item>
+        <q-item clickable @click="$inertia.get('/admin/user-management')">
           <q-item-section avatar>
             <q-avatar>
               <q-icon name="mdi-account-cog-outline" />

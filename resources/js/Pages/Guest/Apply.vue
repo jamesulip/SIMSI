@@ -152,7 +152,6 @@ function onSubmit() {
             </q-card-section>
             <q-card-section>
               <q-file
-                :rules="[(v) => !!v || 'Resume is required.']"
                 v-model="application.resume"
                 :lazy-rules="false"
                 label="Attach Resume"
