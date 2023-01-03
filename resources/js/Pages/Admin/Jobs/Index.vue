@@ -113,7 +113,7 @@ onMounted(() => {
               class="q-mb-md"
             />
 
-            <q-btn unelevated icon="mdi-magnify" label="Search" color="green" />
+            <q-btn unelevated icon="mdi-magnify" label="Search" type="submit" color="green" />
           </q-card-section>
         </q-card>
       </q-form>

@@ -86,13 +86,7 @@ function filterFn(val, update, abort) {
               v-model:model-value="job.description"
               :toolbar="[
                 [
-                  {
-                    label: $q.lang.editor.align,
-                    icon: $q.iconSet.editor.align,
-                    fixedLabel: true,
-                    list: 'only-icons',
-                    options: ['left', 'center', 'right', 'justify'],
-                  },
+
                   {
                     label: $q.lang.editor.align,
                     icon: $q.iconSet.editor.align,
@@ -215,6 +209,7 @@ function filterFn(val, update, abort) {
               label="Skills Required"
               outlined
               lazy-rules
+              :rules="[(val) => !!val || 'Please type something']"
               hint="Please separate skills with comma"
             />
             <q-select

@@ -55,7 +55,15 @@ class EmployerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate request
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+        ]);
+
         $employers = Employer::create($request->all());
         return redirect()->route('employers.index');
     }

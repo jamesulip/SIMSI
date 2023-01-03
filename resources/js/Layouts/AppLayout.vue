@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, Suspense } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
 const leftDrawerOpen = ref(true);
 const show = ref(false);
@@ -28,7 +28,11 @@ function toggleLeftDrawer() {
               <div class="text-subtitle1 q-mt-md q-mb-xs uppercase">
                 {{ $page.props.user.name }}
               </div>
-              <q-btn @click="$inertia.post('/logout')" color="primary" label="Logout" />
+              <q-btn
+                @click="$inertia.post('/logout')"
+                color="primary"
+                label="Logout"
+              />
             </div>
           </div>
         </q-btn-dropdown>
@@ -89,7 +93,7 @@ function toggleLeftDrawer() {
     </q-drawer>
 
     <q-page-container>
-      <slot />
+        <slot />
     </q-page-container>
   </q-layout>
 </template>
