@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Models;
-use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
 class Media extends BaseMedia
 {
     use HasFactory;
+
     protected $table = 'media';
 }

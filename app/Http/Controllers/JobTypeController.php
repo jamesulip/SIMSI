@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobType;
 use App\Http\Requests\StoreJobTypeRequest;
 use App\Http\Requests\UpdateJobTypeRequest;
+use App\Models\JobType;
 
 class JobTypeController extends Controller
 {

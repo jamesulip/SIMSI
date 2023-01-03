@@ -13,5 +13,4 @@ class JobType extends Model
         'name',
         'description',
     ];
-
 }

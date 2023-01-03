@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesAndPermissionSeeder extends Seeder
 {
@@ -18,8 +17,7 @@ class RolesAndPermissionSeeder extends Seeder
     {
         //
 
-
-        $roles =  [
+        $roles = [
             [
                 'role' => 'admin',
                 'permission' => [
@@ -32,7 +30,8 @@ class RolesAndPermissionSeeder extends Seeder
                     'delete_job',
                     'view_applicant',
                     'update_applicant_status',
-                ]
+                    'create_job',
+                ],
             ],
             [
                 'role' => 'user',
@@ -41,7 +40,7 @@ class RolesAndPermissionSeeder extends Seeder
                     'delete_job',
                     'view_applicant',
                     'update_applicant_status',
-                ]
+                ],
             ],
 
         ];
@@ -49,8 +48,7 @@ class RolesAndPermissionSeeder extends Seeder
         foreach ($roles as $key => $role) {
             $nRole = Role::updateOrCreate(['name' => $role['role']]);
             foreach ($role['permission'] as $key => $permission) {
-               Permission::updateOrCreate(['name' => $permission]);
-
+                Permission::updateOrCreate(['name' => $permission]);
             }
             $nRole->syncPermissions($role['permission']);
         }
@@ -72,6 +70,5 @@ class RolesAndPermissionSeeder extends Seeder
             ]
         );
         $user->assignRole('user');
-
     }
 }

@@ -14,7 +14,7 @@ defineProps({
 });
 
 const form = useForm({
-  email: "",
+  name: "",
   password: "",
   remember: false,
 });
@@ -46,11 +46,11 @@ const submit = () => {
         <div class="q-gutter-md w-full">
           <q-input
             class="w-full"
-            :error="Boolean(form.errors.email)"
-            :error-message="form.errors.email"
+            :error="Boolean(form.errors.name)"
+            :error-message="form.errors.name"
             type="text"
             label="Enter Name"
-            v-model="form.email"
+            v-model="form.name"
             outlined
             dense
           />

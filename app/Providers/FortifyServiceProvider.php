@@ -31,17 +31,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Fortify::ignoreRoutes();
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-        Fortify::authenticateUsing(function (Request $request) {
-            $user = \App\Models\User::where('name', $request->email)->first();
-            if ($user &&
-                \Hash::check($request->password, $user->password)) {
-                return $user;
-            }
-        });
+        // Fortify::authenticateUsing(function (Request $request) {
+        //     $user = \App\Models\User::where('name', $request->email)->first();
+        //     if ($user &&
+        //         \Hash::check($request->password, $user->password)) {
+        //         return $user;
+        //     }
+        // });
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 

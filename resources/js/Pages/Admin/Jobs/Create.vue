@@ -64,8 +64,8 @@ function filterFn(val, update, abort) {
 </script>
 <template>
   <AppLayout title="Jobs">
-    <q-page padding>
-      <q-form ref="form" @submit.prevent="submit">
+    <q-page padding class="flex w-full">
+      <q-form ref="form" class="mx-auto" @submit.prevent="submit">
         <q-card flat bordered class="max-w-7xl">
           <q-card-section>
             <div class="text-h6">Job Details</div>
@@ -86,7 +86,6 @@ function filterFn(val, update, abort) {
               v-model:model-value="job.description"
               :toolbar="[
                 [
-
                   {
                     label: $q.lang.editor.align,
                     icon: $q.iconSet.editor.align,

@@ -46,7 +46,6 @@ return new class extends Migration
             $table->dropColumn('updated_by');
             $table->dropForeign(['job_type_id']);
             $table->dropColumn('job_type_id');
-
         });
         // set foreign key checks to 1
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');

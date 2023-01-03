@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class JobTypeSeeder extends Seeder
@@ -57,6 +56,5 @@ class JobTypeSeeder extends Seeder
                 ]
             );
         }
-
     }
 }
