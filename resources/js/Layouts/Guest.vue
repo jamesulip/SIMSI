@@ -26,7 +26,8 @@
         </div>
         <!-- snakbar -->
         <q-btn class="mobile-only" flat size="xl" round dense icon="menu">
-          <q-menu class="w-full">
+          <q-menu class="w-full relative">
+            <img src="/logo.png" class="w-24 mx-auto" />
             <q-list>
               <q-item clickable href="/">
                 <q-item-section>Home</q-item-section>
