@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Jobs;
-use App\Models\Applicant;
 use App\Traits\UserTrait;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Jobs extends Model implements HasMedia
@@ -18,6 +16,7 @@ class Jobs extends Model implements HasMedia
     use UserTrait;
 
     protected $table = 'jobs';
+
     protected $primaryKey = 'id';
     // with
 
@@ -29,7 +28,8 @@ class Jobs extends Model implements HasMedia
             $model->uuid = (string) \Illuminate\Support\Str::uuid();
         });
     }
-    protected $with = ['JobType','media','employer'];
+
+    protected $with = ['JobType', 'media', 'employer'];
 
     protected $fillable = [
         'title',
@@ -46,12 +46,13 @@ class Jobs extends Model implements HasMedia
         'created_by',
         'updated_by',
         'uuid',
-        'employer_id'
+        'employer_id',
     ];
 
     protected $casts = [
         'skills' => 'array',
     ];
+
     public static $rules = [
         'title' => 'required',
         'description' => 'required',
@@ -67,21 +68,24 @@ class Jobs extends Model implements HasMedia
     {
         return $this->belongsTo(JobType::class, 'job_type_id');
     }
+
     public function images()
     {
-    //  return has one Spatie\MediaLibrary\MediaCollections\Models\Media::class
-        return $this->hasMany(Media::class, 'model_id')->where('model_type',Jobs::class);
-
+        //  return has one Spatie\MediaLibrary\MediaCollections\Models\Media::class
+        return $this->hasMany(Media::class, 'model_id')->where('model_type', Jobs::class);
     }
+
     // has many applications
     public function applicant()
     {
         return $this->hasMany(Applicant::class, 'jobs_id');
     }
+
     public function applications()
     {
         return $this->hasMany(Applicant::class, 'jobs_id');
     }
+
     public function employer()
     {
         return $this->belongsTo(\App\Models\Employer::class, 'employer_id');

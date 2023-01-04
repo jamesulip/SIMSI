@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserManagementController extends Controller
 {
@@ -29,6 +31,10 @@ class UserManagementController extends Controller
     public function create()
     {
         //
+        return Inertia::render('UserManagement/Create', [
+            'roles' => Role::all(),
+            'permissions' => Permission::all(),
+        ]);
     }
 
     /**
@@ -40,6 +46,25 @@ class UserManagementController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+        return \DB::transaction(function () use($request) {
+            $user = new User();
+            $user->fill($request->all());
+            $user->password = bcrypt($request->password);
+            $user->save();
+            if($request->has('roles'))
+                $user->assignRole($request->roles);
+            if($request->has('permissions'))
+                $user->givePermissionTo($request->permissions);
+
+            // return to index with success message
+            return redirect()->route('user-management.index')->with('success', 'User created successfully');
+        });
+
     }
 
     /**
@@ -59,9 +84,17 @@ class UserManagementController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($user)
     {
         //
+        $user = User::find($user);
+
+        return Inertia::render('UserManagement/Edit', [
+            'user' => $user,
+            'roles' => Role::all(),
+            'permissions' => Permission::all(),
+
+        ]);
     }
 
     /**
@@ -71,9 +104,26 @@ class UserManagementController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $user)
     {
         //
+        $user = User::find($user);
+        $user->fill($request->all());
+        $user->save();
+
+        if ($request->has('roles')) {
+            $user->syncRoles($request->roles);
+        } else {
+            $user->syncRoles([]);
+        }
+
+        if ($request->has('permissions')) {
+            $user->syncPermissions($request->permissions);
+        } else {
+            $user->syncPermissions([]);
+        }
+
+        return redirect()->route('user-management.index');
     }
 
     /**

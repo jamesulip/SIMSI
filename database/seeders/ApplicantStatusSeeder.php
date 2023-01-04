@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ApplicantStatusSeeder extends Seeder
@@ -18,23 +17,23 @@ class ApplicantStatusSeeder extends Seeder
         $APPLICANT_STATUS = [
             [
                 'name' => 'New',
-                'color' => 'blue'
+                'color' => 'blue',
             ],
             [
                 'name' => 'Qualified',
-                'color' => 'light-blue'
+                'color' => 'light-blue',
             ],
             [
                 'name' => 'In Progress',
-                'color' => 'yellow'
+                'color' => 'yellow',
             ],
             [
                 'name' => 'Hired',
-                'color' => 'green'
+                'color' => 'green',
             ],
             [
                 'name' => 'Rejected',
-                'color' => 'red'
+                'color' => 'red',
             ],
 
         ];

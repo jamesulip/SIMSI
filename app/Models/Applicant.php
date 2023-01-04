@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Applicant extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use HasFactory;
+
     // auto fill uuid
     // default with
     protected $with = ['applicantStatus'];
+
     protected static function boot()
     {
         parent::boot();
@@ -21,6 +23,7 @@ class Applicant extends Model implements HasMedia
             $model->uuid = (string) \Illuminate\Support\Str::uuid();
         });
     }
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -30,7 +33,7 @@ class Applicant extends Model implements HasMedia
         'jobs_id',
         'applicant_status_id',
         'birthdate',
-        'gender'
+        'gender',
     ];
 
     // hasone ApplicantStatus
@@ -38,10 +41,10 @@ class Applicant extends Model implements HasMedia
     {
         return $this->hasOne(ApplicantStatus::class, 'id', 'applicant_status_id');
     }
+
     // hasOne media
     public function resume()
     {
         return $this->hasOne(Media::class, 'model_id', 'id')->where('collection_name', 'resume');
     }
-
 }

@@ -83,7 +83,10 @@
             </div>
           </nav>
           <div class="mt-8 flex justify-center space-x-6">
-            <a href="#" class="text-gray-400 hover:text-gray-500">
+            <a
+              href="https://www.facebook.com/SIMSI.fbPage"
+              class="text-gray-400 hover:text-gray-500"
+            >
               <span class="sr-only">Facebook</span>
               <svg
                 class="h-6 w-6"

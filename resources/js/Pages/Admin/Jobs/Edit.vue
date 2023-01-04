@@ -62,9 +62,9 @@ function filterFn(val, update, abort) {
 </script>
 <template>
   <AppLayout title="Jobs">
-    <q-page padding>
-      <form @submit.prevent="update">
-        <q-card flat class="max-w-7xl">
+    <q-page padding class="flex w-full">
+      <form class="mx-auto" @submit.prevent="update">
+        <q-card flat bordered class="max-w-7xl">
           <q-card-section>
             <div class="text-h6">Job Details</div>
           </q-card-section>
@@ -84,13 +84,6 @@ function filterFn(val, update, abort) {
               v-model:model-value="job.description"
               :toolbar="[
                 [
-                  {
-                    label: $q.lang.editor.align,
-                    icon: $q.iconSet.editor.align,
-                    fixedLabel: true,
-                    list: 'only-icons',
-                    options: ['left', 'center', 'right', 'justify'],
-                  },
                   {
                     label: $q.lang.editor.align,
                     icon: $q.iconSet.editor.align,
@@ -293,9 +286,19 @@ function filterFn(val, update, abort) {
               </div>
             </div>
           </q-card-section>
+          <q-separator />
           <q-card-actions align="right">
-            <q-btn @click="$inertia.get(`/admin/jobs`)" color="negative"> Cancel </q-btn>
-            <q-btn label="Save" type="submit" color="primary" />
+            <q-btn size="lg" @click="$inertia.get(`/admin/jobs`)" color="negative">
+              Cancel
+            </q-btn>
+            <q-space />
+            <q-btn
+              label="Save"
+              type="submit"
+              color="primary"
+              size="lg"
+              icon="mdi-content-save-outline"
+            />
           </q-card-actions>
         </q-card>
       </form>

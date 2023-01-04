@@ -17,7 +17,6 @@ class FilesController extends Controller
     public function index()
     {
         //
-
     }
 
     /**
@@ -81,16 +80,18 @@ class FilesController extends Controller
      * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroyMedia($job,$media){
+    public function destroyMedia($job, $media)
+    {
         $job = Jobs::find($job);
         $media = Media::find($media);
         $job->deleteMedia($media);
+
         return Redirect::back();
     }
+
     public function destroy(Media $media)
     {
         // delete media attached
         $media->delete();
-
     }
 }

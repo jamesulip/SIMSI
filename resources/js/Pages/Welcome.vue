@@ -136,10 +136,10 @@ const computedRecentJobs = computed(() => {
   return recentJobs.map((job: any) => {
     return {
       title: job.title,
-      href: `/job/${job.id}`,
+      href: `/job/${job.uuid}`,
       category: {
         name: "Job Hiring",
-        href: `/job/${job.id}`,
+        href: `/job/${job.uuid}`,
       },
       description: job.description.replace(/(<([^>]+)>)/gi, "").substring(0, 250) + "...",
       date: job.date_posted,

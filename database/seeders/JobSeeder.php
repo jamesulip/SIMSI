@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Jobs;
 use App\Models\Applicant;
+use App\Models\Jobs;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class JobSeeder extends Seeder
 {
@@ -22,7 +21,7 @@ class JobSeeder extends Seeder
         // set random applicant status
         ->state(function (array $attributes, Jobs $job) {
             return [
-               'applicant_status_id' => \App\Models\ApplicantStatus::inRandomOrder()->first()->id,
+                'applicant_status_id' => \App\Models\ApplicantStatus::inRandomOrder()->first()->id,
             ];
         })
         ->count(10))

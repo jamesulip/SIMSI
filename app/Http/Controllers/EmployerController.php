@@ -21,8 +21,7 @@ class EmployerController extends Controller
                 ->orWhere('email', 'like', "%$search%")
                 ->orWhere('phone', 'like', "%$search%")
                 ->orWhere('address', 'like', "%$search%")
-                ->orWhere('country', 'like', "%$search%")
-            ;
+                ->orWhere('country', 'like', "%$search%");
         })
         ->when($req->sortBy, function ($query, $sortBy) use ($req) {
             return $query->orderBy($sortBy, $req->descending ? 'desc' : 'asc');
@@ -30,10 +29,9 @@ class EmployerController extends Controller
 
         ->paginate($req->rowsPerPage ?? 10);
 
-
-       return Inertia::render('Employer/Index', [
-           'employers' => $employer,
-       ]);
+        return Inertia::render('Employer/Index', [
+            'employers' => $employer,
+        ]);
     }
 
     /**
@@ -55,8 +53,17 @@ class EmployerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate request
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+        ]);
+
         $employers = Employer::create($request->all());
+
         return redirect()->route('employers.index');
     }
 
@@ -72,7 +79,6 @@ class EmployerController extends Controller
         return Inertia::render('Employer/Edit', [
             'employer' => $employer,
         ]);
-
     }
 
     /**
@@ -84,7 +90,6 @@ class EmployerController extends Controller
     public function edit(Employer $employer)
     {
         //
-
     }
 
     /**

@@ -73,8 +73,8 @@ function searchFn() {
 </script>
 <template>
   <AppLayout title="Jobs">
-    <q-page padding class="q-gutter-md">
-      <q-card flat bordered>
+    <q-page padding class=" flex flex-col" >
+      <q-card class="mx-auto max-w-7xl w-full mb-5" flat bordered>
         <q-card-actions class="q-pa-md">
           <div class="text-h6">{{ job.title }}</div>
           <!--  -->
@@ -89,89 +89,46 @@ function searchFn() {
           >
         </q-card-actions>
       </q-card>
-      <!-- create dashboard card -->
-      <!-- <div class="flex gap-3">
-        <q-card flat bordered>
-          <q-card-section>
-            <div class="text-h6">Applicants</div>
-            <div class="text-h3">{{ applicants.length }}</div>
-          </q-card-section>
-        </q-card>
-        <q-card flat bordered>
-          <q-card-section>
-            <div class="text-h6">Approved</div>
-            <div class="text-h3">
-              {{
-                applicants.filter((b) => b.applicant_status.name === "Approved").length
-              }}
-            </div>
-          </q-card-section>
-        </q-card>
-        <q-card flat bordered>
-          <q-card-section>
-            <div class="text-h6">New</div>
-            <div class="text-h3">
-              {{ applicants.filter((b) => b.applicant_status.name === "New").length }}
-            </div>
-          </q-card-section>
-        </q-card>
-      </div> -->
-      <!-- search -->
-      <form method="get" @submit.prevent="searchFn">
-        <q-card flat bordered>
-          <q-card-actions class="q-pa-md">
-            <div class="text-h6">Search</div>
-          </q-card-actions>
-          <q-card-section class="grid grid-cols-3 gap-3 items-start flex-row">
-            <q-input
-              v-model="search.search"
-              outlined
-              name="search"
-              dense
-              placeholder="Search by name, email, phone"
-            />
-            <q-select
-              dense
-              outlined
-              :options="$props.applicant_status"
-              :option-label="(option) => option.name"
-              name="applicant_status_id"
-              v-model="search.applicant_status_id"
-              option-value="id"
-              emit-value
-              map-options
-              clearable
-            />
-          </q-card-section>
-          <q-separator />
-          <q-card-actions>
-            <q-btn
-              dense
-              unelevated
-              color="negative"
-              type="reset"
-              label="Clear"
-              @click="
-                () => {
-                  search = {
-                    applicant_status_id: null,
-                    search: '',
-                  };
-                  searchFn();
-                }
-              "
-            />
-            <q-btn dense unelevated color="primary" type="submit" label="Search" />
-          </q-card-actions>
-        </q-card>
-      </form>
-      <q-table
+
+      <q-table class="mx-auto max-w-7xl w-full"
         :rows="applicants"
         :columns="columns"
         :pagination="{
           rowsPerPage: 50,
         }"
       >
+        <template #top>
+          <div class="flex justify-between w-full">
+            <h3 class="text-h6">Applicants</h3>
+            <form method="get" @submit.prevent="searchFn">
+              <div class="flex q-gutter-sm">
+                <q-input
+                  v-model="search.search"
+                  outlined
+                  name="search"
+                  dense
+                  placeholder="Search by name, email, phone"
+
+                />
+                <q-select
+                  dense
+                  outlined
+                  :options="$props.applicant_status"
+                  :option-label="(option) => option.name"
+                  name="applicant_status_id"
+                  v-model="search.applicant_status_id"
+                  option-value="id"
+                  emit-value
+                  map-options
+                  clearable
+                />
+                <q-btn unelevated dense type="submit" color="primary">
+                  Search
+                </q-btn>
+              </div>
+            </form>
+          </div>
+        </template>
         <template #body-cell-resume="{ row }">
           <q-td>
             <a :href="row?.resume?.original_url" target="_blank">
@@ -196,7 +153,8 @@ function searchFn() {
                 <q-list>
                   <q-item
                     :disable="
-                      row.applicant_status.name === item.name || item.name === 'New'
+                      row.applicant_status.name === item.name ||
+                      item.name === 'New'
                     "
                     v-for="(item, index) in applicant_status"
                     :key="index"

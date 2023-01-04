@@ -17,9 +17,8 @@ return new class extends Migration
             //
             $table->text('description')->nullable()->change();
             $table->text('text_description')->nullable()->change();
-            $table->text('company',255)->nullable();
+            $table->text('company', 255)->nullable();
             $table->text('company_description')->nullable();
-
         });
     }
 

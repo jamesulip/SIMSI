@@ -44,12 +44,46 @@ const columns = ref([
 <template>
   <AppLayout title="Jobs">
     <q-page padding>
-      <q-table :columns="columns" :rows="users" title="Users" flat bordered>
+      <q-table :columns="columns" :rows="users" :pagination="{
+        rowsPerPage: 50,
+      }" title="Users" flat bordered>
+        <template #top>
+          <q-toolbar>
+            <q-toolbar-title>Users</q-toolbar-title>
+            <q-space />
+            <q-btn flat color="primary" :href="route(`user-management.create`)">
+              <q-icon name="add" />
+              <q-tooltip>Add User</q-tooltip>
+            </q-btn>
+          </q-toolbar>
+        </template>
+        <template #body-cell-name="{ row }">
+          <q-td>
+            <q-item>
+              <q-item-section>
+                <q-item-label>{{ row.name }}</q-item-label>
+                <q-item-label caption>{{ row.email }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-td>
+        </template>
         <template #body-cell-profile_photo_url="{ row }">
           <q-td>
             <q-avatar>
               <img :src="row.profile_photo_url" />
             </q-avatar>
+          </q-td>
+        </template>
+        <template #body-cell-actions="{ row }">
+          <q-td>
+            <q-btn
+              flat
+              color="blue"
+              :href="`/admin/user-management/${row.id}/edit
+                `"
+            >
+              <q-icon name="mdi-pencil" />
+            </q-btn>
           </q-td>
         </template>
         <template #body-cell-roles="{ row }">
