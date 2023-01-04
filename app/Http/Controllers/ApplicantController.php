@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Applicant;
 use App\Models\Jobs;
+use Inertia\Inertia;
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
@@ -54,7 +55,6 @@ class ApplicantController extends Controller
                 // require phone if email is not set
                 'phone' => 'required_without:email',
                 'address' => 'required',
-                'resume' => 'required|mimes:pdf,doc,docx|max:5000',
             ];
             $request->validate($rules, [
                 'email.required_without' => 'The email field is required when phone is not present.',
@@ -84,9 +84,14 @@ class ApplicantController extends Controller
      * @param  \App\Models\Applicant  $applicant
      * @return \Illuminate\Http\Response
      */
-    public function show(Applicant $applicant)
+    public function show(Jobs $job,Applicant $applicant)
     {
         //
+        $applicant->load('resume');
+        return Inertia::render('Admin/Jobs/Applicant', [
+            'application' => $applicant,
+            'job' => $job,
+        ]);
     }
 
     /**

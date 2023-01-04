@@ -4,7 +4,11 @@ import { Inertia } from "@inertiajs/inertia";
 import { useFetch } from "@vueuse/core";
 import { computed, ref } from "vue";
 
-const { jobs: recentJobs } = defineProps<{ jobs: any }>();
+const { jobs: recentJobs, available_locations, query: searQ } = defineProps<{
+  jobs: any;
+  available_locations;
+  query;
+}>();
 const computedRecentJobs = computed(() => {
   return recentJobs.map((job: any) => {
     return {
@@ -35,11 +39,18 @@ function filterFn(val, update, abort) {
 }
 
 const search = ref({
-  search: route().params.search ?? "",
-  location: route().params.location ?? "",
+  search: searQ.search ?? "",
+  location: searQ.location ?? "",
 });
 function searchJob() {
   Inertia.get("/jobs", search.value);
+}
+function resetSearch() {
+  search.value = {
+    search: "",
+    location: "",
+  };
+  searchJob();
 }
 </script>
 <template>
@@ -51,7 +62,7 @@ function searchJob() {
           <!-- quasar search -->
           <div class="sm:grid grid-cols-4 gap-2 mx-auto max-w-3xl">
             <div class="flex-0 mb-3">
-              <q-form @submit="searchJob()" class="q-gutter-md">
+              <q-form @submit="searchJob()" @reset="resetSearch" class="q-gutter-md">
                 <q-input
                   v-model="search.search"
                   outlined
@@ -63,18 +74,30 @@ function searchJob() {
                 </q-input>
                 <q-select
                   use-input
-                  :options="options"
+                  dense
+                  :options="available_locations"
                   @filter="filterFn"
                   v-model="search.location"
                   outlined
                   label="Location"
                   :loading="isFetching"
-                  :option-label="(v) => v?.name?.common"
+                  :option-label="(v) => v?.location"
                   map-options
                   emit-value
-                  :option-value="(b) => b?.name?.common"
+                  :option-value="(b) => b?.location"
                 />
-                <q-btn icon="search" type="submit" color="primary" label="Search"></q-btn>
+                <q-btn
+                  icon="search"
+                  type="submit"
+                  class="bg-green-700"
+                  label="Search"
+                ></q-btn>
+                <q-btn
+                  icon="close"
+                  type="reset"
+                  color="warning"
+                  label="Clear Search"
+                ></q-btn>
               </q-form>
             </div>
             <div class="col-span-3 gap-3 grid">

@@ -71,7 +71,7 @@ const fullscreen = ref(false);
           </q-card-section>
           <q-separator />
           <!-- make responsive -->
-          <q-card-section class="flex sm:block">
+          <q-card-section class="flex flex-col sm:flex-row">
             <q-card-section class="flex-1">
               <div class="text-h6" v-html="job.description" />
             </q-card-section>
