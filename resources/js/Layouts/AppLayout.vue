@@ -16,7 +16,7 @@ function toggleLeftDrawer() {
 
         <q-toolbar-title>
           <q-avatar>
-            <img src="/Logo.png" />
+            <img src="/logo.png" />
           </q-avatar>
         </q-toolbar-title>
         <q-btn-dropdown flat label="Account Settings">
