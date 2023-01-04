@@ -69,6 +69,7 @@ Route::middleware([
         Route::resource('/media', FilesController::class);
         Route::delete('/jobs/{job}/media/{media}', [FilesController::class, 'destroyMedia']);
         Route::resource('/applicant', \App\Http\Controllers\ApplicantController::class);
+        Route::get('/jobs/{job}/applicant/{applicant}',[ \App\Http\Controllers\ApplicantController::class, 'show']);
         Route::post('/jobs/{id}/update', [\App\Http\Controllers\JobsController::class, 'update']);
         Route::resource('/jobs', \App\Http\Controllers\JobsController::class);
         Route::resource('/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');

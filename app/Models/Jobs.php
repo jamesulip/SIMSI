@@ -48,7 +48,11 @@ class Jobs extends Model implements HasMedia
         'uuid',
         'employer_id',
     ];
-
+    // custom function filter
+    public function scopeAvailable($query)
+    {
+        $query->where('date_expires', '>=', date('Y-m-d'));
+    }
     protected $casts = [
         'skills' => 'array',
     ];

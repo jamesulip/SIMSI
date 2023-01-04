@@ -1,7 +1,7 @@
 <template>
   <main>
     <div>
-      <q-toolbar class="">
+      <q-toolbar class="bg-[#2c3847]">
         <!-- hide when mobile -->
 
         <div class="desktop-only">
@@ -10,7 +10,7 @@
               <img src="/logo.png" class="w-24 mx-5" />
             </q-toolbar-title>
             <div
-              class="flex items-center justify-between py-6 md:justify-start md:space-x-10"
+              class="flex items-center justify-between py-6 md:justify-start md:space-x-10 text-white"
             >
               <Link class="text-lg font-sans font-medium" href="/">Home</Link>
               <Link class="text-lg font-sans font-medium" href="/jobs">Careers</Link>
@@ -25,43 +25,49 @@
           </div>
         </div>
         <!-- snakbar -->
-        <q-btn class="mobile-only" flat size="xl" round dense icon="menu">
-          <q-menu class="w-full relative">
-            <img src="/logo.png" class="w-24 mx-auto" />
-            <q-list>
-              <q-item clickable href="/">
-                <q-item-section>Home</q-item-section>
-              </q-item>
-              <q-item clickable href="/jobs">
-                <q-item-section>Careers</q-item-section>
-              </q-item>
-              <q-item clickable>
-                <q-item-section href="/about-us">About Us</q-item-section>
-              </q-item>
-              <q-item clickable href="/mission">
-                <q-item-section>Our Mission</q-item-section>
-              </q-item>
-              <q-item clickable href="/contact-us">
-                <q-item-section>Contact Us</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
+        <q-btn
+          class="mobile-only text-white"
+          flat
+          size="xl"
+          @click="menu = !menu"
+          round
+          dense
+          icon="menu"
+        >
         </q-btn>
       </q-toolbar>
-      <!-- <nav class="relative bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6">
-          <div
-            class="flex items-center justify-between py-6 md:justify-start md:space-x-10"
-          >
-            <img class="h-12 mx-auto w-auto sm:h-16" src="/logo.png" alt="Workflow" />
-            <Link href="/">Home</Link>
-            <Link href="/jobs">Careers</Link>
-            <Link href="/about-us">About Us</Link>
-            <Link href="/contact-us">Contact Us</Link>
-          </div>
+      <!-- <div class="mobile-only -mt-10 w-full z-10 absolute">
+        <img src="/logo.png" class="mx-auto w-28" />
+      </div> -->
+      <q-dialog full-width v-model="menu">
+        <div class="relative">
+          <q-card>
+            <q-card-section class="flex">
+              <img src="/logo.png" class="mx-auto w-24 h-20" />
+            </q-card-section>
+            <q-separator />
+            <q-card-section>
+              <q-list>
+                <q-item clickable href="/">
+                  <q-item-section>Home</q-item-section>
+                </q-item>
+                <q-item clickable href="/jobs">
+                  <q-item-section>Careers</q-item-section>
+                </q-item>
+                <q-item clickable>
+                  <q-item-section href="/about-us">About Us</q-item-section>
+                </q-item>
+                <q-item clickable href="/mission">
+                  <q-item-section>Our Mission</q-item-section>
+                </q-item>
+                <q-item clickable href="/contact-us">
+                  <q-item-section>Contact Us</q-item-section>
+                </q-item>
+              </q-list>
+            </q-card-section>
+          </q-card>
         </div>
-      </nav> -->
-
+      </q-dialog>
       <slot />
 
       <footer class="bg-white">
@@ -113,4 +119,6 @@
 </template>
 <script lang="ts" setup>
 import { Link } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
+const menu = ref(false);
 </script>

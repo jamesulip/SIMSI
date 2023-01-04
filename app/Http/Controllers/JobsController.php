@@ -120,6 +120,7 @@ class JobsController extends Controller
     public function showPublicPostDetails(Jobs $job)
     {
         // return inertia view
+
         return inertia('Guest/Show', [
             'job' => $job,
         ]);
@@ -133,11 +134,13 @@ class JobsController extends Controller
         when($query->location, function ($q, $location) {
             $q->where('location', 'like', '%'.$location.'%');
         })->
+        available()->
         orderBy('created_at', 'desc')->
         get();
-
         return inertia('Guest/Jobs', [
             'jobs' => $jobs,
+            'available_locations' => \App\Models\Jobs::select('location')->available()->distinct()->get(),
+            'query'=> $query->all(),
         ]);
     }
 

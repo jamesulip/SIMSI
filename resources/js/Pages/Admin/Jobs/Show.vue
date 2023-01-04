@@ -54,6 +54,13 @@ const columns = ref([
     sortable: true,
     align: "left",
   },
+  {
+    name: "view",
+    label: "View",
+    field: "view",
+    sortable: true,
+    align: "left",
+  },
 ]);
 
 const search = ref({
@@ -73,7 +80,7 @@ function searchFn() {
 </script>
 <template>
   <AppLayout title="Jobs">
-    <q-page padding class=" flex flex-col" >
+    <q-page padding class="flex flex-col">
       <q-card class="mx-auto max-w-7xl w-full mb-5" flat bordered>
         <q-card-actions class="q-pa-md">
           <div class="text-h6">{{ job.title }}</div>
@@ -90,7 +97,8 @@ function searchFn() {
         </q-card-actions>
       </q-card>
 
-      <q-table class="mx-auto max-w-7xl w-full"
+      <q-table
+        class="mx-auto max-w-7xl w-full"
         :rows="applicants"
         :columns="columns"
         :pagination="{
@@ -108,7 +116,6 @@ function searchFn() {
                   name="search"
                   dense
                   placeholder="Search by name, email, phone"
-
                 />
                 <q-select
                   dense
@@ -122,9 +129,7 @@ function searchFn() {
                   map-options
                   clearable
                 />
-                <q-btn unelevated dense type="submit" color="primary">
-                  Search
-                </q-btn>
+                <q-btn unelevated dense type="submit" color="primary"> Search </q-btn>
               </div>
             </form>
           </div>
@@ -132,10 +137,28 @@ function searchFn() {
         <template #body-cell-resume="{ row }">
           <q-td>
             <a :href="row?.resume?.original_url" target="_blank">
-              <q-avatar square size="sm">
+              <q-icon
+                name="mdi-close-circle-outline"
+                size="sm"
+                color="red"
+                v-if="!row.resume"
+              />
+              <q-avatar square size="sm" v-else>
                 <img :src="mime_type_to_mdi_icon(row?.resume?.mime_type)" />
               </q-avatar>
             </a>
+          </q-td>
+        </template>
+        <template #body-cell-view="{ row }">
+          <q-td>
+            <Link
+              :href="`/admin/jobs/${row.jobs_id}/applicant/${row.id}`"
+              unelevated
+              dense
+              text-color="black"
+              class="border pa-2"
+              >View</Link
+            >
           </q-td>
         </template>
         <template #body-cell-status="{ row }">
@@ -153,8 +176,7 @@ function searchFn() {
                 <q-list>
                   <q-item
                     :disable="
-                      row.applicant_status.name === item.name ||
-                      item.name === 'New'
+                      row.applicant_status.name === item.name || item.name === 'New'
                     "
                     v-for="(item, index) in applicant_status"
                     :key="index"
