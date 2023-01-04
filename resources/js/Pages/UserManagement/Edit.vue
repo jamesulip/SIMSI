@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Inertia } from "@inertiajs/inertia";
+import { useQuasar } from "quasar";
 import { ref } from "vue";
 const { user, permissions, roles } = defineProps<{
   user;
@@ -8,8 +9,19 @@ const { user, permissions, roles } = defineProps<{
   permissions;
 }>();
 import _ from "lodash";
+const $q= useQuasar();
 function submit() {
-  Inertia.put(route("user-management.update", user.id), _.cloneDeep(user));
+    console.log({
+        ...user,
+    roles: _.map(user.roles, "id"),
+    permissions: _.map(user.permissions, "id"),
+    });
+
+  Inertia.put(route("user-management.update", user.id),_.cloneDeep( {
+    ...user,
+    roles: _.map(user.roles, "id"),
+    permissions: _.map(user.permissions, "id"),
+  }))
 }
 </script>
 <template>

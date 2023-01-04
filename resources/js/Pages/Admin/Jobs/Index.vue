@@ -4,9 +4,11 @@ import { ref, defineProps, onMounted } from "vue";
 import { date } from "quasar";
 import { Link } from "@inertiajs/inertia-vue3";
 const search = ref(route().params.search);
+const employer_id = ref(route().params.employer_id);
 
-const { jobs } = defineProps<{
+const { jobs,employers } = defineProps<{
   jobs;
+  employers;
 }>();
 const jobHeaders = ref([
   // thumb
@@ -79,7 +81,7 @@ onMounted(() => {
   <AppLayout title="Jobs">
     <q-page padding>
       <!-- search card -->
-      <q-form @submit="$inertia.get(`/admin/jobs`, { search })">
+      <q-form @submit="$inertia.get(`/admin/jobs`, { search,employer_id })">
         <q-card flat bordered class="mb-5">
           <q-card-actions class="q-pa-md">
             <q-toolbar>
@@ -102,15 +104,25 @@ onMounted(() => {
               />
             </q-toolbar>
           </q-card-actions>
-          <q-card-section>
-            <q-space />
+          <q-separator/>
+          <q-card-section class="flex gap-3">
             <q-input
               clearable
-              @clear="$inertia.get(`/admin/jobs`, { search })"
               v-model="search"
-              outlined
+              outlined dense
               placeholder="Search"
-              class="q-mb-md"
+            />
+
+            <q-select
+                :options="employers"
+                emit-value
+                map-options
+                option-label="name"
+                option-value="id"
+              clearable
+              v-model="employer_id" dense
+              outlined
+              placeholder="Employer"
             />
 
             <q-btn unelevated icon="mdi-magnify" label="Search" type="submit" color="green" />

@@ -46,12 +46,24 @@ class UserManagementController extends Controller
     public function store(Request $request)
     {
         //
-        $user = new User();
-        $user->fill($request->all());
-        $user->password = bcrypt($request->password);
-        $user->save();
-        $user->assignRole($request->roles);
-        $user->givePermissionTo($request->permissions);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+        return \DB::transaction(function () use($request) {
+            $user = new User();
+            $user->fill($request->all());
+            $user->password = bcrypt($request->password);
+            $user->save();
+            if($request->has('roles'))
+                $user->assignRole($request->roles);
+            if($request->has('permissions'))
+                $user->givePermissionTo($request->permissions);
+
+            // return to index with success message
+            return redirect()->route('user-management.index')->with('success', 'User created successfully');
+        });
 
     }
 

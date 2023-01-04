@@ -12,7 +12,6 @@ class JobsController extends Controller
     //
     public function __construct()
     {
-        // $this->middleware(['role:admin'])->only([ 'create', 'edit', 'store', 'update', 'destroy']);
         $this->middleware(['permission:edit_job'])->only(['edit', 'update']);
         $this->middleware(['permission:delete_job'])->only(['destroy']);
         $this->middleware(['permission:create_job'])->only(['create', 'store']);
@@ -26,10 +25,14 @@ class JobsController extends Controller
             $query->where('title', 'like', '%'.$req->search.'%')
             ->orWhere('description', 'like', '%'.$req->search.'%');
         })
+        ->when($req->employer_id, function ($query) use ($req) {
+            $query->where('employer_id', $req->employer_id);
+        })
         ->get();
 
         return inertia('Admin/Jobs/Index', [
             'jobs' => $jobs,
+            'employers' => \App\Models\Employer::all(),
         ]);
     }
 

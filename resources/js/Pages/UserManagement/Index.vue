@@ -44,12 +44,14 @@ const columns = ref([
 <template>
   <AppLayout title="Jobs">
     <q-page padding>
-      <q-table :columns="columns" :rows="users" title="Users" flat bordered>
+      <q-table :columns="columns" :rows="users" :pagination="{
+        rowsPerPage: 50,
+      }" title="Users" flat bordered>
         <template #top>
           <q-toolbar>
             <q-toolbar-title>Users</q-toolbar-title>
             <q-space />
-            <q-btn flat color="primary" :to="{ name: 'user-management.create' }">
+            <q-btn flat color="primary" :href="route(`user-management.create`)">
               <q-icon name="add" />
               <q-tooltip>Add User</q-tooltip>
             </q-btn>

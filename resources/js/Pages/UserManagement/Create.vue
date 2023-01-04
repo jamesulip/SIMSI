@@ -17,7 +17,11 @@ const user = ref({
 
 import _ from "lodash";
 function submit() {
-  Inertia.post(route("user-management.store"), user.value);
+  Inertia.post(route("user-management.store"), {
+    ...user.value,
+    roles: _.map(user.value.roles, "id"),
+    permissions: _.map(user.value.permissions, "id"),
+  });
 }
 </script>
 <template>
