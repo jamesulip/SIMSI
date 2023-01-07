@@ -36,9 +36,7 @@
         >
         </q-btn>
       </q-toolbar>
-      <!-- <div class="mobile-only -mt-10 w-full z-10 absolute">
-        <img src="/logo.png" class="mx-auto w-28" />
-      </div> -->
+
       <q-dialog full-width v-model="menu">
         <div class="relative">
           <q-card>
@@ -52,7 +50,7 @@
                   <q-item-section>Home</q-item-section>
                 </q-item>
                 <q-item clickable href="/jobs">
-                  <q-item-section>Careers</q-item-section>
+                  <q-item-section>Jobs</q-item-section>
                 </q-item>
                 <q-item clickable>
                   <q-item-section href="/about-us">About Us</q-item-section>

@@ -55,15 +55,32 @@ function resetSearch() {
 </script>
 <template>
   <GuestVue>
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div
+      class="w-full flex h-96 relative bg-cover bg-bottom bg-gradient-to-r from-cyan-500 to-blue-500"
+      style="background-image: url(/images/john-schnobrich-2FPjlAyMQTA-unsplash.jpg)"
+    >
+      <div class="backdrop-blur-sm bg-black/50 w-full h-full"></div>
+      <!-- create a div with text Job opening position aboslute center middle -->
+      <div
+        class="absolute top-1/2 left-1/2 transform text-center -translate-x-1/2 -translate-y-1/2"
+      >
+        <h1 class="text-h2 !font-bold text-white">Job Opening</h1>
+        <p class="text-2xl text-white">
+          Get the latest job opening from the best companies here.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-8xl mx-auto py-1 sm:px-6 lg:px-8">
       <div class="px-4 py-6 sm:px-0">
         <div class="border-gray-200 rounded-lg">
           <!-- search button -->
           <!-- quasar search -->
-          <div class="sm:grid grid-cols-4 gap-2 mx-auto max-w-3xl">
+          <div class="sm:grid grid-cols-4 gap-2 mx-auto max-w-5xl">
             <div class="flex-0 mb-3">
-              <q-form @submit="searchJob()" @reset="resetSearch" class="q-gutter-md">
+              <q-form @submit="searchJob()" @reset="resetSearch" class="flex gap-2">
                 <q-input
+                  class="w-full"
                   v-model="search.search"
                   outlined
                   dense
@@ -84,20 +101,19 @@ function resetSearch() {
                   :option-label="(v) => v?.location"
                   map-options
                   emit-value
+                  class="w-full"
                   :option-value="(b) => b?.location"
                 />
-                <q-btn
-                  icon="search"
-                  type="submit"
-                  class="bg-green-700"
-                  label="Search"
-                ></q-btn>
-                <q-btn
-                  icon="close"
-                  type="reset"
-                  color="warning"
-                  label="Clear Search"
-                ></q-btn>
+                <div class="flex w-full gap-3">
+                  <q-btn icon="close" flat class="w-full" type="reset"></q-btn>
+                  <q-btn
+                    class="w-full flex-1"
+                    icon="search"
+                    type="submit"
+                    color="green"
+                    label="Search"
+                  ></q-btn>
+                </div>
               </q-form>
             </div>
             <div class="col-span-3 gap-3 grid">

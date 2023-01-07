@@ -139,7 +139,7 @@ class JobsController extends Controller
         get();
         return inertia('Guest/Jobs', [
             'jobs' => $jobs,
-            'available_locations' => \App\Models\Jobs::select('location')->available()->distinct()->get(),
+            'available_locations' => \App\Models\Jobs::whereNotNull('location')->select('location')->available()->distinct()->get(),
             'query'=> $query->all(),
         ]);
     }

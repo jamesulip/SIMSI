@@ -59,9 +59,53 @@
         </div>
       </div>
     </div>
+    <div class="bg-white">
+    <div class="mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-24">
+      <div class="space-y-12">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Meet our leadership</h2>
+
+        <ul role="list" class="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0">
+          <li v-for="person in people" :key="person.name">
+            <div class="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
+              <div class="aspect-w-3 aspect-h-2 h-0 sm:aspect-w-3 sm:aspect-h-4">
+                <img class="rounded-lg object-cover shadow-lg" :src="person.imageUrl" alt="" />
+              </div>
+              <div class="sm:col-span-2">
+                <div class="space-y-4">
+                  <div class="space-y-1 text-lg font-medium leading-6">
+                    <h3>{{ person.name }}</h3>
+                    <p class="text-green-600">{{ person.role }}</p>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-gray-500">{{ person.bio }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   </Guest>
 </template>
 <script lang="ts" setup>
-import { Link } from "@inertiajs/inertia-vue3";
 import Guest from "@/Layouts/Guest.vue";
+const people = [
+  {
+    name: 'Ms. Estrlita P. Ignacio',
+    role: 'President',
+    imageUrl:
+      '/images/pres.jpg',
+    // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+  },
+  {
+    name: 'Mr. Mahamed Osman',
+    role: 'Director',
+    imageUrl:
+      '/images/osman.jpg',
+    // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+  },
+  // More people...
+]
 </script>
