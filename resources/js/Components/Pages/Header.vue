@@ -33,25 +33,19 @@ const menus = [
 ];
 </script>
 <template>
-  <header>
-    <nav class="flex">
+  <header class="!sticky top-0 z-10">
+    <nav class="flex bg-gray-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 desktop-only">
         <div class="flex items-center justify-between h-16">
-          <!--create  tailwind navbar center maxwidth max-w-7xl
-            for Home, Jobs, About, Contact and Mission
-            -->
           <div class="flex items center">
-            <div class="flex-shrink-0 self-center">
-              <img class="h-12 w-auto" src="/logo.png" alt="Workflow" />
-            </div>
             <div class="">
-              <div class="ml-10 flex items-baseline space-x-4">
+              <div class="flex items-baseline space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
                   v-for="menu in menus"
                   :key="menu.name"
                   :href="menu.href"
-                  class="px-3 text-xl py-2 rounded-md font-medium text-gray-500 hover:text-gray-900"
+                  class="px-3 text-xl py-2 rounded-md font-medium text-gray-100 hover:text-gray-900"
                   >{{ menu.name }}</a
                 >
               </div>
@@ -85,4 +79,6 @@ const menus = [
       </div>
     </nav>
   </header>
+  <div class="h-screen bg-red-200">asd</div>
+  <div class="h-screen bg-blue-100"></div>
 </template>
