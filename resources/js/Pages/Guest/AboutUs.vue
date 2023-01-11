@@ -1,5 +1,4 @@
 <template>
-  <Guest>
     <div class="relative ">
       <div class="absolute inset-0">
         <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&dl=jeriden-villegas-VLPUm5wP5Z0-unsplash.jpg&q=80&fm=jpg&crop=entropy&cs=tinysrgb" alt="" />
@@ -87,10 +86,8 @@
       </div>
     </div>
   </div>
-  </Guest>
 </template>
 <script lang="ts" setup>
-import Guest from "@/Layouts/Guest.vue";
 const people = [
   {
     name: 'Ms. Estrlita P. Ignacio',

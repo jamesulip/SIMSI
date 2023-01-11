@@ -34,14 +34,13 @@ const branches = [
 ];
 </script>
 <template>
-  <div class="bg-white">
-    <div class="mx-auto max-w-7xl py-24 px-6 sm:py-32 lg:px-8">
+  <div
+    class="bg-white sm:mx-auto py-5 sm:w-full sm:max-w-2xl sm:overflow-hidden sm:rounded-lg shadow-sm"
+  >
+    <div class="mx-auto max-w-xl px-3 sm:py-6">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900">Our offices</h2>
-      <p class="mt-6 max-w-3xl text-lg text-gray-500">
-        Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada
-        non. Cras aliquet purus dui laoreet diam sed lacus, fames.
-      </p>
-      <div class="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-2">
+
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">
         <div v-for="(branch, index) in branches" :key="index">
           <h3 class="text-lg font-medium text-gray-900">{{ branch.name }}</h3>
           <p class="mt-2 text-base text-gray-500">

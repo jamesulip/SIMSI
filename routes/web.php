@@ -31,7 +31,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'recentJobs' => \App\Models\Jobs::available()->latest()->take(3)->get(),
+        'recentJobs' => \App\Models\Jobs::with('employer')->available()->latest()->take(9)->get(),
     ]);
 });
 Route::get('/jobs', [JobsController::class, 'showPublicPost']);

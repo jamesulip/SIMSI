@@ -16,6 +16,8 @@ class JobsFactory extends Factory
      */
     public function definition()
     {
+
+
         return [
             //
             'title' => $this->faker->jobTitle,
@@ -29,7 +31,8 @@ class JobsFactory extends Factory
             'job_type_id' => $this->faker->randomNumber(1, 4),
             'active' => $this->faker->boolean,
             'date_posted' => $this->faker->dateTime,
-            'date_expires' => $this->faker->dateTime,
+            // faker greater than date_posted
+            'date_expires' => $this->faker->dateTimeBetween($startDate = 'now', $endDate = '+1 years'),
             'created_by' => $this->faker->randomNumber(1),
             'updated_by' => $this->faker->randomNumber(1),
 
