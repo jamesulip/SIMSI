@@ -36,7 +36,7 @@ const menus = [
   <header class="!sticky top-0 z-10">
     <nav class="flex bg-[#2c3847]">
       <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 desktop-only">
-        <div class="flex items-center justify-between h-16">
+        <div class="flex items-center justify-center h-16 ">
           <div class="">
             <div class="flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -53,13 +53,7 @@ const menus = [
         </div>
       </div>
       <div class="flex justify-between w-full p-3 mobile-only">
-        <div class="flex-shrink-1 self-center">
-          <img
-            class="block lg:hidden h-8 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-white.svg"
-            alt="Workflow"
-          />
-        </div>
+
         <div class="flex-shrink-1">
           <q-btn icon="menu" flat text-color="white" size="lg">
             <q-menu fit class="w-full">

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Applicant;
+use App\Meta;
 use App\Models\Jobs;
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
 class JobsController extends Controller
 {
     //
@@ -120,7 +120,15 @@ class JobsController extends Controller
     public function showPublicPostDetails(Jobs $job)
     {
         // return inertia view
+        Meta::addMeta('title', $job->title);
+        Meta::addMeta('description', $job->description);
 
+        // meta for facebbok
+        Meta::addMeta('og:title', $job->title);
+        Meta::addMeta('og:type','website');
+        Meta::addMeta('og:description', $job->description);
+        Meta::addMeta('og:url', route('jobs.show', ['job' => $job]));
+        Meta::addMeta('og:image', $job->getFirstMediaUrl('images'));
         return inertia('Guest/Show', [
             'job' => $job,
         ]);

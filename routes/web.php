@@ -32,6 +32,8 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
         'recentJobs' => \App\Models\Jobs::with('employer')->available()->latest()->take(9)->get(),
+        // get all imges on images/principals
+        'principals'=> \Illuminate\Support\Facades\Storage::disk('public')->files('principals'),
     ]);
 });
 Route::get('/jobs', [JobsController::class, 'showPublicPost']);

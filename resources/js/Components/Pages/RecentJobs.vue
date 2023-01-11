@@ -1,5 +1,8 @@
 <template>
-  <div class="flex w-full p-10 bg-green-600">
+  <div class="flex flex-col w-full p-5 bg-green-600">
+    <p class="text-center mx-auto text-3xl font-semibold py-9 text-gray-50">
+        Recent Jobs
+    </p>
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 grid-rows-3">
       <Link :href="`/job/${q.uuid}`" v-for="q in recentJobs" class="bg-white p-5">
         <div>

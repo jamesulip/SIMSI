@@ -9,7 +9,7 @@
       </div>
       <div class="relative mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Company Overview
+          Company Overviewasd
         </h1>
         <p class="mt-6 max-w-3xl text-xl text-white">
           The word SHASO is an acronym which embodies our company’s goals and virtues in
