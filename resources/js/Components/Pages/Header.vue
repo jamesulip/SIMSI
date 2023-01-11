@@ -2,31 +2,31 @@
 const menus = [
   {
     name: "Home",
-    href: "#home",
+    href: "/#home",
     current: true,
     icon: "mdi-home-outline",
   },
   {
     name: "Jobs",
-    href: "#jobs",
+    href: "/jobs",
     current: false,
     icon: "mdi-briefcase-outline",
   },
   {
     name: "About",
-    href: "#about",
+    href: "/#about",
     current: false,
     icon: "mdi-account-outline",
   },
   {
     name: "Contact",
-    href: "#contact",
+    href: "/#contact",
     current: false,
     icon: "mdi-email-outline",
   },
   {
     name: "Mission",
-    href: "#mission",
+    href: "/#mission",
     current: false,
     icon: "mdi-earth",
   },
@@ -58,7 +58,7 @@ const menus = [
           <q-btn icon="menu" flat text-color="white" size="lg">
             <q-menu fit class="w-full">
               <q-list>
-                <q-item v-for="menu in menus" :key="menu.name" clickable>
+                <q-item :href="menu.href" v-for="menu in menus" :key="menu.name" clickable>
                   <q-item-section avatar>
                     <q-icon :name="menu.icon" />
                   </q-item-section>

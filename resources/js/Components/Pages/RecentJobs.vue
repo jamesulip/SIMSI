@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full p-5 bg-green-600">
+  <div id="recentjob" class="flex flex-col w-full p-5 bg-green-600">
     <p class="text-center mx-auto text-3xl font-semibold py-9 text-gray-50">
         Recent Jobs
     </p>

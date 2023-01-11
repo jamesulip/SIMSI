@@ -37,7 +37,7 @@ const branches = [
   <div
     class=" sm:mx-auto py-5 sm:w-full sm:max-w-2xl sm:overflow-hidden sm:rounded-lg shadow-sm"
   >
-    <div class="mx-auto max-w-xl px-3 sm:py-6">
+    <div class="mx-auto max-w-xl px-3 sm:py-6" id="contact">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900">Our offices</h2>
 
       <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">

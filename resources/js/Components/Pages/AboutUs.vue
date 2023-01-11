@@ -1,5 +1,5 @@
 <template>
-    <div class="relative ">
+    <div class="relative " id="about">
       <div class="absolute inset-0 " c>
 
         <div

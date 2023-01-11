@@ -4,8 +4,8 @@ import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/mdi-v6/mdi-v6.css'
 import 'quasar/src/css/index.sass'
 import '@unocss/reset/tailwind.css'
-import '../css/app.css'
 import 'uno.css'
+import '../css/app.css'
 // JS
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';

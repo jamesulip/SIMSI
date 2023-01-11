@@ -1,0 +1,3 @@
+.smoothscroll > div > .scroll {
+    scroll-behavior: smooth;
+}

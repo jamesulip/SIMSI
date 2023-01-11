@@ -1,7 +1,7 @@
 <template>
   <Guest>
-    <Contacts2 />
-    <RecentJobs :recent-jobs="recentJobs" />
+    <Contacts2 id="home"/>
+    <RecentJobs  :recent-jobs="recentJobs" />
     <AboutUsVue />
     <VisionMissionVue />
     <div class="bg-gray-100">
@@ -9,8 +9,8 @@
         <p class="text-center text-2xl font-semibold py-9 text-gray-600">
           Lists of our Principals
         </p>
-        <div class="mt-6 grid grid-cols-1 gap-0.5 md:grid-cols-3 lg:mt-8">
-          <div v-for="i in principals" class="col-span-1 flex justify-center bg-gray-50 p-3">
+        <div  class="flex flex-nowrap overflow-scroll">
+          <div v-for="i in principals" class="col-span-1 flex w-56 justify-center bg-gray-50 p-3">
             <img
               class="max-h-16"
               :src="`/storage/${i}`"

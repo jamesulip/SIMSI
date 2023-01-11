@@ -68,7 +68,9 @@
                   <div class="sm:col-span-2">
                     <div class="space-y-4">
                       <div class="space-y-1 text-lg font-medium leading-6">
-                        <h3 class="text-base sm:!text-3xl">{{ person.name }}</h3>
+                        <h3 class="text-base sm:!text-3xl">
+                          {{ person.name }}
+                        </h3>
                         <p class="text-green-600">{{ person.role }}</p>
                       </div>
                       <div class="text-lg">
@@ -83,7 +85,7 @@
         </div>
       </div>
 
-      <div class="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:px-0">
+      <div id="mission" class="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:px-0">
         <!-- Content area -->
         <div class="pt-12 sm:pt-16 lg:pt-20">
           <div
@@ -95,15 +97,16 @@
               MISSION STATEMENT
             </h3>
             <p class="mt-8 text-lg text-gray-500">
-              To deliver <b>successful</b> business relationships with our employer while
-              ensuring global competitiveness of our deploying Filipino workers; to
-              <b>organize</b> the business to government goals aiming not only for
-              adequate profit and growth but also to contribute to the national
-              development and economic prosperity. We always adhere in showing respect and
-              <b>hospitality</b> to every human being regardless of creed, race, and
-              status; <b>Sincerity </b> and <b>integrity</b> in everything we do; Fairness
-              and justice in all our business transactions with the employees, business
-              associates and job applicants.
+              To deliver <b>successful</b> business relationships with our
+              employer while ensuring global competitiveness of our deploying
+              Filipino workers; to <b>organize</b> the business to government
+              goals aiming not only for adequate profit and growth but also to
+              contribute to the national development and economic prosperity. We
+              always adhere in showing respect and <b>hospitality</b> to every
+              human being regardless of creed, race, and status;
+              <b>Sincerity </b> and <b>integrity</b> in everything we do;
+              Fairness and justice in all our business transactions with the
+              employees, business associates and job applicants.
             </p>
             <h3
               class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl"
@@ -111,13 +114,113 @@
               VISION STATEMENT
             </h3>
             <p class="mt-8 text-lg text-gray-500">
-              We should be <b>aggressive</b> in setting the standard for excellence,
-              leadership and integrity in the overseas employment industry and in all our
-              endeavors so as to provide services that meets our employers’ expectations
-              in terms of quality, quantity, timeliness and cost.
+              We should be <b>aggressive</b> in setting the standard for
+              excellence, leadership and integrity in the overseas employment
+              industry and in all our endeavors so as to provide services that
+              meets our employers’ expectations in terms of quality, quantity,
+              timeliness and cost.
             </p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <q-separator inset />
+  <div class="relative bg-white py-16 sm:py-24 px-3" >
+    <div
+      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
+    >
+      <h1 class="text-h5">SHASO INTERNATIONAL MANPOWER SERVICES, INC.</h1>
+      <div>
+        <h1 class="text-h6">Includes</h1>
+        <!-- numbered list -->
+        <ol class="list-decimal list-inside text-sm sm:text-h5 leading-relaxed">
+          <li>
+            Pre-selection of qualified and experienced Filipino professionals
+            and workers of good moral character.
+          </li>
+          <li>
+            Evaluation of pre-selected workers through trade testing to
+            determine their skills competence.
+          </li>
+          <li>
+            Medical, physical, dental and psychiatric examination of
+            pre-selected workers to determine their fitness for the work
+            required.
+          </li>
+          <li>
+            Facilitation of the foreign principal's visit to Manila by providing
+            him with the facilities necessary for the convenience of his
+            business in the Philippines, including an interview space in our
+            designated area.
+          </li>
+          <li>
+            Processing of the vital documents of the workers selected by the
+            foreign principal for the approval of the Philippine Overseas
+            Employment Administration (POEA).
+          </li>
+          <li>
+            Coordination with airline specified by the foreign principal to
+            transport selected workers to the overseas job site
+          </li>
+          <li>
+            Orientation of selected workers on the customs, tradition, work
+            habits and other important information regarding the country where
+            they will be deployed.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <q-separator inset />
+  <div class="relative bg-white py-16 sm:py-24 px-3" id="requirements">
+    <div
+      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
+    >
+      <h1 class="text-base sm:text-h5">
+        CHECKLIST REQUIREMENTS FOR VERIFICATION OF SKILLED CATEGORIES
+      </h1>
+      <div>
+        <ol class="list-decimal list-inside text-sm sm:text-h5 leading-relaxed">
+          <li>
+            Demand Letter/Job Order/Manpower Request indicating the position,
+            the number of required workers, and the basic salaries offered.
+          </li>
+          <li>
+            Special Power-of-Attorney issued by the Employer to the licensed
+            Philippine recruitment agency (or Recruitment Agreement or Service
+            Agreement).
+          </li>
+          <li>
+            Model or Master Employment Contract which stipulates, among others,
+            the minimum provisions of employment contracts of land-based workers
+            (pls. submit actual employment contract of your
+            company/establishment, if there is any).
+          </li>
+          <li>
+            Valid Business License/Commercial Registration Certificate or
+            equivalent document with official English translation.
+          </li>
+          <li>
+            Copy of the block visa indicating the categories with the official
+            English translation.
+          </li>
+          <li>
+            For Drivers, Individual Employment Contracts and Comprehensive
+            Insurance Policy covering the vehicles, third party liability, and
+            personal accident benefits of drivers (The insurance policy should
+            be in English).
+          </li>
+          <li>Copy of I.D. or passport of the Employer or the signatory.</li>
+          <li>Location Sketch of the Company and the workers accommodation.</li>
+          <li>
+            Current number of Filipino workers in the company (if there are any)
+            in an official letter.
+          </li>
+          <li>
+            Two (2) sets duplicate copies of all above-mentioned documents.
+          </li>
+        </ol>
       </div>
     </div>
   </div>
