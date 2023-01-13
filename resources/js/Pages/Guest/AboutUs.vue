@@ -1,5 +1,4 @@
 <template>
-  <Guest>
     <div class="relative ">
       <div class="absolute inset-0">
         <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&dl=jeriden-villegas-VLPUm5wP5Z0-unsplash.jpg&q=80&fm=jpg&crop=entropy&cs=tinysrgb" alt="" />
@@ -10,7 +9,7 @@
       </div>
       <div class="relative mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Company Overview
+          Company Overviewasd
         </h1>
         <p class="mt-6 max-w-3xl text-xl text-white">
           The word SHASO is an acronym which embodies our company’s goals and virtues in
@@ -59,9 +58,51 @@
         </div>
       </div>
     </div>
-  </Guest>
+    <div class="bg-white">
+    <div class="mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-24">
+      <div class="space-y-12">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Meet our leadership</h2>
+
+        <ul role="list" class="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0">
+          <li v-for="person in people" :key="person.name">
+            <div class="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
+              <div class="aspect-w-3 aspect-h-2 h-0 sm:aspect-w-3 sm:aspect-h-4">
+                <img class="rounded-lg object-cover shadow-lg" :src="person.imageUrl" alt="" />
+              </div>
+              <div class="sm:col-span-2">
+                <div class="space-y-4">
+                  <div class="space-y-1 text-lg font-medium leading-6">
+                    <h3>{{ person.name }}</h3>
+                    <p class="text-green-600">{{ person.role }}</p>
+                  </div>
+                  <div class="text-lg">
+                    <p class="text-gray-500">{{ person.bio }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts" setup>
-import { Link } from "@inertiajs/inertia-vue3";
-import Guest from "@/Layouts/Guest.vue";
+const people = [
+  {
+    name: 'Ms. Estrlita P. Ignacio',
+    role: 'President',
+    imageUrl:
+      '/images/pres.jpg',
+    // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+  },
+  {
+    name: 'Mr. Mahamed Osman',
+    role: 'Director',
+    imageUrl:
+      '/images/osman.jpg',
+    // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+  },
+  // More people...
+]
 </script>

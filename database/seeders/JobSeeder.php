@@ -16,6 +16,9 @@ class JobSeeder extends Seeder
     public function run()
     {
         Jobs::factory()
+        // add employer relation
+        ->hasEmployer()
+
         // add relation factory for applicants
         ->has(Applicant::factory()
         // set random applicant status
