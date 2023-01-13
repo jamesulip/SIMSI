@@ -14,7 +14,7 @@ const fullscreen = ref(false);
 <template>
   <Guest>
     <div class="relative">
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="max-w-3xl gap-3 flex flex-col mx-auto py-6 sm:px-6 lg:px-8">
         <q-card flat bordered>
           <q-card-actions class="q-pa-md">
             <div class="text-h6">{{ job.title }}</div>
@@ -23,16 +23,22 @@ const fullscreen = ref(false);
             <Link :href="`/job/${job.id}/apply`">
               <q-btn
                 icon-right="send"
-                size="lg"
                 color="primary"
                 label="Apply Now"
                 width="1000"
                 outline
-                rounded
               />
             </Link>
           </q-card-actions>
         </q-card>
+
+        <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+          <img v-for="img in job.media" :key="img.id" :src="img.original_url"
+            alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
+            class="rounded-lg bg-gray-100"
+          />
+
+        </div>
 
         <q-carousel
           v-if="job?.media.length"

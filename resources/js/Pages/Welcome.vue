@@ -9,8 +9,8 @@
         <p class="text-center text-2xl font-semibold py-9 text-gray-600">
           Lists of our Principals
         </p>
-        <div  class="flex flex-nowrap overflow-scroll">
-          <div v-for="i in principals" class="col-span-1 flex w-56 justify-center bg-gray-50 p-3">
+        <div  class="flex flex-row overflow-x-auto max-w-full">
+          <div v-for="i in principals" class="flex w-72 h-24  bg-gray-50 ">
             <img
               class="max-h-16"
               :src="`/storage/${i}`"
@@ -28,10 +28,8 @@ import AboutUsVue from "../Components/Pages/AboutUs.vue";
 import VisionMissionVue from "../Components/Pages/VisionMission.vue";
 import RecentJobs from "../Components/Pages/RecentJobs.vue";
 
-import { Link } from "@inertiajs/inertia-vue3";
 import Guest from "../Layouts/Guest.vue";
 import { computed, ref } from "vue";
-const slide = ref(1);
 const { recentJobs, principals } = defineProps<{
   principals;
   recentJobs: any;

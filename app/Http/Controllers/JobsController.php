@@ -121,12 +121,14 @@ class JobsController extends Controller
     {
         // return inertia view
         Meta::addMeta('title', $job->title);
-        Meta::addMeta('description', $job->description);
+        Meta::addMeta('description', strip_tags($job->description));
 
         // meta for facebbok
         Meta::addMeta('og:title', $job->title);
         Meta::addMeta('og:type','website');
-        Meta::addMeta('og:description', $job->description);
+        // php remove html tags
+
+        Meta::addMeta('og:description', strip_tags($job->description));
         Meta::addMeta('og:url', route('jobs.show', ['job' => $job]));
         Meta::addMeta('og:image', $job->getFirstMediaUrl('images'));
         return inertia('Guest/Show', [
