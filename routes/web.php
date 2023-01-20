@@ -31,7 +31,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'recentJobs' => \App\Models\Jobs::with('employer')->available()->latest()->take(9)->get(),
+        'recentJobs' => \App\Models\Jobs::with('employer')->available()->latest()->take(6)->get(),
         // get all imges on images/principals
         'principals'=> \Illuminate\Support\Facades\Storage::disk('public')->files('principals'),
     ]);

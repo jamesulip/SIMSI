@@ -54,9 +54,9 @@ const menus = [
       </div>
       <div class="flex justify-between w-full p-3 mobile-only">
 
-        <div class="flex-shrink-1">
+        <div class="flex-shrink-1 flex justify-between w-full">
           <q-btn icon="menu" flat text-color="white" size="lg">
-            <q-menu fit class="w-full">
+            <q-menu fit class="w-full flex flex-col" >
               <q-list>
                 <q-item :href="menu.href" v-for="menu in menus" :key="menu.name" clickable>
                   <q-item-section avatar>
@@ -67,6 +67,7 @@ const menus = [
               </q-list>
             </q-menu>
           </q-btn>
+          <img src="/logo.png" alt="logo" class="w-14 h-14" />
         </div>
       </div>
     </nav>
