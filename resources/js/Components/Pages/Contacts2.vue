@@ -21,7 +21,7 @@
     <div class="relative pt-6 pb-16 sm:pb-24">
       <main class="mt-16 sm:mt-24">
         <div class="mx-auto max-w-7xl">
-          <div class="lg:grid lg:grid-cols-1 lg:gap-1">
+          <div class="flex">
             <div
               class="px-6 sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:flex lg:items-center lg:text-left"
             >

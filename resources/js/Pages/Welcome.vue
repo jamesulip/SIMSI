@@ -1,23 +1,40 @@
 <template>
   <Guest>
-    <Contacts2 id="home"/>
-    <RecentJobs  :recent-jobs="recentJobs" />
+    <Contacts2 id="home" />
+    <RecentJobs :recent-jobs="recentJobs" />
     <AboutUsVue />
     <VisionMissionVue />
-    <div class="bg-gray-100">
-      <div class="mx-auto max-w-7xl ">
-        <p class="text-center text-2xl font-semibold py-9 text-gray-600">
+    <q-separator/>
+    <div>
+      <div class="mx-auto max-w-7xl">
+        <p class="text-center uppercase text-2xl font-semibold py-9 text-gray-600">
           Lists of our Principals
         </p>
-        <div  class="flex flex-row overflow-x-auto max-w-full">
-          <div v-for="i in principals" class="flex w-72 h-24  bg-gray-50 ">
-            <img
-              class="max-h-16"
-              :src="`/storage/${i}`"
-              alt="Workcation"
-            />
-          </div>
-        </div>
+        <q-carousel
+          v-model="slide"
+          swipeable
+      animated
+      control-color="green"
+      navigation
+      padding
+      arrows
+      height="300px"
+        >
+          <q-carousel-slide
+            v-for="(principal, index) in pr"
+            :key="index"
+            :name="index"
+          >
+            <div class="flex flex-wrap justify-center gap-10">
+              <div
+                v-for="p in principal"
+                :key="p.id"
+              >
+              <img  :src="`/storage/${p}`" class="h-16 mx-auto" />
+              </div>
+            </div>
+          </q-carousel-slide>
+        </q-carousel>
       </div>
     </div>
   </Guest>
@@ -30,10 +47,23 @@ import RecentJobs from "../Components/Pages/RecentJobs.vue";
 
 import Guest from "../Layouts/Guest.vue";
 import { computed, ref } from "vue";
+import { useQuasar } from "quasar";
+const $q = useQuasar()
+
 const { recentJobs, principals } = defineProps<{
   principals;
   recentJobs: any;
 }>();
+const slide = ref(0);
+// paginate array into chunks with 10 items
+const chunk = (arr, size) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+const pr = computed(() => {
+  return chunk(principals, $q.platform.is.mobile ? 2 : 10);
+});
+
 const computedRecentJobs = computed(() => {
   return recentJobs.map((job: any) => {
     return {

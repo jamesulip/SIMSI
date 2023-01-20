@@ -49,14 +49,14 @@
         >
           <!-- Testimonial card-->
           <div class="space-y-12">
-            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 class="uppercase mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl">
               Meet our Managers
             </h2>
 
             <ul role="list" class="space-y-12 flex gap-3">
               <li v-for="person in people" :key="person.name">
                 <div
-                  class="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8"
+                  class="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8  p-12"
                 >
                   <div class="">
                     <img
@@ -68,10 +68,10 @@
                   <div class="sm:col-span-2">
                     <div class="space-y-4">
                       <div class="space-y-1 text-lg font-medium leading-6">
-                        <h3 class="text-base sm:!text-3xl">
+                        <h3 class="text-base sm:!text-3xl text-center uppercase">
                           {{ person.name }}
                         </h3>
-                        <p class="text-green-600">{{ person.role }}</p>
+                        <p class="text-green-600 text-center">{{ person.role }}</p>
                       </div>
                       <div class="text-lg">
                         <p class="text-gray-500">{{ person.bio }}</p>
@@ -92,29 +92,30 @@
             class="mx-auto max-w-prose text-base lg:ml-auto lg:mr-0 lg:max-w-lg p-6 sm:p-10 rounded-lg bg-gray-100"
           >
             <h3
-              class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl"
+              class="mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl"
             >
               MISSION STATEMENT
             </h3>
-            <p class="mt-8 text-lg text-gray-500">
-              To deliver <b>successful</b> business relationships with our
+            <p class="mt-3 text-base md:text-lg text-justify text-gray-500">
+              To deliver successful business relationships with our
               employer while ensuring global competitiveness of our deploying
-              Filipino workers; to <b>organize</b> the business to government
+              Filipino workers; to organize the business to government
               goals aiming not only for adequate profit and growth but also to
               contribute to the national development and economic prosperity. We
-              always adhere in showing respect and <b>hospitality</b> to every
+              always adhere in showing respect and hospitality to every
               human being regardless of creed, race, and status;
-              <b>Sincerity </b> and <b>integrity</b> in everything we do;
+              Sincerity  and integrity in everything we do;
               Fairness and justice in all our business transactions with the
               employees, business associates and job applicants.
             </p>
+            <br>
             <h3
-              class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl"
+              class=" mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl"
             >
               VISION STATEMENT
             </h3>
-            <p class="mt-8 text-lg text-gray-500">
-              We should be <b>aggressive</b> in setting the standard for
+            <p class="mt-3 text-base md:text-lg text-gray-500 text-justify">
+              We should be aggressive in setting the standard for
               excellence, leadership and integrity in the overseas employment
               industry and in all our endeavors so as to provide services that
               meets our employers’ expectations in terms of quality, quantity,
@@ -126,12 +127,14 @@
     </div>
   </div>
   <q-separator inset />
-  <div class="relative bg-white py-16 sm:py-24 px-3" >
+  <div class="relative bg-[#2c3e50]  text-white py-16 sm:py-24 px-3" >
     <div
       class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
     >
-      <h1 class="text-h5">SHASO INTERNATIONAL MANPOWER SERVICES, INC.</h1>
-      <div>
+      <div >
+        <h1 class="text-h6">SHASO INTERNATIONAL MANPOWER SERVICES, INC.</h1>
+        <br>
+
         <h1 class="text-h6">Includes</h1>
         <!-- numbered list -->
         <ol class="list-decimal list-inside text-sm sm:text-h5 leading-relaxed">
@@ -170,17 +173,11 @@
           </li>
         </ol>
       </div>
-    </div>
-  </div>
-  <q-separator inset />
-  <div class="relative bg-white py-16 sm:py-24 px-3" id="requirements">
-    <div
-      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
-    >
-      <h1 class="text-base sm:text-h5">
+      <div>
+        <h1 class="text-base sm:text-h5">
         CHECKLIST REQUIREMENTS FOR VERIFICATION OF SKILLED CATEGORIES
       </h1>
-      <div>
+      <br>
         <ol class="list-decimal list-inside text-sm sm:text-h5 leading-relaxed">
           <li>
             Demand Letter/Job Order/Manpower Request indicating the position,
@@ -222,6 +219,14 @@
           </li>
         </ol>
       </div>
+    </div>
+  </div>
+  <div class="relative bg-[#2c3e50] text-white py-16 sm:py-24 px-3" id="requirements">
+    <div
+      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
+    >
+
+
     </div>
   </div>
 </template>
