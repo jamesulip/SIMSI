@@ -14,6 +14,12 @@ class JobsFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    public function configure(){
+        return $this->afterCreating(function ($job) {
+            // add media
+            $job->addMediaFromUrl('http://localhost:8000/storage/1/315108739_124198990453935_1819151734633997690_n.jpg')->toMediaCollection('images');
+        });
+    }
     public function definition()
     {
 

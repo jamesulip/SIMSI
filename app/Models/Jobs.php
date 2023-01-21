@@ -28,7 +28,7 @@ class Jobs extends Model implements HasMedia
             $model->uuid = (string) \Illuminate\Support\Str::uuid();
         });
     }
-
+    
     protected $with = ['JobType', 'media', 'employer'];
 
     protected $fillable = [

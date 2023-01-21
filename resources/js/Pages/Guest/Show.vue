@@ -21,52 +21,19 @@ const fullscreen = ref(false);
             <q-space />
             <!-- create apply button -->
             <Link :href="`/job/${job.id}/apply`">
-              <q-btn
-                icon-right="send"
-                color="primary"
-                label="Apply Now"
-                width="1000"
-                outline
-              />
+            <q-btn icon-right="send" color="primary" label="Apply Now" width="1000" outline />
             </Link>
           </q-card-actions>
         </q-card>
 
-        <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <img v-for="img in job.media" :key="img.id" :src="img.original_url"
-            alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
-            class="rounded-lg bg-gray-100"
-          />
 
-        </div>
-
-        <q-carousel
-          v-if="job?.media.length"
-          animated
-          autoplay
-          v-model:fullscreen="fullscreen"
-          v-model="slide"
-          arrows
-          navigation
-          infinite
-        >
-          <q-carousel-slide
-            v-for="(img, ind) in job.media"
-            :key="ind"
-            :name="ind + 1"
-            :img-src="img.original_url"
-          />
+        <q-carousel v-if="job?.media.length" animated autoplay v-model:fullscreen="fullscreen" v-model="slide" arrows
+          navigation infinite>
+          <q-carousel-slide v-for="(img, ind) in job.media" :key="ind" :name="ind + 1" :img-src="img.original_url" />
           <template v-slot:control>
             <q-carousel-control position="bottom-right" :offset="[18, 18]">
-              <q-btn
-                push
-                round
-                dense
-                color="white"
-                text-color="primary"
-                :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-                @click="fullscreen = !fullscreen"
-              />
+              <q-btn push round dense color="white" text-color="primary"
+                :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'" @click="fullscreen = !fullscreen" />
             </q-carousel-control>
           </template>
         </q-carousel>
@@ -81,6 +48,46 @@ const fullscreen = ref(false);
             <q-card-section class="flex-1">
               <div v-html="job.description" />
             </q-card-section>
+          </q-card-section>
+          <q-separator />
+          <q-card-section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+           
+            <div v-if="job.skills">
+              <span class="text-subtitle2">Skills</span><br>
+              <span class="text-caption">{{ job.skills.join(',') }}</span>
+            </div>
+
+            <div v-if="job.salary">
+              <span class="text-subtitle2">Salary</span><br>
+              <span class="text-caption">{{ job.salary }}</span>
+            </div>
+
+            <div v-if="job.job_type">
+              <span class="text-subtitle2">Job Type</span><br>
+              <span class="text-caption">{{ job.job_type.name }}</span>
+            </div>
+
+            <div v-if="job.date_posted">
+              <span class="text-subtitle2">Date Posted</span><br>
+              <span class="text-caption">{{ job.date_posted }}</span>
+            </div>
+
+            <div v-if="job.date_posted">
+              <span class="text-subtitle2">Date Expires</span><br>
+              <span class="text-caption">{{ job.date_expires }}</span>
+            </div>
+          </q-card-section>
+          <q-separator v-if="job.media.length > 0" />
+          <q-card-section v-if="job.media.length > 0">
+            <span class="text-h6">Attachments</span>
+            <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+              <a :href="img.original_url" v-for="img in job.media" :key="img.id">
+                <img :src="img.original_url"
+                  alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
+                  class="rounded-lg bg-gray-100" />
+              </a>
+            </div>
+
           </q-card-section>
         </q-card>
       </div>

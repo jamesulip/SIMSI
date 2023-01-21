@@ -64,26 +64,4 @@ const pr = computed(() => {
   return chunk(principals, $q.platform.is.mobile ? 2 : 10);
 });
 
-const computedRecentJobs = computed(() => {
-  return recentJobs.map((job: any) => {
-    return {
-      title: job.title,
-      href: `/job/${job.uuid}`,
-      category: {
-        name: "Job Hiring",
-        href: `/job/${job.uuid}`,
-      },
-      description:
-        job.description
-          .replace(/(<([^>]+)>)/gi, "")
-          //   remove nbps
-          .replace(/&nbsp;/gi, "")
-
-          .substring(0, 250) + "...",
-      date: job.date_posted,
-      datetime: job.date_expires,
-      imageUrl: job.media[0]?.original_url,
-    };
-  });
-});
 </script>

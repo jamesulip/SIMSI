@@ -102,7 +102,6 @@ function onSubmit() {
                 type="text"
                 hint="Enter employer address"
                 stack-label
-                :rules="[(val) => val.length > 0 || 'Address is required']"
               />
               <q-input
                 v-model="form.description"
@@ -112,7 +111,6 @@ function onSubmit() {
                 type="textarea"
                 hint="Enter employer description"
                 stack-label
-                :rules="[(val) => val.length > 0 || 'Description is required']"
               />
               <div class="flex gap-3 w-full">
                 <q-input
@@ -124,7 +122,6 @@ function onSubmit() {
                   type="email"
                   hint="Enter employer email"
                   stack-label
-                  :rules="[(val) => val.length > 0 || 'Email is required']"
                 />
                 <q-input
                   v-model="form.phone"
@@ -135,7 +132,6 @@ function onSubmit() {
                   type="text"
                   hint="Enter employer phone"
                   stack-label
-                  :rules="[(val) => val.length > 0 || 'Phone is required']"
                 />
               </div>
               <q-input
@@ -146,7 +142,6 @@ function onSubmit() {
                 type="text"
                 hint="Enter employer website"
                 stack-label
-                :rules="[(val) => val.length > 0 || 'Website is required']"
               />
             </q-card-section>
             <q-card-actions>

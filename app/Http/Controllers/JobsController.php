@@ -146,7 +146,7 @@ class JobsController extends Controller
         })->
         available()->
         orderBy('created_at', 'desc')->
-        get();
+        paginate(20);
         return inertia('Guest/Jobs', [
             'jobs' => $jobs,
             'available_locations' => \App\Models\Jobs::whereNotNull('location')->select('location')->available()->distinct()->get(),

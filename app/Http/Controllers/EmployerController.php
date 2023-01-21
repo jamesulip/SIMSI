@@ -56,9 +56,6 @@ class EmployerController extends Controller
         // validate request
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
             'country' => 'required',
         ]);
 

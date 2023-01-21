@@ -288,15 +288,19 @@ function filterFn(val, update, abort) {
           </q-card-section>
           <q-separator />
           <q-card-actions align="right">
-            <q-btn size="lg" @click="$inertia.get(`/admin/jobs`)" color="negative">
+            <q-btn unelevated size="sm" @click="$inertia.get(`/admin/jobs`)" color="negative">
               Cancel
             </q-btn>
+            
+            <q-btn unelevated size="sm" icon="delete" @click="$inertia.delete(`/admin/jobs/${job.id}`)" color="negative">
+              Delete
+            </q-btn>
             <q-space />
-            <q-btn
+            <q-btn unelevated
               label="Save"
               type="submit"
               color="primary"
-              size="lg"
+              size="sm"
               icon="mdi-content-save-outline"
             />
           </q-card-actions>
