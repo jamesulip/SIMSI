@@ -125,7 +125,7 @@ class JobsController extends Controller
 
         // meta for facebbok
         Meta::addMeta('og:title', $job->title);
-        Meta::addMeta('og:type','website');
+        Meta::addMeta('og:type', 'article');
         // php remove html tags
 
         Meta::addMeta('og:description', strip_tags($job->description));
