@@ -17,7 +17,7 @@ class JobsFactory extends Factory
     public function configure(){
         return $this->afterCreating(function ($job) {
             // add media
-            $job->addMediaFromUrl('http://localhost:8000/storage/1/315108739_124198990453935_1819151734633997690_n.jpg')->toMediaCollection('images');
+            $job->addMediaFromUrl('https://scontent.fmnl4-5.fna.fbcdn.net/v/t39.30808-6/315108739_124198990453935_1819151734633997690_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeEDW1q49Y8esUcW_I07SNI7ZY3IAIl0hI5ljcgAiXSEjpYg93t_5t7sKN_XFB_vsK_DlLjZXDmgn6c76jh_DIsj&_nc_ohc=RgNaS2FgiJcAX8asPb_&_nc_ht=scontent.fmnl4-5.fna&oh=00_AfBprLyh1-4qEFM8sU3GU11slc0a0r36SrR1ppUaXYXqOA&oe=63D281E9')->toMediaCollection('images');
         });
     }
     public function definition()
