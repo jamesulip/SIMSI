@@ -33,10 +33,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
         // strip description to 100 characters and remove html tags
         'recentJobs' => \App\Models\Jobs::with('employer','media')->available()->latest()->take(6)->get()->map(function ($job) {
-            
+
             $job['created_at'] = $job->created_at->diffForHumans();
-            $job['description'] = strip_tags($job->description);       
-            $job['asdasd']='asdasd';      
+            $job['description'] = strip_tags($job->description);
+            $job['asdasd']='asdasd';
             return $job;
         }),
         // get all imges on images/principals
