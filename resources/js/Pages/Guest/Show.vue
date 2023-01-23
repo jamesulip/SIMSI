@@ -44,14 +44,12 @@ const fullscreen = ref(false);
           </q-card-section>
           <q-separator />
           <!-- make responsive -->
-          <q-card-section class="flex flex-col sm:flex-row">
             <q-card-section class="flex-1">
               <div v-html="job.description" />
             </q-card-section>
-          </q-card-section>
           <q-separator />
-          <q-card-section class="grid grid-cols-1 md:grid-cols-2 gap-3">
-           
+          <q-card-section class="grid grid-cols-1 md:grid-cols-2 gap-3 p-3">
+
             <div v-if="job.skills">
               <span class="text-subtitle2">Skills</span><br>
               <span class="text-caption">{{ job.skills.join(',') }}</span>
