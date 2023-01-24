@@ -35,7 +35,7 @@ const branches = [
 </script>
 <template>
   <div
-    class=" sm:mx-auto py-5 sm:w-full sm:max-w-2xl sm:overflow-hidden sm:rounded-lg shadow-sm"
+    class=" sm:mx-auto sm:w-full sm:max-w-2xl sm:overflow-hidden sm:rounded-lg shadow-sm"
   >
     <div class="mx-auto max-w-xl px-3 sm:py-6" id="contact">
       <h2 class="uppercase mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl ">Our offices</h2>
