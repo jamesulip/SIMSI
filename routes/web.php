@@ -67,7 +67,16 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        $applicants = \App\Models\Applicant::select(['first_name','last_name','id','applicant_status_id'])->get();
+        $jobs = \App\Models\Jobs::with('applicant')->get();
+        return Inertia::render('Dashboard', [
+            'applicants' => $applicants,
+            'jobs' => $jobs->map(function ($job) {
+                $job['created_at_human'] = $job->created_at->diffForHumans();
+                $job['description'] = strip_tags($job->description);
+                return $job;
+            }),
+        ]);
     });
 
     // add middleware to resource per function
