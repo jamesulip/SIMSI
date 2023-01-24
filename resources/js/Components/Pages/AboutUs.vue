@@ -1,5 +1,5 @@
 <template>
-    <div class="relative " id="about">
+    <div class="relative h-auto sm:h-screen" id="about" >
       <div class="absolute inset-0 " c>
 
         <div
@@ -8,8 +8,8 @@
           aria-hidden="true"
         ></div>
       </div>
-      <div class="relative mx-auto max-w-7xl  flex flex-col px-4 sm:py-32 sm:px-6 lg:px-8">
-        <h1 class="uppercase mt-2 text-base font-bold  tracking-tight  sm:text-2xl text-white">
+      <div class="relative mx-auto max-w-7xl  flex flex-col px-4 sm:py-24 sm:px-6 lg:px-8">
+        <h1 class="uppercase mt-4 text-base font-bold  tracking-tight  sm:text-2xl text-center text-white">
           Company Overview
         </h1>
         <p class="mt-6 max-w-7xl  md:text-xl  text-white text-justify">
@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="mt-6  md:text-xl text-white bg-[#3c75ca0b] p-1 rounded-md  sm:px-6 lg:px-8">
+        <div class="mt-6  md:text-xl text-white bg-[#3c75ca0b] p-1 rounded-md  ">
             <p class="text-justify">A reliable and dynamic land-based recruitment agency, strategically located in the business center of Manila. Shaso International Manpower Services, Inc. is composed of new breed of human resources-consultants that are solely committed to specialize manpower placement delivering only the best among the Filipino workers. The dynamic team is determined to definitely have a competitive advantage in pursuing quality customer service for the complete satisfaction of everyone involved in the business.
         Duly recognized by the Department of Labor & Employment and the Philippine Overseas Employment Administration, our business license was granted on January 07, 2011. As such, we are authorized to recruit, process and deploy Filipino workers to reputable companies in as many parts of the world.
         Confidence in the versatility and industry of the Filipinos coupled with the desire in assisting individuals to achieve a rewarding overseas career to secure a better future is the foundation of our organization. Moreover, it is our commitment to maintain the high standards of integrity by providing prompt, efficient and effective service both to our valued employers and Filipino workers.

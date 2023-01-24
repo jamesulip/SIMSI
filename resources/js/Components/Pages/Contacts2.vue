@@ -1,24 +1,11 @@
-<!--
-  This example requires some changes to your config:
 
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
   <div
     class="relative overflow-hidden bg-fixed"
     style="background-image: url('/Global_network_generated.jpg')"
   >
     <div class="backdrop-blur-sm bg-blue/60  absolute-full" />
-    <div class="relative pt-6 pb-16 sm:pb-24">
+    <div class="relative pt-6 pb-16 sm:pb-24 xl:h-screen h-auto">
       <main class="mt-16 sm:mt-24">
         <div class="mx-auto max-w-7xl">
           <div class="flex">
