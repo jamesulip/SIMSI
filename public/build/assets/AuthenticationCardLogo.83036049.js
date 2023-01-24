@@ -1,1 +1,0 @@
-import{Q as a}from"./QImg.760f603f.js";import{o,c as t,w as e,b as r,g as s,aN as c}from"./app.252abc54.js";const f={__name:"AuthenticationCardLogo",setup(n){return(_,p)=>(o(),t(s(c),{href:"/"},{default:e(()=>[r(a,{src:"/logo.png",width:"100px"})]),_:1}))}};export{f as _};
