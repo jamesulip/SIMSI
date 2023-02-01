@@ -20,22 +20,25 @@ class ApplicantStatusSeeder extends Seeder
                 'color' => 'blue',
             ],
             [
-                'name' => 'Qualified',
+                'name' => 'SELECTED',
                 'color' => 'light-blue',
             ],
             [
-                'name' => 'In Progress',
+                'name' => 'INTERVIEWED',
                 'color' => 'yellow',
             ],
             [
-                'name' => 'Hired',
+                'name' => 'DEPLOYED',
                 'color' => 'green',
             ],
             [
-                'name' => 'Rejected',
+                'name' => 'BACK OUT',
                 'color' => 'red',
             ],
-
+            [
+                'name' => 'Not Qualified',
+                'color' => 'red',
+            ],
         ];
         // update or create
         foreach ($APPLICANT_STATUS as $status) {

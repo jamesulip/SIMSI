@@ -84,6 +84,7 @@ Route::middleware([
         Route::resource('/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
 
         Route::resource('employers', EmployerController::class);
+        Route::resource('branches', \App\Http\Controllers\BranchController::class);
     });
     Route::get('/announcements', function () {
         return Inertia::render('Dashboard');
