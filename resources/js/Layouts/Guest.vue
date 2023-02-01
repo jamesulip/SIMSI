@@ -1,5 +1,5 @@
 <template>
-  <q-layout  view="lHh Lpr lFf" class="h-screen smoothscroll" container>
+  <q-layout   view="lHh Lpr lFf" class="h-screen smoothscroll" container>
     <Header />
     <slot />
   </q-layout>

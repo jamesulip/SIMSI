@@ -33,10 +33,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
         // strip description to 100 characters and remove html tags
         'recentJobs' => \App\Models\Jobs::with('employer','media')->available()->latest()->take(6)->get()->map(function ($job) {
-            
+
             $job['created_at'] = $job->created_at->diffForHumans();
-            $job['description'] = strip_tags($job->description);       
-            $job['asdasd']='asdasd';      
+            $job['description'] = strip_tags($job->description);
             return $job;
         }),
         // get all imges on images/principals
@@ -67,7 +66,17 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        // select(['first_name','last_name','id','applicant_status_id','jobs_id'])->
+        $applicants = \App\Models\Applicant::with('applicantStatus')->get();
+        $jobs = \App\Models\Jobs::with('applicant')->get();
+        return Inertia::render('Dashboard', [
+            'applicants' => $applicants,
+            'jobs' => $jobs->map(function ($job) {
+                $job['created_at_human'] = $job->created_at->diffForHumans();
+                $job['description'] = strip_tags($job->description);
+                return $job;
+            }),
+        ]);
     });
 
     // add middleware to resource per function

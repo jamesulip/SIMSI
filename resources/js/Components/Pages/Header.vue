@@ -2,7 +2,7 @@
 const menus = [
   {
     name: "Home",
-    href: "/#home",
+    href: "/",
     current: true,
     icon: "mdi-home-outline",
   },
@@ -18,12 +18,7 @@ const menus = [
     current: false,
     icon: "mdi-account-outline",
   },
-  {
-    name: "Contact",
-    href: "/#contact",
-    current: false,
-    icon: "mdi-email-outline",
-  },
+
   {
     name: "Mission",
     href: "/#mission",
