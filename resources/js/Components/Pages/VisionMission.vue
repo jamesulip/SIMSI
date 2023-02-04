@@ -93,22 +93,6 @@
       </div>
     </div>
   </div>
-  <q-separator inset />
-  <div class="relative bg-[#2c3e50]  text-white py-16 sm:py-24 px-3" >
-    <div
-      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
-    >
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tqcDEGFvOpDKDOcGbP9RhrO5kn8NutA&ehbc=2E312F" width="640" height="480"></iframe>
-    </div>
-  </div>
-  <div class="relative bg-[#2c3e50] text-white py-16 sm:py-24 px-3" id="requirements">
-    <div
-      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
-    >
-
-
-    </div>
-  </div>
 </template>
 
 <script setup>

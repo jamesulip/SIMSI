@@ -3,26 +3,46 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Inertia } from "@inertiajs/inertia";
 import { ref, toRef } from "vue";
-;
-
+import {useQuasar} from 'quasar'
+const $q = useQuasar();
 const props = defineProps<{branch: any}>()
 const branch = toRef(props, 'branch')
 const form = ref(null)
-function submit(){
-    
-   if(!form.value.validate())
+const loading = ref(false)
+ function submit(){
+   if(!form?.value.validate())
        return
-    
-    Inertia.put(`/admin/branches/${branch.value.id}`, branch.value)
+    Inertia.put(`/admin/branches/${branch.value.id}`, branch.value,{
+        onSuccess: () => {
+            $q.notify({
+                message: 'Branch updated successfully',
+                color: 'green-4',
+                textColor: 'white',
+                icon: 'check_circle',
+                position: 'bottom'
+            })
+            loading.value = false
+        },
+        onStart: () => {
+            loading.value = true
+        },
+    })
+       
+
+
+    // notify updated
+  
 }
 </script>
 <template>
     <AppLayout title="Jobs">
         <q-page padding class="flex w-full">
             <!-- create a form for branches -->
-            <q-form ref="form" class="mx-auto max-w-xl w-full" @submit.prevent="submit()">
+            <q-form ref="form" class="mx-auto max-w-7xl w-full" @submit.prevent="submit()">
                 <q-card flat bordered class="">
-                    <q-card-section>
+                    <q-card-section class="flex">
+                    <!-- return button -->
+                     <q-btn class="q-mr-sm" color="primary" unelevated icon="arrow_back" size="sm" flat href="/admin/branches"/>
                         <div class="text-h6">Branch Details</div>
                     </q-card-section>
                     <q-separator />
@@ -70,13 +90,12 @@ function submit(){
                                 </q-input>
                             </div>
                             <q-input dense outlined v-model="branch.website" label="Website" />
-                            <q-input dense outlined v-model="branch.description" label="Description" />
                         </q-form>
                     </q-card-section>
                     <!-- card actopm -->
                     <q-separator />
                     <q-card-actions align="right">
-                        <q-btn type="submit" color="primary" label="Create" />
+                        <q-btn type="submit" :loading="loading" color="primary" label="Update" />
                     </q-card-actions>
                 </q-card>
                 </q-form>

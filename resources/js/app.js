@@ -15,7 +15,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { Quasar } from 'quasar'
 import { createPinia } from 'pinia'
 
-import { Notify } from 'quasar'
+import { Notify,Dialog } from 'quasar'
 // pinia configuration
 const pinia = createPinia()
 
@@ -31,6 +31,7 @@ createInertiaApp({
             .use(Quasar, {
                 plugins: {
                     Notify,
+                    Dialog,
                     extras: ['material-icons','mdi-v6'],
 
                 }, // import Quasar plugins and add here

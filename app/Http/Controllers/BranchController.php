@@ -36,10 +36,10 @@ class BranchController extends Controller
        $branch->update($request->all());
          return Redirect::route('branches.show', $branch);
     }
-    public function delete(Branch $branch)
+    public function destroy(Branch $branch)
     {
        $branch->delete();
-       return response()->json(null, 204);
+       return Redirect::route('branches.index');
     }
     
 }

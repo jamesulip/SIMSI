@@ -81,7 +81,7 @@ onMounted(() => {
   <AppLayout title="Jobs">
     <q-page padding>
       <!-- search card -->
-      <q-form @submit="$inertia.get(`/admin/jobs`, { search,employer_id })">
+      <q-form class="max-w-7xl" @submit="$inertia.get(`/admin/jobs`, { search,employer_id })">
         <q-card flat bordered class="mb-5">
           <q-card-actions class="q-pa-md">
             <q-toolbar>

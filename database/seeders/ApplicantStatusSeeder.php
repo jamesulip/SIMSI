@@ -14,6 +14,11 @@ class ApplicantStatusSeeder extends Seeder
     public function run()
     {
         //
+        // create applicant status\
+        // set foreign key check to 0
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        \App\Models\ApplicantStatus::truncate();
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $APPLICANT_STATUS = [
             [
                 'name' => 'New',
@@ -36,7 +41,7 @@ class ApplicantStatusSeeder extends Seeder
                 'color' => 'red',
             ],
             [
-                'name' => 'Not Qualified',
+                'name' => 'NOT QUALIFIED',
                 'color' => 'red',
             ],
         ];

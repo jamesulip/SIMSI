@@ -25,6 +25,12 @@ const menus = [
     current: false,
     icon: "mdi-earth",
   },
+  {
+    name: "Branches",
+    href: "/#branches",
+    current: false,
+    icon: "mdi-earth",
+  },
 ];
 </script>
 <template>

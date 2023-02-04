@@ -4,6 +4,11 @@
     <RecentJobs :recent-jobs="recentJobs" />
     <AboutUsVue />
     <VisionMissionVue />
+    <div class="flex w-screen h-screen" id="branches">
+      <div class="max-w-7xl min-w-full sm:p-12 p-0">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tqcDEGFvOpDKDOcGbP9RhrO5kn8NutA&ehbc=2E312F" class="w-full h-full"></iframe>
+      </div>
+    </div>
     <q-separator/>
     <div>
       <div class="mx-auto max-w-7xl">

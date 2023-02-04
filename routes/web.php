@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\ApplicantController;
-use App\Http\Controllers\EmployerController;
-use App\Http\Controllers\FilesController;
-use App\Http\Controllers\JobsController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Company;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\FilesController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\ApplicantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +58,11 @@ Route::get('/mission', function () {
     return Inertia::render('Guest/Mission');
 });
 Route::get('/contact-us', function () {
-    return Inertia::render('Guest/ContactUs');
+    return Inertia::render('Guest/ContactUs',
+    [
+        'branches' => \App\Models\Branch::all(),
+    ]
+);
 });
 
 Route::get('/job/{job:uuid}', [JobsController::class, 'showPublicPostDetails']);
@@ -93,7 +99,9 @@ Route::middleware([
         Route::resource('/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
 
         Route::resource('employers', EmployerController::class);
-        Route::resource('branches', \App\Http\Controllers\BranchController::class);
+        Route::resource('company', CompanyController::class)->middleware('role:admin');
+
+        Route::resource('branches', \App\Http\Controllers\BranchController::class)->name('index', 'branches.index');
     });
     Route::get('/announcements', function () {
         return Inertia::render('Dashboard');
