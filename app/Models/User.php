@@ -29,7 +29,7 @@ class User extends Authenticatable
     protected $with = ['roles', 'permissions'];
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','active'
     ];
 
     /**
@@ -42,6 +42,7 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+
     ];
 
     /**

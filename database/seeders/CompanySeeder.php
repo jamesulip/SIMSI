@@ -17,9 +17,11 @@ class CompanySeeder extends Seeder
     {
         //
         // create company
+        // truncate company first
+        Company::truncate();
         Company::create([
             'company_name' => 'Shano Manpower Services',
             'poea' => 'POEA-123456',]);
-            
+
     }
 }

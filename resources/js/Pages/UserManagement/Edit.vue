@@ -28,7 +28,7 @@ function submit() {
   <AppLayout title="Jobs">
     <q-page padding>
       <form @submit.prevent="submit" class="max-w-2xl">
-        <q-card>
+        <q-card flat bordered>
           <q-card-section>
             <h3 class="text-h5">User Details</h3>
           </q-card-section>
@@ -43,6 +43,7 @@ function submit() {
               v-model="user.password_confirmation"
               label="Confirm Password"
             />
+            <q-toggle label="Active" color="green" :true-value="1" :false-value="0" v-model:model-value="user.active" />
             <q-select
               outlined
               dense

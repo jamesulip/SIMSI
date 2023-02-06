@@ -12,7 +12,7 @@ const branches = [
     map:
       "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15445.655815073189!2d120.9802071!3d14.5754725!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x47ce5320a40684b6!2sSHASO%20INTERNATIONAL%20MANPOWER%20SERVICES%20INC!5e0!3m2!1sen!2sph!4v1672343580923!5m2!1sen!2sph",
   },
-  
+
 ];
 </script>
 <template>
@@ -21,7 +21,7 @@ const branches = [
   >
     <div class="mx-auto max-w-xl px-3 sm:py-6" id="contact">
       <h2 class="uppercase mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl ">Our offices</h2>
-      <a href="/contactus" class="color-blue-400 uppercase mt-2 text-base font-bold leading-8 tracking-tight  sm:text-lg ">See All Branches</a>
+      <a href="/contact-us" class="color-blue-400 uppercase mt-2 text-base font-bold leading-8 tracking-tight  sm:text-lg ">See All Branches</a>
 
 
       <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">

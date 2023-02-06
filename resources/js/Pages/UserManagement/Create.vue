@@ -28,7 +28,7 @@ function submit() {
   <AppLayout title="Jobs">
     <q-page padding>
       <form @submit.prevent="submit" class="max-w-2xl">
-        <q-card>
+        <q-card bordered flat>
           <q-card-section>
             <h3 class="text-h5">User Details</h3>
           </q-card-section>
