@@ -71,8 +71,8 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         // select(['first_name','last_name','id','applicant_status_id','jobs_id'])->
-        $applicants = \App\Models\Applicant::with('applicantStatus')->get();
-        $jobs = \App\Models\Jobs::with('applicant')->get();
+        $applicants = \App\Models\Applicant::with('applicantStatus')->orderBy('created_at','desc')->get();
+        $jobs = \App\Models\Jobs::with('applicant')->orderBy('created_at','desc')->get();
         return Inertia::render('Dashboard', [
             'applicants' => $applicants,
             'jobs' => $jobs->map(function ($job) {

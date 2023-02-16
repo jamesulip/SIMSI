@@ -113,6 +113,12 @@ function countApprovedApplicants(row, status){
         return item.applicant_status_id == status
     }).length
 }
+import dayJs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayJs.extend(relativeTime)
+function toAgo(date){
+    return dayJs(date).fromNow()
+}
 </script>
 
 <template>
@@ -218,6 +224,16 @@ function countApprovedApplicants(row, status){
                     <li>{{ row.email }}</li>
                     <li>{{ row.phone }}</li>
                 </ul>
+            </q-td>
+        </template>
+        <template #body-cell-created_at="{row}">
+            <q-td>
+                <div>
+                    <div class="font-semibold">{{ new Date(row.created_at).toLocaleDateString() }} ({{ new Date(row.created_at).toLocaleTimeString() }})</div>
+                    <div>
+                        {{ toAgo(row.created_at) }}
+                    </div>
+                </div>
             </q-td>
         </template>
         </q-table>
