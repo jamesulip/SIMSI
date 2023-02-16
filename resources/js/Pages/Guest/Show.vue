@@ -58,7 +58,7 @@ const fullscreen = ref(false);
               <span class="text-caption px-3">{{ job.date_expires }}</span>
             </div>
             <div v-if="job.skills" class="col-span-full ">
-              <span class="text-subtitle2 text-base">Skills</span><br>
+              <span class="text-subtitle2 text-base">Qualifications</span><br>
 
                 <ul class="list-disc px-5">
                     <li v-for="i in job.skills" v-html="i"></li>
