@@ -1,6 +1,6 @@
 
 <template>
-  <div
+  <div id="home"
     class="relative overflow-hidden bg-fixed"
     style="background-image: url('/Global_network_generated.jpg')"
   >

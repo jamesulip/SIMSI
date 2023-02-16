@@ -17,7 +17,7 @@ class JobsFactory extends Factory
     public function configure(){
         return $this->afterCreating(function ($job) {
             // add media
-            $job->addMediaFromUrl('')->toMediaCollection('images');
+            $job->addMediaFromUrl('http://localhost:8000/311118215_114010121471351_6220485482535495926_n.jpg')->toMediaCollection('images');
         });
     }
     public function definition()
@@ -28,7 +28,7 @@ class JobsFactory extends Factory
             //
             'title' => $this->faker->jobTitle,
             'description' => $this->faker->paragraph,
-            'location' => $this->faker->address,
+            'location' => $this->faker->country,
             'salary' => $this->faker->randomNumber(5),
             'show_salary' => $this->faker->boolean,
             'skills' => $this->faker->words(5),

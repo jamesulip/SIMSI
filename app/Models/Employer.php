@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Employer extends Model
+class Employer extends Model  implements HasMedia
 {
+    use InteractsWithMedia;
     use HasFactory;
 
     protected $fillable = [
@@ -18,4 +21,8 @@ class Employer extends Model
         'phone',
         'website',
     ];
+    // hasone media
+    function firstMedia(){
+        return $this->hasOne(Media::class,'model_id','id')->where('model_type',self::class);
+    }
 }

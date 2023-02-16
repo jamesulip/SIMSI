@@ -77,6 +77,17 @@ function mime_type_to_mdi_icon(mime_type) {
 function searchFn() {
   Inertia.get(`/admin/jobs/${job.id}`, search.value);
 }
+function toggleActive(v) {
+  $q.dialog({
+    title: "Confirm",
+    message: `Are you sure you want to ${v ? "activate" : "deactivate"} this job?`,
+    cancel: true,
+    persistent: true,
+  }).onOk(() => {
+    Inertia.post(`/admin/jobs/${job.id}/update`, job);
+  });
+}
+
 </script>
 <template>
   <AppLayout title="Jobs">
@@ -86,17 +97,22 @@ function searchFn() {
           <div class="text-h6">{{ job.title }}</div>
           <!--  -->
           <q-space />
-          <Link
-            :href="`/admin/jobs/${job.id}/edit`"
+          <!-- <Link
+
             unelevated
             dense
             text-color="black"
             class="border pa-2"
             >Edit</Link
-          >
+          > -->
+          <q-btn :href="`/admin/jobs/${job.id}/edit`" unelevated dense text-color="black" class="border pa-2">Edit</q-btn>
+          <q-btn :href="`/job/${job.uuid}`" unelevated dense text-color="black" class="border pa-2" target="_blank">View</q-btn>
         </q-card-actions>
       </q-card>
-
+      <div class="flex w-full">
+        <q-space/>
+        <!-- <q-toggle @update:model-value="v=>toggleActive(v)" :true-value="1" :false-value="0" label="Active" v-model="job.active" /> -->
+      </div>
       <q-table
         class="mx-auto max-w-7xl w-full"
         :rows="applicants"

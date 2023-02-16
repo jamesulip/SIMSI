@@ -56,7 +56,7 @@ function onSubmit() {
   <AppLayout>
     <q-page padding>
       <!-- using qtable list all employers -->
-      <div class="max-w-7xl">
+      <div class="max-w-3xl">
         <q-form ref="f" @submit.prevent="onSubmit">
           <q-card flat bordered>
             <q-card-section>

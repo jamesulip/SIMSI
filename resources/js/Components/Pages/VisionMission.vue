@@ -1,92 +1,57 @@
 <template>
-  <div class="relative bg-white py-16 sm:py-24">
-    <div
+    <div class="relative bg-gray-100 div-anchors px-3 h-screen flex" id="mission">
+        <div class="lg:mx-auto m-auto lg:grid lg:max-w-5xl lg:grid-cols-1 grid-rows-2 lg:items-start  lg:px-8">
+            <div class=" flex gap-2  p-3">
+                <div class="flex ">
+
+                    <!-- mission icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-12 h-12 m-auto">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                    </svg>
+
+                </div>
+                <div>
+                    <h3 class="mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl">
+                        Our Mission
+                    </h3>
+                    <p class="mt-3 text-base md:text-lg text-justify text-gray-500">
+                        Our mission is to foster successful business partnerships with our employers, while maintaining
+                        global competitiveness for our deployed Filipino workers. We are committed to organizing our
+                        business around government goals, not only for adequate profit and growth, but also to
+                        contribute to the national development and economic prosperity. We value respect and hospitality
+                        towards all individuals, regardless of creed, race, or status. Our actions are guided by
+                        sincerity and integrity, and we strive for fairness and justice in all our business transactions
+                        with our employees, business associates, and job applicants.
+                    </p>
+                </div>
+            </div>
+            <div class=" flex gap-2  p-3">
+                <div>
+                    <h3 class=" mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl">
+                        Our Vision
+                    </h3>
+                    <p class="mt-3 text-base md:text-lg text-gray-500 text-justify">
+                        Our company's vision is to establish ourselves as the leading and most trusted provider of
+                        overseas employment services by setting the highest standards of excellence, leadership, and
+                        integrity in all our endeavors. We aim to consistently exceed our employers' expectations by
+                        delivering high-quality, timely, and cost-effective services that meet their every need.
+                    </p>
+                </div>
+                <div class="flex">
+
+                </div>
+            </div>
+        </div>
+        <!-- <div
       class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
     >
       <div class="relative sm:py-16 lg:py-0">
-        <div
-          aria-hidden="true"
-          class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen"
-        >
-          <div
-            class="absolute inset-y-0 right-1/2 w-full rounded-r-3xl bg-gray-50 lg:right-72"
-          />
-          <svg
-            class="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12"
-            width="404"
-            height="392"
-            fill="none"
-            viewBox="0 0 404 392"
-          >
-            <defs>
-              <pattern
-                id="02f20b47-fd69-4224-a62a-4c9de5c763f7"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  class="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width="404"
-              height="392"
-              fill="url(#02f20b47-fd69-4224-a62a-4c9de5c763f7)"
-            />
-          </svg>
-        </div>
-        <div
-          class="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:max-w-none lg:px-0 lg:py-20"
-        >
-          <!-- Testimonial card-->
-          <div class="space-y-12">
-            <h2 class="uppercase mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl">
-              Meet our Managers
-            </h2>
 
-            <ul role="list" class="space-y-12 flex gap-3">
-              <li v-for="person in people" :key="person.name">
-                <div
-                  class="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8  p-12"
-                >
-                  <div class="">
-                    <img
-                      class="rounded-lg object-cover shadow-lg"
-                      :src="person.imageUrl"
-                      alt=""
-                    />
-                  </div>
-                  <div class="sm:col-span-2">
-                    <div class="space-y-4">
-                      <div class="space-y-1 text-lg font-medium leading-6">
-                        <h3 class="text-base sm:!text-3xl text-center uppercase">
-                          {{ person.name }}
-                        </h3>
-                        <p class="text-green-600 text-center">{{ person.role }}</p>
-                      </div>
-                      <div class="text-lg">
-                        <p class="text-gray-500">{{ person.bio }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
 
       <div id="mission" class="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:px-0">
-        <!-- Content area -->
         <div class="pt-12 sm:pt-16 lg:pt-20">
           <div
             class="mx-auto max-w-prose text-base lg:ml-auto lg:mr-0 lg:max-w-lg p-6 sm:p-10 rounded-lg bg-gray-100"
@@ -108,7 +73,6 @@
               Fairness and justice in all our business transactions with the
               employees, business associates and job applicants.
             </p>
-            <br>
             <h3
               class=" mt-2 text-base font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl"
             >
@@ -124,134 +88,32 @@
           </div>
         </div>
       </div>
+    </div> -->
     </div>
-  </div>
-  <q-separator inset />
-  <div class="relative bg-[#2c3e50]  text-white py-16 sm:py-24 px-3" >
-    <div
-      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
-    >
-      <div >
-        <h1 class="text-h6">SHASO INTERNATIONAL MANPOWER SERVICES, INC.</h1>
-        <br>
-
-        <h1 class="text-h6">Includes</h1>
-        <!-- numbered list -->
-        <ol class="list-decimal list-inside text-sm sm:text-h5 leading-relaxed">
-          <li>
-            Pre-selection of qualified and experienced Filipino professionals
-            and workers of good moral character.
-          </li>
-          <li>
-            Evaluation of pre-selected workers through trade testing to
-            determine their skills competence.
-          </li>
-          <li>
-            Medical, physical, dental and psychiatric examination of
-            pre-selected workers to determine their fitness for the work
-            required.
-          </li>
-          <li>
-            Facilitation of the foreign principal's visit to Manila by providing
-            him with the facilities necessary for the convenience of his
-            business in the Philippines, including an interview space in our
-            designated area.
-          </li>
-          <li>
-            Processing of the vital documents of the workers selected by the
-            foreign principal for the approval of the Philippine Overseas
-            Employment Administration (POEA).
-          </li>
-          <li>
-            Coordination with airline specified by the foreign principal to
-            transport selected workers to the overseas job site
-          </li>
-          <li>
-            Orientation of selected workers on the customs, tradition, work
-            habits and other important information regarding the country where
-            they will be deployed.
-          </li>
-        </ol>
-      </div>
-      <div>
-        <h1 class="text-base sm:text-h5">
-        CHECKLIST REQUIREMENTS FOR VERIFICATION OF SKILLED CATEGORIES
-      </h1>
-      <br>
-        <ol class="list-decimal list-inside text-sm sm:text-h5 leading-relaxed">
-          <li>
-            Demand Letter/Job Order/Manpower Request indicating the position,
-            the number of required workers, and the basic salaries offered.
-          </li>
-          <li>
-            Special Power-of-Attorney issued by the Employer to the licensed
-            Philippine recruitment agency (or Recruitment Agreement or Service
-            Agreement).
-          </li>
-          <li>
-            Model or Master Employment Contract which stipulates, among others,
-            the minimum provisions of employment contracts of land-based workers
-            (pls. submit actual employment contract of your
-            company/establishment, if there is any).
-          </li>
-          <li>
-            Valid Business License/Commercial Registration Certificate or
-            equivalent document with official English translation.
-          </li>
-          <li>
-            Copy of the block visa indicating the categories with the official
-            English translation.
-          </li>
-          <li>
-            For Drivers, Individual Employment Contracts and Comprehensive
-            Insurance Policy covering the vehicles, third party liability, and
-            personal accident benefits of drivers (The insurance policy should
-            be in English).
-          </li>
-          <li>Copy of I.D. or passport of the Employer or the signatory.</li>
-          <li>Location Sketch of the Company and the workers accommodation.</li>
-          <li>
-            Current number of Filipino workers in the company (if there are any)
-            in an official letter.
-          </li>
-          <li>
-            Two (2) sets duplicate copies of all above-mentioned documents.
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-  <div class="relative bg-[#2c3e50] text-white py-16 sm:py-24 px-3" id="requirements">
-    <div
-      class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8"
-    >
-
-
-    </div>
-  </div>
 </template>
 
 <script setup>
 const stats = [
-  { label: "Founded", value: "2021" },
-  { label: "Employees", value: "5" },
-  { label: "Beta Users", value: "521" },
-  { label: "Raised", value: "$25M" },
+    { label: "Founded", value: "2021" },
+    { label: "Employees", value: "5" },
+    { label: "Beta Users", value: "521" },
+    { label: "Raised", value: "$25M" },
 ];
 
 const people = [
-  {
-    name: "Ms. Estrlita P. Ignacio",
-    role: "President",
-    imageUrl: "/images/pres.jpg",
-    // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-  },
-  {
-    name: "Mr. Mahamed Osman",
-    role: "Director",
-    imageUrl: "/images/osman.jpg",
-    // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-  },
-  // More people...
+    {
+        name: "Ms. Estrlita P. Ignacio",
+        role: "President",
+        imageUrl: "/images/pres.jpg",
+        // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+    },
+    {
+        name: "Mr. Mahamed Osman",
+        role: "Director",
+        imageUrl: "/images/osman.jpg",
+        // bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+    },
+    // More people...
+
 ];
 </script>

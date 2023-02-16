@@ -65,9 +65,10 @@ function filterFn(val, update, abort) {
     <q-page padding class="flex w-full">
       <form class="mx-auto" @submit.prevent="update">
         <q-card flat bordered class="max-w-7xl">
-          <q-card-section>
+          <q-card-actions class="flex w-full">
             <div class="text-h6">Job Details</div>
-          </q-card-section>
+            <q-toggle :true-value="1" :false-value="0" label="Active" v-model="job.active" />
+          </q-card-actions>
           <q-separator />
           <q-card-section>
             <q-input
@@ -139,7 +140,6 @@ function filterFn(val, update, abort) {
                 ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
 
                 ['undo', 'redo'],
-                ['viewsource'],
               ]"
               :fonts="{
                 arial: 'Arial',
@@ -157,6 +157,40 @@ function filterFn(val, update, abort) {
               :rules="[(val) => !!val || 'Please type something']"
             />
           </q-card-section>
+          <q-separator/>
+          <q-card-section class="q-gutter-sm">
+
+            <q-btn
+                class="q-mr-sm"
+                color="primary" flat
+                label="Qualifications"
+                unelevated
+                icon="add"
+                @click="job.skills.push('')"
+              />
+              <div class="p-2 bg-gray-50 grid grid-cols-1 gap-3">
+                <q-input dense
+                type="textarea"
+                  outlined rows="2"
+                  v-for="(phone, ind) in job.skills"
+                  :key="`phone-${ind}`"
+                  v-model:model-value="job.skills[ind]"
+                  label="Qualifications" :rules="[(b)=> !!b || 'Please type something',(b)=> b.length > 2 || 'Please type something']"
+                >
+                  <template #append>
+                    <q-btn
+                      unelevated
+                      class="q-mr-sm"
+                      color="red"
+                      icon="delete"
+                      flat
+                      @click="job.skills.splice(ind, 1)"
+                    />
+                  </template>
+                </q-input>
+              </div>
+          </q-card-section>
+          <q-separator/>
           <q-card-section class="q-gutter-md">
             <q-select
               v-model="job.employer_id"
@@ -195,19 +229,7 @@ function filterFn(val, update, abort) {
             />
           </q-card-section>
           <q-card-section class="flex gap-3">
-            <q-select
-              class="flex-1"
-              max-values="4"
-              use-input
-              use-chips
-              multiple
-              @new-value="newSkills"
-              v-model="job.skills"
-              label="Skills Required"
-              outlined
-              lazy-rules
-              hint="Please separate skills with comma"
-            />
+
             <q-select
               class="flex-1"
               clearable
@@ -291,7 +313,7 @@ function filterFn(val, update, abort) {
             <q-btn unelevated size="sm" @click="$inertia.get(`/admin/jobs`)" color="negative">
               Cancel
             </q-btn>
-            
+
             <q-btn unelevated size="sm" icon="delete" @click="$inertia.delete(`/admin/jobs/${job.id}`)" color="negative">
               Delete
             </q-btn>

@@ -5,6 +5,7 @@ import { ref } from "vue";
 const { permissions, roles } = defineProps<{
   roles;
   permissions;
+  branches;
 }>();
 const user = ref({
   name: "",
@@ -13,22 +14,19 @@ const user = ref({
   password_confirmation: "",
   roles: [],
   permissions: [],
+  branch_id:null
 });
 
 import _ from "lodash";
 function submit() {
-  Inertia.post(route("user-management.store"), {
-    ...user.value,
-    roles: _.map(user.value.roles, "id"),
-    permissions: _.map(user.value.permissions, "id"),
-  });
+  Inertia.post(route("user-management.store"),user.value);
 }
 </script>
 <template>
   <AppLayout title="Jobs">
     <q-page padding>
       <form @submit.prevent="submit" class="max-w-2xl">
-        <q-card>
+        <q-card bordered flat>
           <q-card-section>
             <h3 class="text-h5">User Details</h3>
           </q-card-section>
@@ -74,6 +72,8 @@ function submit() {
               use-input
               use-chips
             />
+            <q-select label="Branch" map-options emit-value hint="Select Branch for User to be assigned to
+            " v-model="user.branch_id" dense  outlined :options="branches" option-label="name" option-value="id" />
           </q-card-section>
           <q-separator />
           <q-card-actions>

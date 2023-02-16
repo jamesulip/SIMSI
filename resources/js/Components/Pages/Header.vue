@@ -25,6 +25,12 @@ const menus = [
     current: false,
     icon: "mdi-earth",
   },
+  {
+    name: "Branches",
+    href: "/#branches",
+    current: false,
+    icon: "mdi-earth",
+  },
 ];
 </script>
 <template>
@@ -39,7 +45,7 @@ const menus = [
                 v-for="menu in menus"
                 :key="menu.name"
                 :href="menu.href"
-                class="px-3 text-xl py-2 rounded-md font-medium text-gray-100 hover:text-gray-900"
+                class="px-3 text-xl py-2 rounded-md font-medium hover:text-gray-100 text-gray-500"
                 >{{ menu.name }}</a
               >
             </div>

@@ -163,7 +163,7 @@ function countApprovedApplicants(row, status){
           </q-card-section>
         </q-card>
 
-        <q-table :pagination="jobsPagination" separator="cell" :columns="jobsHeader" flat bordered title="Applicants" :rows="jobs"  row-key="id" class="col-span-4">
+        <q-table :pagination="jobsPagination" separator="cell" :columns="jobsHeader" flat bordered title="Applicants" :rows="jobs"  row-key="id" class="col-span-full">
             <template #body-cell-location="{ row }">
                 <q-td auto-width>
                     <div class="max-w-xs text-ellipsis overflow-hidden">
@@ -199,10 +199,10 @@ function countApprovedApplicants(row, status){
                 </q-td>
             </template>
         </q-table>
-        <q-table :pagination="applicantPagination" :columns="applicantHeader" flat bordered title="Applicants" :rows="applicants"  row-key="id" class="col-span-2">
+        <q-table :pagination="applicantPagination" :columns="applicantHeader" flat bordered title="Applicants" :rows="applicants"  row-key="id" class="col-span-full">
         <template #body-cell-status="{row}">
         <q-td>
-           <q-chip :color="row.applicant_status.color" text-color="white" size="xs" :outline="!row.applicant_status.color" v-html="row.applicant_status.name" />
+           <q-chip :color="`${row.applicant_status.color}-3`" text-color="black" size="sm" :outline="!row.applicant_status.color" v-html="row.applicant_status.name" />
         </q-td>
         </template>
         <template #body-cell-first_name="{row}">

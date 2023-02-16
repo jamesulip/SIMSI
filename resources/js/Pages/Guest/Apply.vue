@@ -170,26 +170,21 @@ function onSubmit() {
                 </q-item>
               </q-list>
             </q-card-actions>
-            <q-card-section class="sm:block flex justify-between">
+            <q-separator/>
+            <q-card-actions class="flex justify-between">
               <q-btn
                 href="/jobs"
-                icon-right="cancel"
                 size="lg"
-                color="negative"
-                label="Cancel"
-                width="1000"
-                outline
+                label="Cancel" unelevated
               />
+              <q-space/>
               <q-btn
                 type="submit"
-                icon-right="send"
                 size="lg"
                 color="green"
-                label="Submit"
-                width="1000"
-                outline
+                label="Submit" unelevated
               />
-            </q-card-section>
+            </q-card-actions>
           </q-card>
         </q-form>
       </div>

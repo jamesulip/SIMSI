@@ -74,7 +74,7 @@ class EmployerController extends Controller
     {
         //
         return Inertia::render('Employer/Edit', [
-            'employer' => $employer,
+            'employer' => $employer->load('firstMedia','media'),
         ]);
     }
 

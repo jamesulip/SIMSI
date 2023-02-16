@@ -26,10 +26,10 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    protected $with = ['roles', 'permissions'];
+    protected $with = ['roles', 'permissions','branch'];
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','active','branch_id'
     ];
 
     /**
@@ -42,6 +42,7 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+
     ];
 
     /**
@@ -61,4 +62,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    // has one to many relationship with branch
+    public function branch()
+    {
+        return $this->belongsTo(\App\Models\Branch::class);
+    }
 }

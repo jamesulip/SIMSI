@@ -28,7 +28,7 @@ class Jobs extends Model implements HasMedia
             $model->uuid = (string) \Illuminate\Support\Str::uuid();
         });
     }
-    
+
     protected $with = ['JobType', 'media', 'employer'];
 
     protected $fillable = [
@@ -93,5 +93,13 @@ class Jobs extends Model implements HasMedia
     public function employer()
     {
         return $this->belongsTo(\App\Models\Employer::class, 'employer_id');
+    }
+    // has branch through created_by user
+    public function branchPosted(){
+        return $this->hasOneThrough(\App\Models\Branch::class, \App\Models\User::class, 'id', 'id', 'created_by', 'branch_id');
+    }
+    // posted by
+    public function postedBy(){
+        return $this->hasOne(\App\Models\User::class, 'id', 'created_by');
     }
 }

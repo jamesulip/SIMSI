@@ -89,6 +89,22 @@ function toggleLeftDrawer() {
           </q-item-section>
           <q-item-section>User Management</q-item-section>
         </q-item>
+        <q-item clickable @click="$inertia.get('/admin/branches')">
+          <q-item-section avatar>
+            <q-avatar>
+              <q-icon name="mdi-account-cog-outline" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>Branch Management</q-item-section>
+        </q-item>
+        <q-item clickable @click="$inertia.get('/admin/company')">
+          <q-item-section avatar>
+            <q-avatar>
+              <q-icon name="mdi-cog-outline" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>Company Settings</q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
