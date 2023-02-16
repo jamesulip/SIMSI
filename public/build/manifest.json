@@ -1164,13 +1164,13 @@
       "assets/Welcome.361bbc84.css"
     ]
   },
-  "resources/js/Pages/Welcome.css": {
-    "file": "assets/Welcome.361bbc84.css",
-    "src": "resources/js/Pages/Welcome.css"
-  },
   "resources/js/Pages/Guest/Jobs.css": {
     "file": "assets/Jobs.a1a60f44.css",
     "src": "resources/js/Pages/Guest/Jobs.css"
+  },
+  "resources/js/Pages/Welcome.css": {
+    "file": "assets/Welcome.361bbc84.css",
+    "src": "resources/js/Pages/Welcome.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.881bb52f.css",
