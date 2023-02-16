@@ -12,9 +12,9 @@
          </q-td>
         </template>
         <template #body-cell-phone="{ row }">
-         <q-td >
+         <q-td  auto-width>
             <div  v-for="(phone, ind) in row.phone">
-            <span v-text="phone" :key="`phone-${ind}`"/>
+            <div v-text="phone" :key="`phone-${ind}`"/>
             </div>
          </q-td>
         </template>
@@ -30,7 +30,7 @@
            <div class="max-w-sm text-ellipsis overflow-hidden">
             {{row.address}}</div>
          </q-td>
-        </template> 
+        </template>
         <template #body-cell-website="{ row }">
          <q-td >
            {{row.website}}
@@ -65,7 +65,7 @@
           </q-btn>
          </q-td>
         </template>
-        
+
       </q-table>
     </q-page>
   </AppLayout>

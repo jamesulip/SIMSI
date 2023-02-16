@@ -2,26 +2,16 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Inertia } from "@inertiajs/inertia";
 import { useQuasar } from "quasar";
-import { ref } from "vue";
-const { user, permissions, roles } = defineProps<{
+import { ref, toRefs } from "vue";
+const props = defineProps<{
   user;
   roles;
   permissions;
+  branches;
 }>();
-import _ from "lodash";
-const $q= useQuasar();
+const { user, permissions, roles } = toRefs(props)
 function submit() {
-    console.log({
-        ...user,
-    roles: _.map(user.roles, "id"),
-    permissions: _.map(user.permissions, "id"),
-    });
-
-  Inertia.put(route("user-management.update", user.id),_.cloneDeep( {
-    ...user,
-    roles: _.map(user.roles, "id"),
-    permissions: _.map(user.permissions, "id"),
-  }))
+  Inertia.put(route("user-management.update", user.value.id),user.value)
 }
 </script>
 <template>
@@ -68,6 +58,8 @@ function submit() {
               use-input
               use-chips
             />
+            <q-select label="Branch" map-options emit-value hint="Select Branch for User to be assigned to
+            " v-model="user.branch_id" dense  outlined :options="branches" option-label="name" option-value="id" />
           </q-card-section>
           <q-separator />
           <q-card-actions>

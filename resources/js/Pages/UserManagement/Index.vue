@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
 import { ref } from "vue";
 const { users } = defineProps<{
     users;
 }>();
+function updateUser(user){
+    Inertia.put(`/admin/user-management/${user.id}`,user)
+}
 const columns = ref([
     {
         name: "profile_photo_url",
@@ -95,12 +99,12 @@ const columns = ref([
                 </template>
                 <template #body-cell-active="{ row }">
                     <q-td auto-width>
-                       <q-toggle :true-value="1" :false-value="0" v-model:model-value="row.active" />
+                       <q-toggle disable color="green" @update:model-value="updateUser(row)" :true-value="1" :false-value="0" v-model:model-value="row.active" />
                     </q-td>
                 </template>
                 <template #body-cell-roles="{ row }">
                     <q-td>
-                        <q-chip v-for="role in row.roles" :key="role.id" :label="role.name" color="primary"
+                        <q-chip  v-for="role in row.roles" :key="role.id" :label="role.name" color="green"
                             text-color="white" />
                     </q-td>
                 </template>

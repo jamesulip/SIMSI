@@ -15,7 +15,7 @@ const job = ref({
   skills: [],
   images: [],
 });
-const { job_types } = defineProps<{
+const { job_types,employers } = defineProps<{
   job_types;
   employers;
 }>();
@@ -61,6 +61,10 @@ function filterFn(val, update, abort) {
     );
   });
 }
+function setCountry(v){
+    job.value.location = employers.find((e)=>e.id==v).country;
+
+}
 </script>
 <template>
   <AppLayout title="Jobs">
@@ -72,7 +76,7 @@ function filterFn(val, update, abort) {
           </q-card-section>
           <q-separator />
           <q-card-section>
-            <q-input
+            <q-input dense
               v-model="job.title"
               label="Title"
               outlined
@@ -83,6 +87,7 @@ function filterFn(val, update, abort) {
           <q-separator />
           <q-card-section>
             <q-editor
+                placeholder="Type Job Description here..."
               v-model:model-value="job.description"
               :toolbar="[
                 [
@@ -101,7 +106,7 @@ function filterFn(val, update, abort) {
                     label: $q.lang.editor.formatting,
                     icon: $q.iconSet.editor.formatting,
                     list: 'no-icons',
-                    options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code'],
+                    options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
                   },
                   {
                     label: $q.lang.editor.fontSize,
@@ -141,7 +146,6 @@ function filterFn(val, update, abort) {
                 ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
 
                 ['undo', 'redo'],
-                ['viewsource'],
               ]"
               :fonts="{
                 arial: 'Arial',
@@ -159,33 +163,70 @@ function filterFn(val, update, abort) {
               :rules="[(val) => !!val || 'Please type something']"
             />
           </q-card-section>
+          <q-separator/>
+          <q-card-section class="q-gutter-sm">
+
+            <q-btn
+                class="q-mr-sm"
+                color="primary" flat
+                label="Qualifications"
+                unelevated
+                icon="add"
+                @click="job.skills.push('')"
+              />
+              <div class="p-2 bg-gray-100 grid grid-cols-1 gap-3">
+                <q-input dense
+                type="textarea"
+                  outlined rows="2"
+                  v-for="(phone, ind) in job.skills"
+                  :key="`phone-${ind}`"
+                  v-model:model-value="job.skills[ind]"
+                  label="Qualifications" :rules="[(b)=> !!b || 'Please type something',(b)=> b.length > 2 || 'Please type something']"
+                >
+                  <template #append>
+                    <q-btn
+                      unelevated
+                      class="q-mr-sm"
+                      color="red"
+                      icon="delete"
+                      flat
+                      @click="job.skills.splice(ind, 1)"
+                    />
+                  </template>
+                </q-input>
+              </div>
+          </q-card-section>
+          <q-separator/>
           <q-card-section class="q-gutter-md">
-            <q-select
+            <div class="grid grid-cols-2 gap-3">
+                <q-select dense
               v-model="job.employer_id"
               outlined
               label="Employer"
               :options="employers"
+              @update:model-value="setCountry"
               map-options
               emit-value
               :option-value="(b) => b.id"
               :option-label="(v) => v.name"
             />
-            <q-select
+            <q-select dense
               use-input
               :options="options"
               @filter="filterFn"
               v-model="job.location"
               outlined
-              label="Location"
+              label="Country"
               :loading="isFetching"
               :option-label="(v) => v?.name?.common"
               map-options
               emit-value
               :option-value="(b) => b?.name?.common"
             />
+            </div>
           </q-card-section>
           <q-card-section class="flex gap-3">
-            <q-input
+            <q-input dense
               prefix="Php"
               v-model="job.salary"
               label="Salary"
@@ -197,23 +238,11 @@ function filterFn(val, update, abort) {
             />
           </q-card-section>
           <q-card-section class="flex gap-3">
-            <q-select
-              class="flex-1"
-              max-values="4"
-              use-input
-              use-chips
-              multiple
-              @new-value="newSkills"
-              v-model="job.skills"
-              label="Skills Required"
-              outlined
-              lazy-rules
-              :rules="[(val) => !!val || 'Please type something']"
-              hint="Please separate skills with comma"
-            />
+
             <q-select
               class="flex-1"
               clearable
+              dense
               v-model="job.job_type_id"
               emit-value
               map-options
@@ -226,7 +255,7 @@ function filterFn(val, update, abort) {
             />
           </q-card-section>
           <q-card-section class="flex gap-3">
-            <q-input
+            <q-input dense
               class="flex-1"
               v-model="job.date_posted"
               label="Date Posted"
@@ -245,7 +274,7 @@ function filterFn(val, update, abort) {
                 </q-icon>
               </template>
             </q-input>
-            <q-input
+            <q-input dense
               class="flex-1"
               v-model="job.date_expires"
               label="Date Expires"
@@ -267,7 +296,7 @@ function filterFn(val, update, abort) {
           </q-card-section>
           <q-separator />
           <q-card-section>
-            <q-file outlined v-model="job.images" multiple>
+            <q-file dense outlined v-model="job.images" multiple>
               <template v-slot:prepend>
                 <q-icon name="attach_file" />
               </template>

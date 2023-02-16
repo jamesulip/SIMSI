@@ -37,7 +37,6 @@ const fullscreen = ref(false);
             </q-carousel-control>
           </template>
         </q-carousel>
-
         <q-card flat bordered>
           <q-card-section>
             <div class="text-h6">Description</div>
@@ -49,31 +48,34 @@ const fullscreen = ref(false);
             </q-card-section>
           <q-separator />
           <q-card-section class="grid grid-cols-1 md:grid-cols-2 gap-3 p-3">
+            <div v-if="job.date_posted" class="col-span-full ">
+              <span class="text-subtitle2 text-base">Date Posted</span><br>
+              <span class="text-caption px-3">{{ job.date_posted }}</span>
+            </div>
 
-            <div v-if="job.skills">
-              <span class="text-subtitle2">Skills</span><br>
-              <span class="text-caption">{{ job.skills.join(',') }}</span>
+            <div v-if="job.date_posted" class="col-span-full ">
+              <span class="text-subtitle2 text-base">Date Expires</span><br>
+              <span class="text-caption px-3">{{ job.date_expires }}</span>
+            </div>
+            <div v-if="job.skills" class="col-span-full ">
+              <span class="text-subtitle2 text-base">Skills</span><br>
+
+                <ul class="list-disc px-5">
+                    <li v-for="i in job.skills" v-html="i"></li>
+                </ul>
             </div>
 
             <div v-if="job.salary">
-              <span class="text-subtitle2">Salary</span><br>
+              <span class="text-subtitle2 text-base">Salary</span><br>
               <span class="text-caption">{{ job.salary }}</span>
             </div>
 
             <div v-if="job.job_type">
-              <span class="text-subtitle2">Job Type</span><br>
+              <span class="text-subtitle2 text-base">Job Type</span><br>
               <span class="text-caption">{{ job.job_type.name }}</span>
             </div>
 
-            <div v-if="job.date_posted">
-              <span class="text-subtitle2">Date Posted</span><br>
-              <span class="text-caption">{{ job.date_posted }}</span>
-            </div>
 
-            <div v-if="job.date_posted">
-              <span class="text-subtitle2">Date Expires</span><br>
-              <span class="text-caption">{{ job.date_expires }}</span>
-            </div>
           </q-card-section>
           <q-separator v-if="job.media.length > 0" />
           <q-card-section v-if="job.media.length > 0">
@@ -92,3 +94,7 @@ const fullscreen = ref(false);
     </div>
   </Guest>
 </template>
+
+<style scoped>
+
+</style>

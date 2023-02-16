@@ -34,6 +34,7 @@ class UserManagementController extends Controller
         return Inertia::render('UserManagement/Create', [
             'roles' => Role::all(),
             'permissions' => Permission::all(),
+            'branches'=>\App\Models\Branch::all(),
         ]);
     }
 
@@ -56,10 +57,19 @@ class UserManagementController extends Controller
             $user->fill($request->all());
             $user->password = bcrypt($request->password);
             $user->save();
-            if($request->has('roles'))
-                $user->assignRole($request->roles);
-            if($request->has('permissions'))
-                $user->givePermissionTo($request->permissions);
+            if ($request->has('roles')) {
+                $rolesIds =collect($request->roles)->map->id;
+                $user->syncRoles($rolesIds);
+            } else {
+                $user->syncRoles([]);
+            }
+
+            if ($request->has('permissions')) {
+                $permissionsIds =collect($request->permissions)->map->id;
+                $user->syncPermissions($permissionsIds);
+            } else {
+                $user->syncPermissions([]);
+            }
 
             // return to index with success message
             return redirect()->route('user-management.index')->with('success', 'User created successfully');
@@ -93,6 +103,7 @@ class UserManagementController extends Controller
             'user' => $user,
             'roles' => Role::all(),
             'permissions' => Permission::all(),
+            'branches'=>\App\Models\Branch::all(),
 
         ]);
     }
@@ -112,13 +123,15 @@ class UserManagementController extends Controller
         $user->save();
 
         if ($request->has('roles')) {
-            $user->syncRoles($request->roles);
+            $rolesIds =collect($request->roles)->map->id;
+            $user->syncRoles($rolesIds);
         } else {
             $user->syncRoles([]);
         }
 
         if ($request->has('permissions')) {
-            $user->syncPermissions($request->permissions);
+            $permissionsIds =collect($request->permissions)->map->id;
+            $user->syncPermissions($permissionsIds);
         } else {
             $user->syncPermissions([]);
         }

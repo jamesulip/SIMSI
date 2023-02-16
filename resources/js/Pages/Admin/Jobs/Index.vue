@@ -5,7 +5,6 @@ import { date } from "quasar";
 import { Link } from "@inertiajs/inertia-vue3";
 const search = ref(route().params.search);
 const employer_id = ref(route().params.employer_id);
-
 const { jobs,employers } = defineProps<{
   jobs;
   employers;
@@ -89,7 +88,7 @@ onMounted(() => {
                 <q-toolbar-title>Job List</q-toolbar-title>
                 <div>
                   <span>
-                    Here you can see all the jobs that are currently available.
+                    Here are the list of all jobs posted.
                   </span>
                 </div>
               </div>
@@ -123,6 +122,7 @@ onMounted(() => {
               v-model="employer_id" dense
               outlined
               placeholder="Employer"
+              label="Employer" class="min-w-1/4"
             />
 
             <q-btn unelevated icon="mdi-magnify" label="Search" type="submit" color="green" />

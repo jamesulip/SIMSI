@@ -18,6 +18,17 @@ class BranchFactory extends Factory
     {
         return [
             //
+            // 'name',
+            // 'address',
+            // 'phone',
+            // 'email',
+            // 'website',
+            'name' => $this->faker->state,
+            'address' => $this->faker->address,
+            // random email json
+            'phone' =>[$this->faker->phoneNumber, $this->faker->phoneNumber, $this->faker->phoneNumber, $this->faker->phoneNumber],
+            'email' =>[$this->faker->email, $this->faker->email, $this->faker->email, $this->faker->email],
+            'website' => $this->faker->url,
         ];
     }
 }

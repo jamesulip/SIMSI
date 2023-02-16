@@ -112,7 +112,7 @@ function submit() {
                 dense
                 outlined
                 v-model="branch.website"
-                label="Website"
+                label="Social Media"
               />
             </q-form>
           </q-card-section>

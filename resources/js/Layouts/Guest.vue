@@ -7,4 +7,5 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import Header from "../Components/Pages/Header.vue";
+import Footer from "../Components/Footer.vue";
 </script>

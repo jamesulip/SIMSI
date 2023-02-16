@@ -28,6 +28,7 @@ class JobsController extends Controller
         ->when($req->employer_id, function ($query) use ($req) {
             $query->where('employer_id', $req->employer_id);
         })
+        ->with('branchPosted')
         ->get();
 
         return inertia('Admin/Jobs/Index', [
@@ -85,7 +86,7 @@ class JobsController extends Controller
                 $job->addMedia($image)->toMediaCollection('images');
             }
         }
-        // return Redirect::route('jobs.show', ['job' => $job]);
+        return Redirect::route('jobs.show', ['job' => $job]);
     }
 
     public function destroy($id)

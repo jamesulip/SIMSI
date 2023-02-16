@@ -27,11 +27,12 @@ class JobSeeder extends Seeder
                 'applicant_status_id' => \App\Models\ApplicantStatus::inRandomOrder()->first()->id,
             ];
         })
+
         // attach file
 
         ->count(10))
         ->count(10)->create();
     }
     // configure after creating
-    
+
 }

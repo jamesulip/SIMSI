@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Jobs;
 use Inertia\Inertia;
 use App\Models\Company;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +23,7 @@ use App\Http\Controllers\ApplicantController;
 */
 
 Route::get('test', function () {
-    return  $user = \App\Models\User::first();
-   //    add the role
-    $user->assignRole('admin');
+   return Jobs::with('branchPosted')->get();
 });
 
 Route::get('/', function () {
@@ -33,14 +32,13 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        // strip description to 100 characters and remove html tags
         'recentJobs' => \App\Models\Jobs::with('employer','media')->available()->latest()->take(6)->get()->map(function ($job) {
-
             $job['created_at'] = $job->created_at->diffForHumans();
             $job['description'] = strip_tags($job->description);
             return $job;
         }),
-        // get all imges on images/principals
+        'branches' => \App\Models\Branch::all(),
+        'employers'=> \App\Models\Employer::with('firstMedia')->select('id','name')->get(),
         'principals'=> \Illuminate\Support\Facades\Storage::disk('public')->files('principals'),
     ]);
 });

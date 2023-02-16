@@ -42,8 +42,9 @@ function onSubmit() {
 <template>
   <AppLayout>
     <q-page padding>
+
       <!-- using qtable list all employers -->
-      <div class="max-w-7xl">
+      <div class="max-w-3xl">
         <q-form ref="f" @submit.prevent="onSubmit">
           <q-card flat bordered>
             <q-card-section>
@@ -52,9 +53,8 @@ function onSubmit() {
             <q-separator />
             <!-- upload avatar -->
             <q-card-section class="flex">
-              <q-avatar border size="100px" class="mx-auto">
-                <q-icon name="account_circle" />
-              </q-avatar>
+                  <q-img :src=" employer.first_media?.original_url" v-if=" employer.first_media?.original_url"/>
+                  <q-icon name="account_circle" v-else/>
             </q-card-section>
             <q-card-section class="q-gutter-md">
               <q-input
