@@ -126,7 +126,6 @@ function onFleChange(e) {
                   type="email"
                   hint="Enter employer email"
                   stack-label
-                  :rules="[(val) => val.length > 0 || 'Email is required']"
                 />
                 <q-input
                   v-model="form.phone"
@@ -137,7 +136,6 @@ function onFleChange(e) {
                   type="text"
                   hint="Enter employer phone"
                   stack-label
-                  :rules="[(val) => val.length > 0 || 'Phone is required']"
                 />
               </div>
               <q-input
