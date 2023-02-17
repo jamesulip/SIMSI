@@ -20,6 +20,7 @@ class Employer extends Model  implements HasMedia
         'email',
         'phone',
         'website',
+        'is_highlighted'
     ];
     // hasone media
     function firstMedia(){

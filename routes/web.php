@@ -38,7 +38,7 @@ Route::get('/', function () {
             return $job;
         }),
         'branches' => \App\Models\Branch::all(),
-        'employers'=> \App\Models\Employer::with('firstMedia')->select('id','name')->get(),
+        'employers'=> \App\Models\Employer::with('firstMedia')->select('id','name','is_highlighted')->get(),
         'principals'=> \Illuminate\Support\Facades\Storage::disk('public')->files('principals'),
     ]);
 });

@@ -20,6 +20,7 @@ function onRequest({ pagination }): void {
   Inertia.get("/admin/employers", pagination);
 }
 const columns = ref([
+
   {
     name: "thumb",
     field: "thumb",
@@ -31,7 +32,12 @@ const columns = ref([
     align: "left",
     label: "Employer",
   },
+  {
+        label:"is Featured",
+        name:"is_highlighted",
+        field:"is_highlighted",
 
+    },
   {
     label: "Contact",
     name: "phone",
@@ -101,6 +107,11 @@ const columns = ref([
             <q-btn flat color="blue" :href="row.website" target="_blank">
               <q-icon name="mdi-web" />
             </q-btn>
+          </q-td>
+        </template>
+        <template #body-cell-is_highlighted="{ row }">
+          <q-td>
+            <q-toggle :true-value="1" :false-value="0" disable v-model:model-value="row.is_highlighted" />
           </q-td>
         </template>
         <template #body-cell-action="{ row }">

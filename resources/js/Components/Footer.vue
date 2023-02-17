@@ -1,8 +1,9 @@
 <template>
     <footer class="bg-gray-100" id="branches" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
-        <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-            <div class="mt-16 grid grid-cols-3 w-full gap-8  xl:mt-0">
+        <div class="mx-auto max-w-7xl px-6 pb-8 pt-8 sm:pt-24 lg:px-8 lg:pt-16">
+            <h2 id="location-heading" class="text-2xl font-bold text-warm-gray-900 sm:text-3xl sm:tracking-tight">Locations</h2>
+            <div class="mt-16 grid grid-cols-1  md:grid-cols-3 w-full gap-8  xl:mt-0">
                 <div v-for="branch in branches" :key="branch.id">
                     <h3 class="text-sm font-semibold leading-6 text-gray-900">{{ branch.name }}</h3>
                     <ul role="list" class="mt-1 space-y-4">
@@ -15,7 +16,7 @@
                                 </svg>
                             </div>
                             <div>
-                        <li v-for="contact in branch.phone" :key="contact" class="text-sm text-gray-500">
+                        <li v-for="contact in branch.phone" :key="contact">
                             <a href="#" class="hover:text-gray-900">{{ contact }}</a>
                         </li>
                 </div>
@@ -28,7 +29,7 @@
                                 d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
                         </svg>
                     </div>
-                    <div>
+                    <div  class="text-sm text-gray-500">
                         {{ branch.address }}
                     </div>
                 </li>

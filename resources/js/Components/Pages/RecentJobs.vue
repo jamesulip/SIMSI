@@ -1,16 +1,16 @@
 <template>
-  <div id="recentjob" class=" w-full div-anchors p-5 bg-green-600">
-    <div class="p-8 text-center uppercase mt-2 text-base font-bold leading-8   sm:text-2xl text-white">
+  <div id="recentjob" class=" w-full div-anchors p-5  border-b bg-gray-100">
+    <div class="p-8 text-center uppercase mt-2 text-base font-bold leading-8   sm:text-2xl">
       Recent Jobs
     </div>
-    <div class="max-w-3xl  mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 grid-rows-4 h-full">
+    <div class="max-w-3xl  mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 grid-rows-4 h-full
+    ">
 
       <Link :href="`/job/${q.uuid}`" v-for="q in recentJobs">
-      <q-card flat bordered>
+      <q-card flat bordered class="hover:!shadow-lg">
         <div class="grid grid-cols-3 p-3">
-          <q-img  v-if="q.media.length" :src="q.media[0].original_url" style="width: 100px; height: 100px;" />
           <div class="col-span-2">
-            <span class="text-subtitle">
+            <span class="text-subtitle font-bold text-xl">
               {{ q.title }}
             </span>
             <br>

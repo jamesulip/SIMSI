@@ -14,6 +14,7 @@ const form = ref(
     description: "",
     email: "",
     phone: "",
+    avatar: "",
     website: "",
   }
 );
@@ -37,6 +38,14 @@ function onSubmit() {
     ...form.value,
   });
 }
+const uploader = ref(null);
+function changeAvatar() {
+  const fileInput = document.getElementById("file");
+}
+function onFleChange(e) {
+  const file = e.target.files[0];
+  form.value.avatar = file;
+}
 </script>
 
 <template>
@@ -53,10 +62,15 @@ function onSubmit() {
             <q-separator />
             <!-- upload avatar -->
             <q-card-section class="flex">
-                  <q-img :src=" employer.first_media?.original_url" v-if=" employer.first_media?.original_url"/>
+                  <q-img :src=" employer.first_media?.original_url" v-if=" employer.first_media?.original_url" class="max-w-xs m-auto"/>
                   <q-icon name="account_circle" v-else/>
+                  <!-- change avatar  -->
+
+
             </q-card-section>
+            <q-separator/>
             <q-card-section class="q-gutter-md">
+                <q-checkbox v-model="form.is_highlighted" label="Hightlight" :true-value="1" :false-value="0" />
               <q-input
                 v-model="form.name"
                 label="Name"
