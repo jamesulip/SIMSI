@@ -1,11 +1,11 @@
 
 <template>
     <div id="home" class="relative overflow-hidden xl:h-screen h-auto bg-fixed"
-        style="background-image: url('/Global_network_generated.jpg')">
+        style="background-image: url('/332830666_709097277524752_1135358487361350405_n.png')">
         <div class="backdrop-blur-sm bg-blue/60  absolute-full" />
         <div class="relative  sm:pb-24 ">
                 <div class="mx-auto max-w-7xl md:p-0 pb-12 ">
-                    <div class="flex">
+                    <div class="flex justify-center">
                         <div
                             class="px-6 sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:flex lg:items-center lg:text-left">
                             <div>
@@ -20,6 +20,7 @@
                                     </a>
                                 </div>
                                 <img :src="'/logo.png'" class="w-auto max-w-xs mx-auto" />
+                               <div class="bg-gradient-to-l rounded-2xl px-5 py-3 from-white">
                                 <h1
                                     class="text-xl font-bold tracking-tight text-center sm:text-2xl md:text-3xl block text-[#282a6c] xl:inline">
                                     Shaso International
@@ -28,9 +29,10 @@
                                     class="text-xl font-bold tracking-tight text-center text-black sm:text-2xl md:text-3xl">
                                     Manpower Services Inc.
                                 </h1>
+                               </div>
                             </div>
                         </div>
-                        <div class="mt-16 sm:mt-24 lg:col-span-6 lg:mt-0">
+                        <div class="mt-16 sm:mt-24 lg:col-span-6 lg:mt-0 flex">
                             <Offices />
                         </div>
                     </div>

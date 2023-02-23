@@ -104,7 +104,6 @@ function onFleChange(e) {
                 type="text"
                 hint="Enter employer address"
                 stack-label
-                :rules="[(val) => val.length > 0 || 'Address is required']"
               />
               <q-input
                 v-model="form.description"
@@ -114,16 +113,15 @@ function onFleChange(e) {
                 type="textarea"
                 hint="Enter employer description"
                 stack-label
-                :rules="[(val) => val.length > 0 || 'Description is required']"
               />
               <div class="flex gap-3 w-full">
                 <q-input
                   v-model="form.email"
                   label="Email"
+                  type="email"
                   dense
                   class="flex-1"
                   outlined
-                  type="email"
                   hint="Enter employer email"
                   stack-label
                 />

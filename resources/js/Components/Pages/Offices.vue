@@ -20,8 +20,6 @@ const branches = [
     class=" sm:mx-auto sm:w-full sm:max-w-2xl sm:overflow-hidden sm:rounded-lg shadow-sm"
   >
     <div class="mx-auto max-w-xl px-3 sm:py-6 div-anchors" id="contact">
-
-
       <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">
         <div class="bg-white rounded-md p-3" v-for="(branch, index) in branches" :key="index">
           <a href="" target="_blank" class="text-blue uppercase text-lg font-medium text-gray-900">{{ branch.name }}</a>
