@@ -8,7 +8,7 @@ const branches = [
       "Units 500 & 501 L & S Bldg., 1414 Roxas Blvd. cor. Sta. Monica St., Ermita, Manila, Philippines",
     telephone: ["(632) 523-7112", "(632) 523-4472"],
     fax: ["(632) 525-1198"],
-    email: ["shaso2010@yahoo.com"],
+    email: ["shaso.applicant@gmail.com"],
     map:
       "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15445.655815073189!2d120.9802071!3d14.5754725!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x47ce5320a40684b6!2sSHASO%20INTERNATIONAL%20MANPOWER%20SERVICES%20INC!5e0!3m2!1sen!2sph!4v1672343580923!5m2!1sen!2sph",
   },
@@ -37,7 +37,7 @@ const branches = [
               >Tel: {{ item }}</span
             >
             <span class="block" v-for="(item, index) in branch.email" :key="index"
-              >Tel: {{ item }}</span
+              >Email: {{ item }}</span
             >
           </p>
         </div>
