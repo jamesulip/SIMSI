@@ -48,7 +48,7 @@ class BranchSeeder extends Seeder
                 'address' => 'Units 500 & 501 L & S Bldg., 1414 Roxas Blvd. cor. Sta. Monica St., Ermita, Manila, Philippines',
                 'phone' => ['(632) 523-7112', '(632) 523-4472'],
                 'email' => ['
-                shaso2010@yahoo.com
+                shaso.applicant@gmail.com
             '],
                 'website' => '/',
             ],
