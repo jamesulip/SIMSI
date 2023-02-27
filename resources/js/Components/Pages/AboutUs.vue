@@ -1,8 +1,15 @@
+
+<script setup lang="ts">
+import { useElementVisibility } from "@vueuse/core";
+import { ref } from "vue";
+const el = ref(null)
+const isVisible = useElementVisibility(el)
+
+</script>
 <template>
-    <div class="relative h-auto div-anchors" id="about">
-        <div class="absolute inset-0 " c>
-            <div class="absolute inset-0 mix-blend-multiply" style="
-          " aria-hidden="true"></div>
+    <div ref="el" class="relative h-auto div-anchors" id="about">
+        <div class="absolute inset-0 " >
+            <div class="absolute inset-0 mix-blend-multiply"  aria-hidden="true"></div>
         </div>
         <div class="relative mx-auto max-w-7xl  flex flex-col px-4 sm:py-24 sm:px-6 lg:px-8">
             <h1 class="uppercase mt-4 text-base font-bold  tracking-tight  sm:text-4xl text-center ">

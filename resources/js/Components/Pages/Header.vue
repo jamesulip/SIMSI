@@ -1,4 +1,10 @@
+
 <script lang="ts" setup>
+import { computed, watch, watchEffect } from "vue";
+// computed get has value
+import { Link } from '@inertiajs/inertia-vue3';
+
+
 const menus = [
   {
     name: "Home",
@@ -32,6 +38,12 @@ const menus = [
     icon: "mdi-earth",
   },
 ];
+watchEffect(() => {
+  const hash = window.location.hash;
+  console.log(`hash changed to ${hash}`);
+});
+// get current has
+const current = menus.find((menu) => menu.current);
 </script>
 <template>
   <header class="!sticky top-0 z-10">
@@ -41,12 +53,15 @@ const menus = [
           <div class="">
             <div class="flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a
+              <Link
                 v-for="menu in menus"
                 :key="menu.name"
                 :href="menu.href"
                 class="px-3 text-xl py-2 rounded-md font-medium hover:text-gray-100 text-gray-500"
-                >{{ menu.name }}</a
+                :class="{
+                    '!text-gray-100':$page.url.endsWith(menu.href),
+                }"
+                >{{ menu.name }}</Link
               >
             </div>
           </div>
@@ -59,7 +74,7 @@ const menus = [
           <q-btn icon="menu" flat text-color="white" size="lg">
             <q-menu fit class="w-full flex flex-col" >
               <q-list>
-                <q-item :href="menu.href" v-for="menu in menus" :key="menu.name" clickable>
+                <q-item :href="menu.href" v-for="menu in menus" :key="menu.href" clickable>
                   <q-item-section avatar>
                     <q-icon :name="menu.icon" />
                   </q-item-section>
