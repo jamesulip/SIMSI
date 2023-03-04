@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\ClearCacheTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -11,7 +12,7 @@ class Employer extends Model  implements HasMedia
 {
     use InteractsWithMedia;
     use HasFactory;
-
+    use ClearCacheTrait;
     protected $fillable = [
         'name',
         'country',

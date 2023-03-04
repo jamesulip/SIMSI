@@ -25,8 +25,9 @@ const slide = ref(0);
                         <div class="bg-white rounded-md p-3 bg-red-500 min-w-full">
                             <a href="" target="_blank" class="text-blue uppercase text-lg font-medium text-gray-900">{{
                                 branch.name }}</a>
-                            <iframe :src="branch.google_map_embbeded_url" class="w-full h-[450px] rounded-lg" style="border: 0"
-                                allowfullscreen="false"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <!-- <iframe :src="branch.google_map_embbeded_url" class="w-full h-[450px] rounded-lg" style="border: 0"
+                                allowfullscreen="false"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                                <div v-html="branch.google_map_embbeded_url"></div>
                             <p class="mt-2 text-base text-gray-500">
                                 <span class="block">{{ branch.address }}</span>
                                 <span class="block" v-for="(item, index) in branch.telephone" :key="index">Tel: {{ item

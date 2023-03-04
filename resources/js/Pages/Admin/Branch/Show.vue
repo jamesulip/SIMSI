@@ -97,6 +97,19 @@ const loading = ref(false)
                 label="Office Hours"
                 placeholder="Mon-Sat: 9AM to 7PM Sun: 9AM to 6PM"
               />
+              <q-input
+                dense
+                outlined
+                v-model="branch.google_map_embbeded_url"
+                label="Google Embed Map"
+                placeholder="Mon-Sat: 9AM to 7PM Sun: 9AM to 6PM"
+              >
+                <template #append>
+                 <a color="primary" icon="link" flat href="https://www.google.com/maps" target="_blank">
+                    <q-icon name="link" />
+                  </a>
+                </template>
+              </q-input>
                         </q-form>
                     </q-card-section>
                     <!-- card actopm -->
