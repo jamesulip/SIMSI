@@ -27,11 +27,11 @@ const loading = ref(false)
             loading.value = true
         },
     })
-       
+
 
 
     // notify updated
-  
+
 }
 </script>
 <template>
@@ -54,7 +54,7 @@ const loading = ref(false)
                                 class="q-mr-sm"
                                 color="primary"
                                 label="Add Phone"
-                                icon="add"
+                                icon="add"  flat
                                 @click="branch.phone.push('')"
                             />
                             <div class="p-2 bg-gray-100 grid grid-cols-2 gap-3">
@@ -73,11 +73,11 @@ const loading = ref(false)
                                 class="q-mr-sm"
                                 color="primary"
                                 icon="add"
-                                label="Add Email"
+                                label="Add Email" flat
                                 @click="branch.email.push(null)"
                             />
                             <div class="p-2 bg-gray-100 grid grid-cols-2 gap-3">
-                                <q-input 
+                                <q-input
                                  dense outlined v-for="(email,ind) in branch.email" v-model:model-value="branch.email[ind]" label="Email" >
                                 <template #append>
                                     <q-btn
@@ -89,7 +89,14 @@ const loading = ref(false)
                                 </template>
                                 </q-input>
                             </div>
-                            <q-input dense outlined v-model="branch.website" label="Website" />
+                            <q-input dense outlined v-model="branch.website" label="Social Media link" />
+                            <q-input
+                dense
+                outlined
+                v-model="branch.office_hours"
+                label="Office Hours"
+                placeholder="Mon-Sat: 9AM to 7PM Sun: 9AM to 6PM"
+              />
                         </q-form>
                     </q-card-section>
                     <!-- card actopm -->

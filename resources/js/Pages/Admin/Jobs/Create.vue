@@ -296,7 +296,12 @@ function setCountry(v){
           </q-card-section>
           <q-separator />
           <q-card-section>
-            <q-file dense outlined v-model="job.images" multiple>
+            <q-file dense outlined v-model="job.images" multiple :rules="[
+                (v) => !!v || 'Please upload at least one image',
+                (v) => v.length <= 5 || 'Please upload at most 5 images',
+                (v)=>v.every((b)=>b.size < 8000000) || 'Please upload images less than 8mb',
+                (v)=>v.every((b)=>b.type.includes('image')) || 'Please upload images only',
+            ]">
               <template v-slot:prepend>
                 <q-icon name="attach_file" />
               </template>

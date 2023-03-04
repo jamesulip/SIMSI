@@ -27,20 +27,33 @@ Route::get('test', function () {
 });
 
 Route::get('/', function () {
+    // cache branches,employers,principals
+    $branches =\Cache::remember('branches', 60, function () {
+        return \App\Models\Branch::all();
+    });
+    $employers =\Cache::remember('employers', 60, function () {
+        return \App\Models\Employer::with('firstMedia')->select('id','name','is_highlighted')->get();
+    });
+    $principals =\Cache::remember('principals', 60, function () {
+        return \Illuminate\Support\Facades\Storage::disk('public')->files('principals');
+    });
+    $company = \Cache::remember('company', 60, function () {
+        return Company::first();
+    });
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
         'recentJobs' => \App\Models\Jobs::with('employer','media')->available()->latest()->take(6)->get()->map(function ($job) {
             $job['created_at'] = $job->created_at->diffForHumans();
             $job['description'] = strip_tags($job->description);
             return $job;
         }),
-        'branches' => \App\Models\Branch::all(),
-        'employers'=> \App\Models\Employer::with('firstMedia')->select('id','name','is_highlighted')->get(),
-        'principals'=> \Illuminate\Support\Facades\Storage::disk('public')->files('principals'),
+        'branches' => $branches,
+        'employers'=> $employers,
+        'principals'=> $principals,
+        'company' => $company,
     ]);
+
 });
 Route::get('/jobs', [JobsController::class, 'showPublicPost']);
 Route::get('/job/{job:uuid}', [JobsController::class, 'showPublicPostDetails']);
@@ -95,10 +108,9 @@ Route::middleware([
         Route::post('/jobs/{id}/update', [\App\Http\Controllers\JobsController::class, 'update']);
         Route::resource('/jobs', \App\Http\Controllers\JobsController::class);
         Route::resource('/user-management', \App\Http\Controllers\UserManagementController::class)->middleware('permission:view_user');
-
         Route::resource('employers', EmployerController::class);
+        Route::post('/employers/{employer}/update', [\App\Http\Controllers\EmployerController::class, 'update']);
         Route::resource('company', CompanyController::class)->middleware('role:admin');
-
         Route::resource('branches', \App\Http\Controllers\BranchController::class)->name('index', 'branches.index');
     });
     Route::get('/announcements', function () {
