@@ -10,7 +10,7 @@
                 <div v-for="branch in branches" :key="branch.id">
                     <h3 class="text-sm font-semibold leading-6 text-gray-900">{{ branch.name }}</h3>
                     <ul role="list" class="mt-1 space-y-4">
-                        <li class="flex">
+                        <li class="flex"  v-if="branch.phone.length > 1">
                             <div class="px-1.5">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" class="w-6 h-6">
@@ -24,7 +24,7 @@
                         </li>
                 </div>
                 </li>
-                <li class="flex">
+                <li class="flex" v-if="branch.email.length > 1">
                     <div class="px-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -39,7 +39,7 @@
                 </li>
             </div>
             </li>
-            <li class="flex flex-nowrap">
+            <li class="flex flex-nowrap" v-if="branch.address.length > 1">
                 <div class="px-1.5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
