@@ -118,7 +118,7 @@ function resetSearch() {
               <a :href="post.href" v-for="post in computedRecentJobs" :key="post.title"
                 class="flex flex-col border overflow-hidden rounded-lg  border-gray-200">
                 <div class="flex-shrink-0" v-if="post.imageUrl">
-                  <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
+                  <img class="h-48 w-full object-contain" :src="post.imageUrl" alt="" />
                 </div>
                 <div class="flex flex-1 flex-col justify-between bg-white p-3">
                   <div class="flex-1">

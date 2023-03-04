@@ -22,8 +22,13 @@ class Employer extends Model  implements HasMedia
         'website',
         'is_highlighted'
     ];
+    //
+    public function registerMediaCollections(): void
+    {
+        $this->addmediaCollection('logo')->singleFile();
+    }
     // hasone media
     function firstMedia(){
-        return $this->hasOne(Media::class,'model_id','id')->where('model_type',self::class);
+        return $this->hasOne(Media::class,'model_id','id')->where('collection_name','logo')->where('model_type',self::class);
     }
 }

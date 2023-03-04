@@ -114,7 +114,7 @@ const header = ref([
     align:"left",
   },
    {
-    label:"Socaial Media",
+    label:"Social  Media",
     field:"website",
     name:"website",
     align:"left",

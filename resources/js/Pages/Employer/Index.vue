@@ -5,17 +5,12 @@ import { useFetch } from "@vueuse/core";
 import { ref, toRefs } from "vue";
 const props = defineProps<{
   employers;
+  req
 }>();
 
-const { employers } = toRefs(props);
+const { employers,req } = toRefs(props);
 
-const pagination = ref({
-  page: 1,
-  rowsPerPage: employers.value.per_page,
-  sortBy: "id",
-  descending: true,
-  rowsNumber: employers.value.total,
-});
+
 function onRequest({ pagination }): void {
   Inertia.get("/admin/employers", pagination);
 }
@@ -33,7 +28,7 @@ const columns = ref([
     label: "Employer",
   },
   {
-        label:"is Featured",
+        label:"Active",
         name:"is_highlighted",
         field:"is_highlighted",
 
@@ -57,22 +52,39 @@ const columns = ref([
     align: "left",
   },
 ]);
+// get route params
+
+const search = ref(req.value.search);
+function seaarch(){
+    onRequest({
+        pagination:{
+            page:1,
+            rowsPerPage:10,
+            sortBy:"id",
+            descending:false,
+            search:search.value
+        }
+    })
+}
 </script>
 
 <template>
   <AppLayout>
     <q-page padding>
       <!-- using qtable list all employers -->
-      <q-table
+      <q-table flat bordered
         ref="tableRef"
         title="Treats"
         :rows="employers.data"
         row-key="id"
-        v-model:pagination="pagination"
         binary-state-sort
         @request="onRequest"
-        :filter="pagination.search"
         :columns="columns"
+        :pagination="{
+            rowsPerPage: 10,
+            page: employers.current_page,
+            rowsNumber: employers.total,
+        }"
       >
         <template #top>
           <q-toolbar>
@@ -87,23 +99,24 @@ const columns = ref([
               />
             </q-toolbar-title>
             <!-- create search bar -->
-            <q-input
-              :model-value="route()?.params?.search || ''"
-              @keyup.enter.native="pagination.search = $event.target.value"
-              debounce="1000"
-              label="Search"
-              outlined
-              dense
-              class="q-ml-md"
-            >
-              <template #prepend>
-                <q-icon name="search" />
-              </template>
-            </q-input>
+            <q-form @submit="seaarch">
+                <q-input :model-value="search" @change="search = $event"
+                debounce="1000"
+                label="Search"
+                outlined
+                dense
+                class="q-ml-md"
+                >
+                <template #prepend>
+                    <q-icon name="search" />
+                </template>
+                </q-input>
+            </q-form>
           </q-toolbar>
         </template>
         <template #body-cell-website="{ row }">
           <q-td>
+
             <q-btn flat color="blue" :href="row.website" target="_blank">
               <q-icon name="mdi-web" />
             </q-btn>
@@ -142,14 +155,14 @@ const columns = ref([
           </q-td>
         </template>
         <template #body-cell-thumb="{ row }">
-          <q-td auto-width>
-            <q-img
-              :src="row.thumb"
+          <q-td >
+            <q-img class="object-fit h-12 w-12"
+              :src="row?.first_media?.original_url"
               :ratio="1"
-              style="width: 50px; height: 50px"
-              v-if="row.thub"
+
+              v-if="row?.first_media?.original_url"
             />
-            <q-avatar>
+            <q-avatar v-else>
               <q-icon name="mdi-domain" />
             </q-avatar>
           </q-td>

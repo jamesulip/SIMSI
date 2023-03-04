@@ -1,13 +1,15 @@
 <template>
-  <div id="recentjob" class=" w-full div-anchors p-5  border-b bg-gray-100">
-    <div class="p-8 text-center uppercase mt-2 text-base font-bold leading-8   sm:text-2xl">
+  <div id="recentjob" class="relative w-full div-anchors p-5  border-b bg-gray-100 bg-no-repeat	bg-cover bg-center" style="background-image: url('https://www.ppd.com/wp-content/uploads/2020/07/shutterstock_688036339-1024x683.jpg')">
+
+    <div class="backdrop-blur-sm bg-white/50  absolute-full" />
+    <div class="p-8 text-center relative uppercase mt-2 text-base font-bold leading-8   sm:text-2xl">
       Recent Jobs
     </div>
     <div class="max-w-3xl  mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 grid-rows-4 h-full
     ">
 
       <Link :href="`/job/${q.uuid}`" v-for="q in recentJobs">
-      <q-card flat bordered class="hover:!shadow-lg">
+      <q-card flat bordered class="hover:!shadow-lg h-full">
         <div class="grid grid-cols-3 p-3">
           <div class="col-span-2">
             <span class="text-subtitle font-bold text-xl">

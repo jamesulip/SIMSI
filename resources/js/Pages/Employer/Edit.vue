@@ -4,156 +4,111 @@ import { Inertia } from "@inertiajs/inertia";
 import { useFetch } from "@vueuse/core";
 import { ref } from "vue";
 const { employer } = defineProps<{
-  employer;
+    employer;
 }>();
 const form = ref(
-  employer ?? {
-    name: "",
-    country: "",
-    address: "",
-    description: "",
-    email: "",
-    phone: "",
-    avatar: "",
-    website: "",
-  }
+    employer ?? {
+        name: "",
+        country: "",
+        address: "",
+        description: "",
+        email: "",
+        phone: "",
+        avatar: "",
+        website: "",
+        logo: null
+    }
 );
 
 const { data, isFetching } = useFetch(
-  "https://restcountries.com/v3.1/all?fields=name"
+    "https://restcountries.com/v3.1/all?fields=name"
 ).json();
 const options = ref(data.value);
 function filterFn(val, update, abort) {
-  update(() => {
-    const needle = val.toLowerCase();
-    options.value = data.value.filter(
-      (v) => v.name.common.toLowerCase().indexOf(needle) > -1
-    );
-  });
+    update(() => {
+        const needle = val.toLowerCase();
+        options.value = data.value.filter(
+            (v) => v.name.common.toLowerCase().indexOf(needle) > -1
+        );
+    });
 }
 const f = ref(null);
 function onSubmit() {
-  if (!f.value.validate()) return;
-  Inertia.put(`/admin/employers/${employer.id}`, {
-    ...form.value,
-  });
+    if (!f.value.validate()) return;
+    Inertia.post(`/admin/employers/${employer.id}/update`, form.value);
 }
 const uploader = ref(null);
 function changeAvatar() {
-  const fileInput = document.getElementById("file");
+    const fileInput = document.getElementById("file");
 }
+const imageprev = ref(null);
 function onFleChange(e) {
-  const file = e.target.files[0];
-  form.value.avatar = file;
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        imageprev.value = reader.result;
+    };
+
 }
 </script>
 
 <template>
-  <AppLayout>
-    <q-page padding>
+    <AppLayout>
+        <q-page padding>
 
-      <!-- using qtable list all employers -->
-      <div class="max-w-3xl">
-        <q-form ref="f" @submit.prevent="onSubmit">
-          <q-card flat bordered>
-            <q-card-section>
-              <div class="text-h6">Employer Details</div>
-            </q-card-section>
-            <q-separator />
-            <!-- upload avatar -->
-            <q-card-section class="flex">
-                  <q-img :src=" employer.first_media?.original_url" v-if=" employer.first_media?.original_url" class="max-w-xs m-auto"/>
-                  <q-icon name="account_circle" v-else/>
-                  <!-- change avatar  -->
+            <!-- using qtable list all employers -->
+            <div class="max-w-3xl">
+                <q-form ref="f" @submit.prevent="onSubmit">
+                    <q-card flat bordered>
+                        <q-card-section>
+                            <div class="text-h6">Employer Details</div>
+                        </q-card-section>
+                        <q-separator />
+                        <!-- upload avatar -->
+                        <q-card-section class="flex">
+                            <q-img :src="imageprev" v-if="imageprev" @click="uploader.pickFiles()"
+                                class="max-w-xs m-auto" />
+                            <q-img :src="employer.first_media?.original_url" v-else-if="employer.first_media?.original_url"
+                                @click="uploader.pickFiles()" class="max-w-xs m-auto" />
+                            <q-avatar border size="100px" class="mx-auto" v-else @click="uploader.pickFiles()">
+                                <q-icon name="account_circle" />
+                            </q-avatar>
 
+                            <q-file accept="image/*" ref="uploader" v-model="form.logo" class="q-ml-md hidden"
+                                @input="onFleChange" />
 
-            </q-card-section>
-            <q-separator/>
-            <q-card-section class="q-gutter-md">
-                <q-checkbox v-model="form.is_highlighted" label="Hightlight" :true-value="1" :false-value="0" />
-              <q-input
-                v-model="form.name"
-                label="Name"
-                dense
-                outlined
-                type="text"
-                hint="Enter employer name"
-                stack-label
-                :rules="[(val) => val.length > 0 || 'Name is required']"
-              />
-              <q-select
-                v-if="!isFetching"
-                use-input
-                :options="options"
-                @filter="filterFn"
-                v-model="form.country"
-                dense
-                outlined
-                label="Location"
-                :loading="isFetching"
-                :option-label="(v) => v?.name?.common"
-                map-options
-                emit-value
-                :option-value="(b) => b?.name?.common"
-              />
-              <q-input
-                v-model="form.address"
-                label="Address"
-                dense
-                outlined
-                type="text"
-                hint="Enter employer address"
-                stack-label
-              />
-              <q-input
-                v-model="form.description"
-                label="Company Description"
-                dense
-                outlined
-                type="textarea"
-                hint="Enter employer description"
-                stack-label
-              />
-              <div class="flex gap-3 w-full">
-                <q-input
-                  v-model="form.email"
-                  label="Email"
-                  type="email"
-                  dense
-                  class="flex-1"
-                  outlined
-                  hint="Enter employer email"
-                  stack-label
-                />
-                <q-input
-                  v-model="form.phone"
-                  label="Phone"
-                  dense
-                  class="flex-1"
-                  outlined
-                  type="text"
-                  hint="Enter employer phone"
-                  stack-label
-                />
-              </div>
-              <q-input
-                v-model="form.website"
-                label="Website"
-                dense
-                outlined
-                type="text"
-                hint="Enter employer website"
-                stack-label
-                :rules="[(val) => val.length > 0 || 'Website is required']"
-              />
-            </q-card-section>
-            <q-card-actions>
-              <q-space />
-              <q-btn type="submit" color="primary" label="Update" />
-            </q-card-actions>
-          </q-card>
-        </q-form>
-      </div>
-    </q-page>
-  </AppLayout>
+                        </q-card-section>
+                        <q-separator />
+                        <q-card-section class="q-gutter-md">
+                            <q-checkbox v-model="form.is_highlighted" label="Active" :true-value="1" :false-value="0" />
+                            <q-input v-model="form.name" label="Name" dense outlined type="text" hint="Enter employer name"
+                                stack-label :rules="[(val) => val.length > 0 || 'Name is required']" />
+                            <q-select v-if="!isFetching" use-input :options="options" @filter="filterFn"
+                                v-model="form.country" dense outlined label="Location" :loading="isFetching"
+                                :option-label="(v) => v?.name?.common" map-options emit-value
+                                :option-value="(b) => b?.name?.common" />
+                            <q-input v-model="form.address" label="Address" dense outlined type="text"
+                                hint="Enter employer address" stack-label />
+                            <q-input v-model="form.description" label="Company Description" dense outlined type="textarea"
+                                hint="Enter employer description" stack-label />
+                            <div class="flex gap-3 w-full">
+                                <q-input v-model="form.email" label="Email" type="email" dense class="flex-1" outlined
+                                    hint="Enter employer email" stack-label />
+                                <q-input v-model="form.phone" label="Phone" dense class="flex-1" outlined type="text"
+                                    hint="Enter employer phone" stack-label />
+                            </div>
+                            <q-input v-model="form.website" label="Website" dense outlined type="text"
+                                hint="Enter employer website" stack-label
+                                :rules="[(val) => val.length > 0 || 'Website is required']" />
+                        </q-card-section>
+                        <q-card-actions>
+                            <q-space />
+                            <q-btn type="submit" color="primary" label="Update" />
+                        </q-card-actions>
+                    </q-card>
+                </q-form>
+            </div>
+        </q-page>
+    </AppLayout>
 </template>

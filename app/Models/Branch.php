@@ -14,6 +14,8 @@ class Branch extends Model
         'phone',
         'email',
         'website',
+        'google_map_embbeded_url',
+        'office_hours'
     ];
     protected $casts = [
         'phone' => 'array',

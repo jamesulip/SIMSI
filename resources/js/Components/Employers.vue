@@ -1,8 +1,11 @@
 <template><!-- show all employer logo -->
-    <div class="mx-auto max-w-7xl">
-                <p class="text-center uppercase text-2xl font-semibold py-9 text-gray-600">
+<div class=" bg-no-repeat	bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1521790797524-b2497295b8a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80')">
+    <div class="backdrop-blur-sm bg-white/80  absolute-full" />
+    <p class="relative text-center uppercase z-10 text-2xl font-semibold py-9 text-gray-600">
                     LISTS OF FOREIGN PRINCIPALS
                 </p>
+    <div class="mx-auto max-w-7xl"  >
+
                 <q-carousel
                     v-model="slide"
                     swipeable
@@ -11,8 +14,7 @@
                     navigation
                     padding
                     arrows
-                    infinite
-                    height="300px"
+                    infinite class="bg-transparent"
                 >
                     <q-carousel-slide
                         v-for="(item, index) in pr"
@@ -27,7 +29,7 @@
                             >
                                 <img
                                     :src="e.first_media.original_url"
-                                    class="object-contain h-12 mx-2 my-2 max-h-12 w-full object-contain object-left"
+                                    class="object-contain h-42 m mx-2 my-2  w-full object-contain object-left"
                                     :alt="e.name"
                                 />
                             </div>
@@ -59,6 +61,7 @@
             </div>
         </div>
     </div> -->
+</div>
 </template>
 
 <script lang="ts" setup>
@@ -75,7 +78,7 @@ const chunk = (arr, size) =>
         arr.slice(i * size, i * size + size)
     );
 const pr = computed(() => {
-    return chunk(employers, $q.platform.is.mobile ? 2 : 5).filter((e) => e.length > 0);
+    return chunk(employers, $q.platform.is.mobile ? 1 : 1).filter((e) => e.length > 0);
 });
 
 </script>

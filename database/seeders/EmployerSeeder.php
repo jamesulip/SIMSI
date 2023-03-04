@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employer;
 use Illuminate\Database\Seeder;
 
 class EmployerSeeder extends Seeder
@@ -13,6 +14,10 @@ class EmployerSeeder extends Seeder
      */
     public function run()
     {
+        // set foreign key check to 0
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Employer::truncate();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
        $employers = [
         "principals/Picture17.jpg"=>'RIYADH K.S.A',
         "principals/Picture18.jpg"=>'AL INMA MEDICAL SERVICES RIYADH K.S.A',

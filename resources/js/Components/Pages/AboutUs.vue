@@ -57,8 +57,9 @@ const isVisible = useElementVisibility(el)
                     </div>
 
                 </div>
-            </div>
 
+
+            </div>
             <div class="mt-6  md:text-xl  p-1 rounded-md  ">
                 <p class="text-base md:text-lg text-justify text-gray-500">A reliable and dynamic land-based recruitment agency, strategically located in
                     the business center of Manila. Shaso International Manpower Services, Inc. is composed of new breed

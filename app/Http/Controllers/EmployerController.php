@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Employer;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
 
 class EmployerController extends Controller
 {
@@ -23,6 +24,7 @@ class EmployerController extends Controller
                 ->orWhere('address', 'like', "%$search%")
                 ->orWhere('country', 'like', "%$search%");
         })
+        ->with('firstMedia')
         ->when($req->sortBy, function ($query, $sortBy) use ($req) {
             return $query->orderBy($sortBy, $req->descending ? 'desc' : 'asc');
         })
@@ -31,6 +33,7 @@ class EmployerController extends Controller
 
         return Inertia::render('Employer/Index', [
             'employers' => $employer,
+            'req' => $req->all(),
         ]);
     }
 
@@ -60,7 +63,9 @@ class EmployerController extends Controller
         ]);
 
         $employers = Employer::create($request->all());
-
+        if($request->hasFile('logo')){
+            $employers->addMediaFromRequest('logo')->toMediaCollection('logo');
+        }
         return redirect()->route('employers.index');
     }
 
@@ -99,9 +104,17 @@ class EmployerController extends Controller
     public function update(Request $request, Employer $employer)
     {
         //
-        $employer->fill($request->all())->save();
-
+        $request->validate([
+            'name' => 'required',
+            'logo'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if($request->hasFile('logo')){
+            $employer->addMediaFromRequest('logo')->toMediaCollection('logo');
+        }
+        $employer->fill($request->all());
+        $employer->update();
         return redirect()->route('employers.index');
+
     }
 
     /**

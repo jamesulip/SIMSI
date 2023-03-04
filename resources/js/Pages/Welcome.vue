@@ -1,6 +1,6 @@
 <template>
   <Guest>
-    <Contacts2  class="div-anchor" />
+    <Contacts2 :branches="branches" :company="company" class="div-anchor" />
     <RecentJobs :recent-jobs="recentJobs" />
     <AboutUsVue />
     <VisionMissionVue />
@@ -29,6 +29,7 @@ const { recentJobs, principals,branches,employers } = defineProps<{
   recentJobs: any;
   branches: any;
   employers:any;
+  company: any;
 }>();
 const slide = ref(0);
 // paginate array into chunks with 10 items

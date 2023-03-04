@@ -56,7 +56,7 @@ function submit() {
                 class="q-mr-sm"
                 color="primary"
                 label="Add Phone"
-                unelevated
+                unelevated flat
                 icon="add"
                 @click="branch.phone.push('')"
               />
@@ -86,7 +86,7 @@ function submit() {
                 class="q-mr-sm"
                 color="primary"
                 icon="add"
-                label="Add Email"
+                label="Add Email" flat
                 @click="branch.email.push(null)"
               />
               <div class="p-2 bg-gray-100 grid grid-cols-2 gap-3">
@@ -113,6 +113,13 @@ function submit() {
                 outlined
                 v-model="branch.website"
                 label="Social Media"
+              />
+              <q-input
+                dense
+                outlined
+                v-model="branch.office_hours"
+                label="Office Hours"
+                placeholder="Mon-Sat: 9AM to 7PM Sun: 9AM to 6PM"
               />
             </q-form>
           </q-card-section>

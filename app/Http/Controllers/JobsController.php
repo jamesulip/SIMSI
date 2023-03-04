@@ -80,6 +80,10 @@ class JobsController extends Controller
         $request->validate(\App\Models\Jobs::$rules);
         $job = \App\Models\Jobs::find($id);
         $job->update($request->all());
+        // check if file is less tha or equal to 8mb
+        $request->validate([
+            'images.*' => 'max:8192',
+        ]);
         // upload file
         if ($request->hasFile('images')) {
             foreach ($request->images as $image) {

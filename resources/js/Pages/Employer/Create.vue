@@ -50,6 +50,17 @@ function onSubmit() {
     }
   );
 }
+const uploader = ref(null);
+const imageprev = ref(null);
+function onFleChange(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        imageprev.value = reader.result;
+    };
+
+}
 </script>
 
 <template>
@@ -65,9 +76,15 @@ function onSubmit() {
             <q-separator />
             <!-- upload avatar -->
             <q-card-section class="flex">
-              <q-avatar border size="100px" class="mx-auto">
-                <q-icon name="account_circle" />
-              </q-avatar>
+                <q-img :src="imageprev" v-if="imageprev" @click="uploader.pickFiles()"
+                                class="max-w-xs m-auto" />
+
+                            <q-avatar border size="100px" class="mx-auto" v-else @click="uploader.pickFiles()">
+                                <q-icon name="account_circle" />
+                            </q-avatar>
+
+                            <q-file accept="image/*" ref="uploader" v-model="form.logo" class="q-ml-md hidden"
+                                @input="onFleChange" />
             </q-card-section>
             <q-card-section class="q-gutter-md">
               <q-input
