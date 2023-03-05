@@ -43,7 +43,7 @@
                     </div>
                 </div> -->
                 <div class="m-auto max-w-full md:p-0 pb-12 grid grid-cols-1 lg:grid-cols-2 ">
-                        <div class="m-auto">
+                        <div class="m-auto p-12">
                                 <div class="hidden sm:mb-4 sm:flex sm:justify-center lg:justify-start">
                                     <a href="#"
                                         class="flex items-center rounded-full bg-gray-900 p-1 pr-2 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
