@@ -1,5 +1,5 @@
 <template>
-    <div class="relative bg-gray-100 div-anchors px-3 h-screen flex" id="mission">
+    <div class="relative bg-gray-100 div-anchors px-3 md:h-screen h-auto flex" id="mission">
         <div class="lg:mx-auto m-auto lg:grid lg:max-w-5xl lg:grid-cols-1 grid-rows-2 lg:items-start  lg:px-8">
             <div class=" flex gap-2  p-3">
                 <div class="flex ">
